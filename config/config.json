@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "b31dfb0ca17120",
-    "password": "8a9b6469",
-    "database": "heroku_f6ce588ae997a88",
-    "host": "us-cdbr-iron-east-01.cleardb.net",
+    "username": "root",
+    "password": null,
+    "database": "fire",
+    "host": "127.0.0.1",
     "port": 3306,
     "dialect": "mysql"
   },

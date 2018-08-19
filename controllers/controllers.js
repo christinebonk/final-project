@@ -9,7 +9,7 @@ function routes(app) {
 	});
 
 	app.get("/welcome", function(req,res) {
-		res.render('home', {layout: 'onboarding.handlebars'});
+		res.render('index', {layout: 'onboarding.handlebars'});
 	})
 
 	//apis
