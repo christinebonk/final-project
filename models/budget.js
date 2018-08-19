@@ -1,7 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
   var Budget = sequelize.define("Budget", {
-    text: DataTypes.STRING,
-    complete: DataTypes.BOOLEAN
+  	username: DataTypes.STRING,
+    category: DataTypes.STRING,
+    amount: DataTypes.INTEGER,
+    type: DataTypes.STRING
   });
   return Budget;
 };

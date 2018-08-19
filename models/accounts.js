@@ -1,7 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
   var Account = sequelize.define("Account", {
-    text: DataTypes.STRING,
-    complete: DataTypes.BOOLEAN
+  	username: DataTypes.STRING,
+    account: DataTypes.STRING,
+    balance: DataTypes.INTEGER
   });
   return Account;
 };
