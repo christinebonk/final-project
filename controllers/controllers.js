@@ -32,6 +32,10 @@ function routes(app) {
 		res.render('monthly', {title: "Monthly Insights"});
 	});
 
+	app.get("/dashboard", function(req,res) {
+		res.render('freedom', {title: "Financial Freedom Dashboard"});
+	});
+
 
 
 	//apis

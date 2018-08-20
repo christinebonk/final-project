@@ -5,14 +5,31 @@
 }
 
 .data-header {
-	font-size: 1.5rem;
+	font-size: 1.4rem;
 }
 
 .data-value {
-	font-size: 6rem;
+	font-size: 2.7rem;
 	margin: 20px 0px
 }
 
 .data-sub {
 	font-size: 1.2rem;
+}
+
+/*Bar*/
+
+.bar-container {
+	display: flex;
+	height: 30px;
+}
+
+.bar-full {
+	background: $secondary;
+	width: 30%;
+}
+
+.bar-empty{
+	background: $accent;
+	width: 70%;
 }
