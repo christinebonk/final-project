@@ -28,6 +28,10 @@ function routes(app) {
 		res.render('result', {layout: 'onboarding.handlebars'});
 	});
 
+	app.get("/monthly", function(req,res) {
+		res.render('monthly', {title: "Monthly Insights"});
+	});
+
 
 
 	//apis

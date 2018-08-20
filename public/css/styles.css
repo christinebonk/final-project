@@ -170,4 +170,30 @@ template {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+footer nav {
+  position: fixed;
+  bottom: 0; }
+
+.data-block {
+  background: #FABC09;
+  border-radius: 3px;
+  padding: 10px; }
+
+.data-header {
+  font-size: 1.5rem; }
+
+.data-value {
+  font-size: 6rem;
+  margin: 20px 0px; }
+
+.data-sub {
+  font-size: 1.2rem; }
+
+@media only screen and (max-width: 700px) {
+  html {
+    font-size: 10%; } }
+/*Main Styles*/
+html {
+  font-size: 62.5%; }
+
 /*# sourceMappingURL=styles.css.map */

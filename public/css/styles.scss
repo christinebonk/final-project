@@ -7,3 +7,12 @@ $accent: #FACC43;
 /*Stylesheet Import*/
 @import 'normalize';
 @import 'onboarding';
+@import 'footer';
+@import 'data';
+@import 'mediaqueries';
+
+/*Main Styles*/
+
+html {
+	font-size: 62.5%;
+}
