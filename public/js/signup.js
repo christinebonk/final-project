@@ -3,7 +3,9 @@ $(".sign-up-submit").on("click", function(event) {
 	var username =  $("#username").val().trim();
 	var password = $("#password").val().trim();
 	var email = $("#email").val().trim();
-
+	$("#username-error").empty();
+	$("#password-error").empty();
+	$("#email-error").empty();
 
 	//validations
 	if (!username) {

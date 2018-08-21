@@ -1,7 +1,7 @@
 var db = require("../models");
 var bodyparser = require("body-parser");
-var { check, validationResult } = require('express-validator/check');
-
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
 function routes(app) {
@@ -38,38 +38,21 @@ function routes(app) {
 		res.render('freedom', {title: "Financial Freedom Dashboard"});
 	});
 
-	//apis
+	//apis to do - fix validation
+	app.post("/signup", function(req,res,next) {
+		var password = req.body.password;
+		var username = req.body.username;
+		var email = req.body.email;
+		bcrypt.hash(password, saltRounds, function(err, hash) {
+  			db.User.create({
+		      username: username,
+		      password: hash,
+		      email: email
+			}).then(function(res) {
+		    });	
+		});
 
-
-	//to do - fix validation
-	app.post("/signup", [
-		check('username').isLength({ max: 15})
-		.not().isEmpty()
-		.trim()
-		.escape(),
-		check('password').isLength({ min: 6 })
-		.isLength({ max: 60})
-		.not().isEmpty()
-		.trim()
-		.escape(),
-		check('email').isEmail()
-		.normalizeEmail()
-		.trim()
-		.escape(),
-		], function(req,res,next) {
-
-		var errors = validationResult(req);
-		console.log(errors);
-		  if (!errors.isEmpty()) {
-		    return res.render("index", {errors: errors});
-		  }
-
-		db.User.create({
-	      username: req.body.username,
-	      password: req.body.password,
-	      email: req.body.email
-		}).then(function(res) {
-	    });		
+			
 	});
 };
 
