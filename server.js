@@ -5,7 +5,9 @@ var path = require("path");
 var routes = require("./controllers/controllers.js");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
-var db = require("./models")
+var db = require("./models");
+var { check, validationResult } = require('express-validator/check');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

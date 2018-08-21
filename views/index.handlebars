@@ -1,25 +1,39 @@
 
   <!--Sign-up-->
+  {{#if errors}}
+  	{{#each errors}}
+  		{{this.msg}}
+  	{{/each}}
+  {{/if}}
   <div class="row">
     <form class="col s12">
       <div class="row">
 
       <div class="input-field col s12">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Username</label>
+          <input id="username" type="text" class="validate" required>
+          <label for="username">Username</label>
         </div>
+        <p id="username-error"></p>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
+          <input id="password" type="password" class="validate" required>
           <label for="password">Password</label>
+          <p id="password-error"></p>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
           <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
+          <label for="email">Email (Optional)</label>
         </div>
+        <p id="email-error"></p>
+      </div>
+      <div class="row">
+      	<button class="btn waves-effect waves-light sign-up-submit" type="submit" name="action">Submit
+ 		 </button>
       </div>
     </form>
   </div>
+
+<script src="/js/signup.js"></script>
