@@ -13,6 +13,7 @@ function routes(app) {
 
 	app.get("/goals", function(req,res) {
 		res.render('goals', {layout: 'onboarding.handlebars', title: 'Your Goals'});
+		console.log("hi");
 	});
 
 	app.get("/networth", function(req,res) {
@@ -57,7 +58,7 @@ function routes(app) {
 					console.log(userid);
 					req.login(userid, function(err) {
 						if (err) { console.log(err); }
-						res.redirect("/dashboard");
+						res.json("complete");
 					})
 				})
 		    });	

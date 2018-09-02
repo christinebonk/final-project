@@ -36,8 +36,9 @@ $(".sign-up-submit").on("click", function(event) {
 	$.ajax("/signup", {
 		type: "POST",
 		data: newUser
-	}).then(function() {
+	}).then(function(res) {
 		console.log("Created new user");
+		window.location.href = "/dashboard";
 	})
 })
 
