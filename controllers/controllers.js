@@ -36,7 +36,7 @@ function routes(app) {
 		res.render('monthly', {title: "Monthly Insights"});
 	});
 
-	app.get("/dashboard", function(req,res) {
+	app.get("/dashboard", authenticationMiddleware(), function(req,res) {
 		console.log(req.user);
 		console.log(req.isAuthenticated());
 		res.render('freedom', {title: "Financial Freedom Dashboard"});
@@ -73,5 +73,14 @@ passport.serializeUser(function(userid, done) {
 passport.deserializeUser(function(userid, done) {
     done(null, userid);
 });
+
+function authenticationMiddleware () {  
+	return (req, res, next) => {
+		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+	    if (req.isAuthenticated()) return next();
+	    res.redirect('/')
+	}
+}
 
 module.exports = routes;

@@ -10,6 +10,20 @@ var db = require("./models");
 //authentication packages
 var session = require("express-session");
 var passport = require("passport");
+var MySQLStore = require('express-mysql-session')(session);
+
+//this will need to be updated 
+var options = {
+	user: "root",
+    password: "password",
+    database: "fire",
+    host: "127.0.0.1",
+    port: 3306
+};
+
+
+var sessionStore = new MySQLStore(options);
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'o1mQYsAjjBTalmA',
   resave: false,
+  store: sessionStore,
   saveUninitialized: false,
   // cookie: { secure: true }
 }));
