@@ -2,6 +2,7 @@ var db = require("../models");
 var bodyparser = require("body-parser");
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
+var passport = require("passport");
 
 
 function routes(app) {
@@ -11,7 +12,7 @@ function routes(app) {
 	});
 
 	app.get("/goals", function(req,res) {
-		res.render('goals', {layout: 'onboarding.handlebars'});
+		res.render('goals', {layout: 'onboarding.handlebars', title: 'Your Goals'});
 	});
 
 	app.get("/networth", function(req,res) {
@@ -35,6 +36,8 @@ function routes(app) {
 	});
 
 	app.get("/dashboard", function(req,res) {
+		console.log(req.user);
+		console.log(req.isAuthenticated());
 		res.render('freedom', {title: "Financial Freedom Dashboard"});
 	});
 
@@ -48,12 +51,26 @@ function routes(app) {
 		      username: username,
 		      password: hash,
 		      email: email
-			}).then(function(res) {
+			}).then(function(result) {
+				db.User.find({where: {username: username}}).then(function(result) {
+					var userid = result.id;
+					console.log(userid);
+					req.login(userid, function(err) {
+						if (err) { console.log(err); }
+						res.redirect("/dashboard");
+					})
+				})
 		    });	
-		});
-
-			
+		});		
 	});
 };
+
+passport.serializeUser(function(userid, done) {
+  done(null, userid);
+});
+ 
+passport.deserializeUser(function(userid, done) {
+    done(null, userid);
+});
 
 module.exports = routes;
