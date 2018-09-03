@@ -22,8 +22,6 @@ var options = {
     host: "127.0.0.1",
     port: 3306
 };
-
-
 var sessionStore = new MySQLStore(options);
 
 
@@ -46,13 +44,11 @@ app.use(function(req,res,next) {
 	next();
 })
 
-
+//check for user name 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
   		console.log(username);
   		console.log(password);
-
-      	
 
       	db.User.find({where: {username:username}}).then(function(result) {
       		console.log(result);
@@ -72,18 +68,10 @@ passport.use(new LocalStrategy(
 	      			}
 				});
       		}
-
 			
 		}).catch(function (err) {
 			if (err) { console.log(err); }
-		});
-
-
-
-		
-		
-
-		
+		});	
 	})
 );
 

@@ -13,7 +13,6 @@ function routes(app) {
 
 	app.get("/goals", function(req,res) {
 		res.render('goals', {layout: 'onboarding.handlebars', title: 'Your Goals'});
-		console.log("hi");
 	});
 
 	app.get("/networth", function(req,res) {
