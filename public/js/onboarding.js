@@ -11,19 +11,25 @@ $('.datepicker').datepicker({
 //goals
 $(".goals-submit").on("click", function(event) {
 	event.preventDefault();
-	var date = new Date($("#date").val().trim());
+	var date = $("#date").val().trim();
 	var amount = $("#retirement-amount").val().trim();
 	var currentDate = new Date();
 	var error = false;
 
 	//validations
-	if (currentDate > date) {
+	if (!date) {
+		$("#date-error").text("Please enter a value");
+		error = true;
+	} else if (currentDate > new Date(date)) {
 		console.log("error")
 		$("#date-error").text("Please enter a date in the future");
-			error = true;
+		error = true;
 	} 
 
-	if (isNaN(amount)) {
+	if (!amount) {
+		$("#retirement-amount-error").text("Please enter a value");
+		error = true;
+	} else if (isNaN(amount)) {
 		$("#retirement-amount-error").text("Entry must be a number");
 		error = true;
 	} else if (amount.length > 40) {
@@ -44,7 +50,7 @@ $(".goals-submit").on("click", function(event) {
 			amount: amount
 		}
 	}).then(function(res) {
-		//TO DO: need to close modal 
+		window.location.href = "/networth";
 	})
 });
 

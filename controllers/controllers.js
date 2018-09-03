@@ -69,7 +69,7 @@ function routes(app) {
 		},
 			{where: {id: user}
 		}).then(function(result) {
-
+			res.json(result);
 		}).catch(function(err) {
 			if (err) {console.log(err)};
 		})
