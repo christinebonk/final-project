@@ -22,12 +22,30 @@ $(".modal-save").on("click", function(event) {
 	var name = $("#account-name").val().trim();
 	var balance = $("#account-balance").val().trim();
 	var include = $("input[name='fire']:checked").val().trim();
-	
+	var error = false;
+
 	if (include === "yes") {
 		include = true;
 	} else {
 		include = false;
 	}
+
+	//validations
+	if (isNaN(balance)) {
+		$("#account-balance-error").text("Account balance must be a number");
+		error = true;
+	} else if (balance.length > 40) {
+		$("#account-balance-error").text("Account balance must be 40 characters or fewer");
+		error = true;
+	}
+	if (name.length > 40) {
+		$("#account-name-error").text("Account name must be 40 characters or fewer");
+		error = true;
+	}
+	if (error) {
+		return
+	}
+	$("#modal1").close();
 
 	var account = {
 		type: category,

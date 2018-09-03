@@ -1,11 +1,28 @@
 module.exports = function(sequelize, DataTypes) {
   var Account = sequelize.define("Account", {
-  	userid: DataTypes.STRING,
-    account: DataTypes.STRING,
-    balance: DataTypes.INTEGER,
-    type: DataTypes.STRING,
-    include: DataTypes.BOOLEAN,
+  	userid: {
+    	type: DataTypes.STRING(10),
+    	allowNull: false
+    },
+    account: {
+    	type: DataTypes.STRING(40),
+    	allowNull: false
+    },
+    balance: {
+    	type: DataTypes.INTEGER(40),
+    	allowNull: false
+    },
+    type: {
+    	type: DataTypes.STRING(40),
+    	allowNull: false
+    },
+    include: {
+    	type: DataTypes.BOOLEAN,
+    	allowNull: false
+    },
     interest: DataTypes.FLOAT
   });
   return Account;
 };
+
+

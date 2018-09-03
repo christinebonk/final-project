@@ -67,6 +67,8 @@ function routes(app) {
 				balance: balance,
 				include: include,
 				userid: user 
+			}).then(function(result) {
+				res.json("complete");
 			})
 	});
 

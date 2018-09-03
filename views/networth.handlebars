@@ -44,17 +44,19 @@ Loan/Asset
 	    	<div class="input-field">
 		      <input id="account-name" type="text" class="validate" required>
 		      <label for="account-name">What is the name of your account?</label>
+		      <p class="error-message" id="account-name-error"></p>
 	  		</div>
 	  		<!--Balance-->
 	  		<div class="input-field">
 		      <input id="account-balance" type="text" class="validate" required>
 		      <label for="account-balance">What is your account balance?</label>
+		      <p class="error-message" id="account-balance-error"></p>
 	  		</div>
 	  		<!--FIRE-->
 	  		<div class="form-bottom">
 	  			<legend>Count this account toward financial independence?</legend>
 				<label for="yes">
-					<input id="yes" type="radio" name="fire" value="yes">
+					<input id="yes" type="radio" name="fire" value="yes" checked="checked">
 					<span>Yes</span>
 				</label>
 				<label for="no">
