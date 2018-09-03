@@ -46,6 +46,12 @@ function routes(app) {
 		res.json("complete");
 	});
 
+	app.get("/logout", function(req,res) {
+		req.logout();
+		req.session.destroy();
+		res.redirect("/")
+	})
+
 	//apis to do - fix validation
 	app.post("/signup", function(req,res,next) {
 		var password = req.body.password;

@@ -13,6 +13,15 @@
 <body>
 	<header>
 		<h1>{{title}}</h1>
+		<a href="/logout">Logout</a>
+
+		{{#if isAuthenticated}}
+		<p>Is Authenticated</p>
+		{{else}} 
+		<p>Not Authenticated</p>
+		{{/if}}
+
+
 	</header>
     {{{body}}}
 	

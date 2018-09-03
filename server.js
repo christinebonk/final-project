@@ -41,6 +41,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+app.use(function(req,res,next) {
+	res.locals.isAuthenticated = req.isAuthenticated();
+	next();
+})
+
+
 passport.use(new LocalStrategy(
 	function(username, password, done) {
   		console.log(username);
@@ -49,22 +55,25 @@ passport.use(new LocalStrategy(
       	
 
       	db.User.find({where: {username:username}}).then(function(result) {
+      		console.log(result);
       		console.log(result.password);
       		if (result.password.length === 0) {
       			return done(null, false);
+      		} else {
+      			var hash = result.password;
+				var userid = result.id;
+
+	      		bcrypt.compare(password, hash, function(err, response) {
+	      			console.log(response);
+	      			if(response === true) {
+	      				return done(null, {userid: userid});
+	      			} else {
+	      				return done(null, false);
+	      			}
+				});
       		}
 
-			var hash = result.password;
-			var userid = result.id;
-
-      		bcrypt.compare(password, hash, function(err, response) {
-      			console.log(response);
-      			if(response === true) {
-      				return done(null, {userid: userid});
-      			} else {
-      				return done(null, false);
-      			}
-			})
+			
 		}).catch(function (err) {
 			if (err) { console.log(err); }
 		});
