@@ -6,5 +6,66 @@ Purpose
 Interest
 Loan/Asset
 
-
 -->
+
+<!--Button Container-->
+<section id="asset-buttons-container">
+	<a id="investments" class="asset-button btn modal-trigger" href="#modal1">
+		<figcaption>Investments</figcaption>
+		<img alt="Investments" src="https://loremflickr.com/200/200">
+	</a>
+	<a id="cash" class="asset-button btn modal-trigger" href="#modal1">
+		<figcaption>Cash</figcaption>
+		<img alt="Cash" src="https://loremflickr.com/200/200">
+	</a>
+	<a id="property" class="asset-button btn modal-trigger" href="#modal1">
+		<figcaption>Property</figcaption>
+		<img alt="Property" src="https://loremflickr.com/200/200">
+	</a>
+	<a id="car" class="asset-button btn modal-trigger" href="#modal1">
+		<figcaption>Car</figcaption>
+		<img alt="Car" src="https://loremflickr.com/200/200">
+	</a>
+	<a id="debt" class="asset-button btn modal-trigger" href="#modal1">
+		<figcaption>Debt</figcaption>
+		<img alt="Debt" src="https://loremflickr.com/200/200">
+	</a>
+</section>
+
+<!--Modal-->
+<div id="modal1" class="modal">
+	<!--Modal Content-->
+    <div class="modal-content">
+		<!--Modal Header-->
+    	<h4>Enter details about your account</h4>
+    	<!--Modal Questions-->
+    	<form>
+    		<!--Name-->
+	    	<div class="input-field">
+		      <input id="account-name" type="text" class="validate" required>
+		      <label for="account-name">What is the name of your account?</label>
+	  		</div>
+	  		<!--Balance-->
+	  		<div class="input-field">
+		      <input id="account-balance" type="text" class="validate" required>
+		      <label for="account-balance">What is your account balance?</label>
+	  		</div>
+	  		<!--FIRE-->
+	  		<div class="form-bottom">
+	  			<legend>Count this account toward financial independence?</legend>
+				<label for="yes">
+					<input id="yes" type="radio" name="fire" value="yes">
+					<span>Yes</span>
+				</label>
+				<label for="no">
+					<input id="no" type="radio" name="fire" value="no">
+					<span>No</span>
+				</label>
+	 		</div>
+	  	</form>
+    </div>
+    <div class="modal-footer">
+    	<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+    	<a href="#!" data-category="" class="modal-save waves-effect waves-green btn-flat">Save</a>
+    </div>
+</div>

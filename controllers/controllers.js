@@ -11,12 +11,13 @@ function routes(app) {
 		res.render("index");
 	});
 
-	app.get("/goals", function(req,res) {
+	app.get("/goals", authenticationMiddleware(), function(req,res) {
 		res.render('goals', {layout: 'onboarding.handlebars', title: 'Your Goals'});
 	});
 
-	app.get("/networth", function(req,res) {
-		res.render('networth', {layout: 'onboarding.handlebars'});
+	app.get("/networth", authenticationMiddleware(), function(req,res) {
+		console.log(req.user);
+		res.render('networth', {layout: 'onboarding.handlebars', title: "Networth"});
 	});
 
 	app.get("/income", function(req,res) {
@@ -52,6 +53,23 @@ function routes(app) {
 	})
 
 	//apis to do - fix validation
+
+	app.post("/account", function(req,res,next) {
+		var type = req.body.type;
+		var account = req.body.account;
+		var balance = req.body.balance;
+		var include = req.body.include;
+		var user = req.user.userid;
+
+			db.Account.create({
+				type: type,
+				account: account,
+				balance: balance,
+				include: include,
+				userid: user 
+			})
+	});
+
 	app.post("/signup", function(req,res,next) {
 		var password = req.body.password;
 		var username = req.body.username;
