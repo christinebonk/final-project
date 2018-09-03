@@ -14,28 +14,22 @@
 	<header>
 		<div class="progress-container">
 			<ul class="progress-bar">
-				<li class="complete">Goals</li>
-				<li class="active">Networth</li>
-				<li>Budget</li>
-				<li>Assumptions</li>
+				<li><a href="/goals">Goals</a></li>
+				<li><a href="/networth">Networth</a></li>
+				<li><a href="/budget">Budget</a></li>
+				<li><a href="/assumptions">Assumptions</a></li>
 				<li>Result</li>
 			</ul>
 		</div>
 		<h1>{{{title}}}</h1>
 	</header>
 	<main>
-    {{{body}}}
+    	{{{body}}}
 	</main>
 	<script src="/js/onboarding.js"></script>
 	<script>
 	$(document).ready(function(){
-   		$('.datepicker').datepicker({
-   			selectMonths: true,
-   			format: "mmmm",
-   			selectYears: false,
-   			disable: true
-
-   		});
+   		
   	});
 	</script>
 </body>

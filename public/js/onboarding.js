@@ -13,16 +13,21 @@ $(".asset-button").on("click", function(event) {
 	event.preventDefault();
 	var category = $(this).attr("id");
 	$(".modal-save").attr("data-category", category);
+	$("#account-type").text(category);
 });
 
 
 $(".modal-save").on("click", function(event) {
 	event.preventDefault();
+	$("#account-balance-error").empty();
+	$("#account-name-error").empty();
 	var category = $(this).attr("data-category");
 	var name = $("#account-name").val().trim();
 	var balance = $("#account-balance").val().trim();
 	var include = $("input[name='fire']:checked").val().trim();
 	var error = false;
+
+
 
 	if (include === "yes") {
 		include = true;
