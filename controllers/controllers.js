@@ -8,6 +8,7 @@ var passport = require("passport");
 function routes(app) {
 	//pages
 	app.get("/", function(req, res){
+		console.log("hello")
 		res.render("index");
 	});
 
@@ -59,11 +60,18 @@ function routes(app) {
 					req.login(userid, function(err) {
 						if (err) { console.log(err); }
 						res.json("complete");
-					})
+					}).catch(function (err) {
+  						if (err) { console.log(err); }
+					});
 				})
 		    });	
 		});		
 	});
+
+	app.get("/login", passport.authenticate("local", {
+		successRedirect: "/dashboard",
+		failureRedirect: "/"
+	}));
 };
 
 passport.serializeUser(function(userid, done) {

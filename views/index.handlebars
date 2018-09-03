@@ -1,34 +1,74 @@
 
   <!--Sign-up-->
-  <div class="row">
+  <div id="sign-up-container" class="container">
+    <h1>Sign-Up</h1>
     <form class="col s12">
+      <!--Row-->
       <div class="row">
-
-      <div class="input-field col s12">
+        <div class="input-field col s12">
+          <!--Username Input-->
           <input id="username" type="text" class="validate" required>
           <label for="username">Username</label>
         </div>
         <p id="username-error"></p>
       </div>
+      <!--Row-->
       <div class="row">
         <div class="input-field col s12">
+          <!--Password Input-->
           <input id="password" type="password" class="validate" required>
           <label for="password">Password</label>
           <p id="password-error"></p>
         </div>
       </div>
+      <!--Row-->
       <div class="row">
         <div class="input-field col s12">
+          <!--Email Input-->
           <input id="email" type="email" class="validate">
           <label for="email">Email (Optional)</label>
         </div>
         <p id="email-error"></p>
       </div>
+      <!--Row-->
       <div class="row">
+        <!--Submit Button-->
       	<button class="btn waves-effect waves-light sign-up-submit" type="submit" name="action">Submit
  		 </button>
       </div>
     </form>
   </div>
+
+    <!--Sign-in-->
+  <div id="sign-in-container" class="container">
+    <h1>Sign-in</h1>
+    <form class="col s12">
+      <!--Row-->
+      <div class="row">
+        <div class="input-field col s12">
+          <!--Username Input-->
+          <input id="login-username" type="text" class="validate" required>
+          <label for="login-username">Username</label>
+        </div>
+        <p id="username-error"></p>
+      </div>
+      <!--Row-->
+      <div class="row">
+        <div class="input-field col s12">
+          <!--Password Input-->
+          <input id="login-password" type="password" class="validate" required>
+          <label for="login-password">Password</label>
+          <p id="password-error"></p>
+        </div>
+      </div>
+      <!--Row-->
+      <div class="row">
+        <!--Submit Button-->
+        <button class="btn waves-effect waves-light sign-in-submit" type="submit" name="action">Submit
+     </button>
+      </div>
+    </form>
+  </div>
+
 
 <script src="/js/signup.js"></script>

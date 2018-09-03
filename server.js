@@ -11,6 +11,8 @@ var db = require("./models");
 var session = require("express-session");
 var passport = require("passport");
 var MySQLStore = require('express-mysql-session')(session);
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require("bcrypt");
 
 //this will need to be updated 
 var options = {
@@ -37,6 +39,47 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+passport.use(new LocalStrategy(
+	function(username, password, done) {
+  		console.log(username);
+  		console.log(password);
+
+      	
+
+      	db.User.find({where: {username:username}}).then(function(result) {
+      		console.log(result.password);
+      		if (result.password.length === 0) {
+      			return done(null, false);
+      		}
+
+			var hash = result.password;
+			var userid = result.id;
+
+      		bcrypt.compare(password, hash, function(err, response) {
+      			console.log(response);
+      			if(response === true) {
+      				return done(null, {userid: userid});
+      			} else {
+      				return done(null, false);
+      			}
+			})
+		}).catch(function (err) {
+			if (err) { console.log(err); }
+		});
+
+
+
+		
+		
+
+		
+	})
+);
+
+
+  
 
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));

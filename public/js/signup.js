@@ -1,3 +1,4 @@
+//sign up
 $(".sign-up-submit").on("click", function(event) {
 	event.preventDefault();
 	var username =  $("#username").val().trim();
@@ -32,7 +33,7 @@ $(".sign-up-submit").on("click", function(event) {
 		email: email
 	};
 
-	//post request
+	//sign up post request
 	$.ajax("/signup", {
 		type: "POST",
 		data: newUser
@@ -40,5 +41,38 @@ $(".sign-up-submit").on("click", function(event) {
 		console.log("Created new user");
 		window.location.href = "/dashboard";
 	})
-})
+});
+
+//sign in 
+$(".sign-in-submit").on("click", function(event) {
+	event.preventDefault();
+	var username =  $("#login-username").val().trim();
+	var password = $("#login-password").val().trim();
+	$("#username-error").empty();
+	$("#password-error").empty();
+	$("#email-error").empty();
+
+	//validations
+	if (!username) {
+		$("#username-error").text("Please enter a username");
+		return
+	}
+	if (!password) {
+		$("#password-error").text("Please enter a password");
+		return
+	}
+
+	//create object
+	var user = {
+		username: username,
+		password: password	
+	};
+
+	//sign up post request
+	$.ajax("/login", {
+		type: "GET",
+		data: user
+	});
+});
+
 
