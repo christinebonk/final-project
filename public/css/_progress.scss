@@ -64,5 +64,8 @@
 
 .progress-bar li.active:after {
 	border: 1px solid green;
+}
 
+.progress-bar li.complete:after {
+	border: 1px solid green;
 }

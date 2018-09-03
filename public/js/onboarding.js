@@ -4,11 +4,53 @@ $('.modal').modal();
 //enable materialize datepicker
 $('.datepicker').datepicker({
 	selectMonths: true,
-	format: "mmmm",
 	selectYears: false,
 	disable: true
 });
 
+//goals
+$(".goals-submit").on("click", function(event) {
+	event.preventDefault();
+	var date = new Date($("#date").val().trim());
+	var amount = $("#retirement-amount").val().trim();
+	var currentDate = new Date();
+	var error = false;
+
+	//validations
+	if (currentDate > date) {
+		console.log("error")
+		$("#date-error").text("Please enter a date in the future");
+			error = true;
+	} 
+
+	if (isNaN(amount)) {
+		$("#retirement-amount-error").text("Entry must be a number");
+		error = true;
+	} else if (amount.length > 40) {
+		$("#retirement-amount-error").text("Entry must be 40 characters or fewer");
+		error = true;
+	} else if (amount < 0) {
+		$("#retirement-amount-error").text("Entry must be greater than zero");
+		error = true;
+	}
+	if (error) {
+		return
+	}
+
+	$.ajax("/profile", {
+		type: "PUT",
+		data: {
+			date: date,
+			amount: amount
+		}
+	}).then(function(res) {
+		//TO DO: need to close modal 
+	})
+});
+
+
+
+//networth
 $(".asset-button").on("click", function(event) {
 	event.preventDefault();
 	var category = $(this).attr("id");
@@ -34,6 +76,7 @@ $(".modal-save").on("click", function(event) {
 	} else {
 		include = false;
 	}
+
 
 	//validations
 	if (category === "mortgage" || category === "student-loan" || category === "other-debt") {
@@ -62,8 +105,6 @@ $(".modal-save").on("click", function(event) {
 	if (error) {
 		return
 	}
-
-	
 
 	var account = {
 		type: category,

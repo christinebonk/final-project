@@ -15,6 +15,10 @@ function routes(app) {
 		res.render('goals', {layout: 'onboarding.handlebars', title: 'Your Goals'});
 	});
 
+	app.get("/assumptions", authenticationMiddleware(), function(req,res) {
+		res.render('assumptions', {layout: 'onboarding.handlebars', title: 'Assumptions'});
+	});
+
 	app.get("/networth", authenticationMiddleware(), function(req,res) {
 		console.log(req.user);
 		res.render('networth', {layout: 'onboarding.handlebars', title: "Networth"});
@@ -54,12 +58,31 @@ function routes(app) {
 
 	//apis to do - fix validation
 
+	app.put("/profile", function(req,res,next) {
+		var date = req.body.date;
+		var amount = req.body.amount;
+		var user = req.user;
+
+		db.User.update({
+			retirement_date: date,
+			retirement_cost: amount
+		},
+			{where: {id: user}
+		}).then(function(result) {
+
+		}).catch(function(err) {
+			if (err) {console.log(err)};
+		})
+	});
+
+
 	app.post("/account", function(req,res,next) {
 		var type = req.body.type;
 		var account = req.body.account;
 		var balance = req.body.balance;
 		var include = req.body.include;
-		var user = req.user.userid;
+		var user = req.user;
+		console.log(user);
 
 			db.Account.create({
 				type: type,
@@ -88,9 +111,7 @@ function routes(app) {
 					req.login(userid, function(err) {
 						if (err) { console.log(err); }
 						res.json("complete");
-					}).catch(function (err) {
-  						if (err) { console.log(err); }
-					});
+					})
 				})
 		    });	
 		});		

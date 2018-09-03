@@ -9,11 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     	type: DataTypes.STRING(60),
     	allowNull: false
     },
-    email: {
-    	type: DataTypes.STRING(100)
-    },
-    birthday: DataTypes.DATE,
-    retirement_age: DataTypes.INTEGER,
+    retirement_date: DataTypes.DATE,
     retirement_cost: DataTypes.INTEGER,
     retirement_withdrawal: {
     	type: DataTypes.FLOAT,

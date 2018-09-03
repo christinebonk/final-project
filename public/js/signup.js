@@ -39,7 +39,7 @@ $(".sign-up-submit").on("click", function(event) {
 		data: newUser
 	}).then(function(res) {
 		console.log("Created new user");
-		window.location.href = "/dashboard";
+		window.location.href = "/goals";
 	})
 });
 
