@@ -72,6 +72,10 @@ $(".sign-in-submit").on("click", function(event) {
 	$.ajax("/login", {
 		type: "GET",
 		data: user
+	}).then(function(res) {
+		if (res === "complete") {
+			window.location.href = "/dashboard";
+		}
 	});
 });
 

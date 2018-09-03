@@ -8,7 +8,6 @@ var passport = require("passport");
 function routes(app) {
 	//pages
 	app.get("/", function(req, res){
-		console.log("hello")
 		res.render("index");
 	});
 
@@ -43,6 +42,10 @@ function routes(app) {
 		res.render('freedom', {title: "Financial Freedom Dashboard"});
 	});
 
+	app.get("/success", function(req,res) {
+		res.json("complete");
+	});
+
 	//apis to do - fix validation
 	app.post("/signup", function(req,res,next) {
 		var password = req.body.password;
@@ -69,7 +72,7 @@ function routes(app) {
 	});
 
 	app.get("/login", passport.authenticate("local", {
-		successRedirect: "/dashboard",
+		successRedirect: "/success",
 		failureRedirect: "/"
 	}));
 };
