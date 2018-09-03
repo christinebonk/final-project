@@ -15,17 +15,13 @@ function routes(app) {
 		res.render('goals', {layout: 'onboarding.handlebars', title: 'Your Goals'});
 	});
 
-	app.get("/assumptions", authenticationMiddleware(), function(req,res) {
-		res.render('assumptions', {layout: 'onboarding.handlebars', title: 'Assumptions'});
+	app.get("/income", authenticationMiddleware(), function(req,res) {
+		res.render('income', {layout: 'onboarding.handlebars', title: 'Income'});
 	});
 
 	app.get("/networth", authenticationMiddleware(), function(req,res) {
 		console.log(req.user);
 		res.render('networth', {layout: 'onboarding.handlebars', title: "Networth"});
-	});
-
-	app.get("/income", function(req,res) {
-		res.render('income', {layout: 'onboarding.handlebars'});
 	});
 
 	app.get("/budget", function(req,res) {
