@@ -31,6 +31,18 @@ $(".modal-save").on("click", function(event) {
 	}
 
 	//validations
+	if (category === "mortgage" || category === "student-loan" || category === "other-debt") {
+		if (balance > 0) {
+			$("#account-balance-error").text("Please enter a negative number");
+				error = true;
+		} 
+	} else {
+		if (balance < 0) {
+			$("#account-balance-error").text("Please enter a positive number");
+				error = true;
+		} 
+	}
+
 	if (isNaN(balance)) {
 		$("#account-balance-error").text("Account balance must be a number");
 		error = true;
@@ -45,7 +57,8 @@ $(".modal-save").on("click", function(event) {
 	if (error) {
 		return
 	}
-	$("#modal1").close();
+
+	
 
 	var account = {
 		type: category,
@@ -59,6 +72,6 @@ $(".modal-save").on("click", function(event) {
 		type: "POST",
 		data: account
 	}).then(function(res) {
-
+		//TO DO: need to close modal 
 	})
 })
