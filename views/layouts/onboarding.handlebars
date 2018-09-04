@@ -13,7 +13,7 @@
 <body>
 	<header>
 		<div class="progress-container">
-			<ul class="progress-bar">
+			<ul class="progress-bar clearfix">
 				<li><a href="/goals">Goals</a></li>
 				<li><a href="/networth">Networth</a></li>
 				<li><a href="/income">Income</a></li>
@@ -21,11 +21,11 @@
 				<li><a href="/result">Result</a></li>
 			</ul>
 		</div>
-		<h1>{{{title}}}</h1>
+		<h1 class="onboarding">{{{title}}}</h1>
 	</header>
-	<main>
+	
     	{{{body}}}
-	</main>
+	
 	<script src="/js/onboarding.js"></script>
 	<script>
 	$(document).ready(function(){

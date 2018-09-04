@@ -1,29 +1,33 @@
 
 <!--How much do you need, When do you want to retire-->
-
-<div class="row">
-<form class="col s12">
+<main>
   <div class="row">
-  <div class="input-field col s12">
-    <input type="text" name="date" id="date" class="datepicker validate" required>
-    <label for="date">What's your dream financial independence date?</label>
-    </div>
-    <p id="date-error"></p>
-  </div>
-
-  <div class="row">
+  <form class="col s12">
+    <div class="row">
     <div class="input-field col s12">
-      <input id="retirement-amount" type="text" class="validate" required>
-      <label for="retirement-amount">How much will your annual expenses be in retirement?</label>
-      <p id="retirement-amount-error"></p>
+      <input type="text" name="date" id="date" class="datepicker validate" required>
+      <label for="date">What's your dream financial independence date?</label>
+      </div>
+      <p id="date-error"></p>
     </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="retirement-amount" type="text" class="validate" required>
+        <label for="retirement-amount">How much will your annual expenses be in retirement?</label>
+        <p id="retirement-amount-error"></p>
+      </div>
+    </div>
+   </form>
+</main>
+<!--Footer-->
+<footer class="onboarding">
+  <!--Next Button-->
+  <div class="page-bottom">
+    <a class="btn waves-effect waves-light goals-submit" name="action" href="/budget">Next
+    </a>
   </div>
-  <div class="row">
-  	<button class="btn waves-effect waves-light goals-submit" type="submit" name="action">Next
-	</button>
-  </div>
-</form>
-</div>
+</footer>
 
 <script>
   //Updating progress bar

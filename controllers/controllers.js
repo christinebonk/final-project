@@ -12,7 +12,7 @@ function routes(app) {
 	});
 
 	app.get("/goals", authenticationMiddleware(), function(req,res) {
-		res.render('goals', {layout: 'onboarding.handlebars', title: 'Your Goals'});
+		res.render('goals', {layout: 'onboarding.handlebars', title: `Let's Get Started!`});
 	});
 
 	app.get("/income", authenticationMiddleware(), function(req,res) {

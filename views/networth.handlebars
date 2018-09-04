@@ -1,92 +1,87 @@
-<!--
-Networth
-
-Account 
-Purpose 
-Interest
-Loan/Asset
-
--->
 
 <!--Button Container-->
-<div id="asset-buttons-container">
-	<a id="investments" class="asset-button  modal-trigger" href="#modal1">
-		<figcaption>Investments</figcaption>
-		<img alt="Investments" src="/assets/images/002-screen.png">
-	</a>
-	<a id="cash" class="asset-button  modal-trigger" href="#modal1">
-		<figcaption>Cash</figcaption>
-		<img alt="Cash" src="/assets/images/001-notes.png">
-	</a>
-	<a id="property" class="asset-button  modal-trigger" href="#modal1">
-		<figcaption>Property</figcaption>
-		<img alt="Property" src="/assets/images/003-house.png">
-	</a>
-	<a id="other-asset" class="asset-button  modal-trigger" href="#modal1">
-		<figcaption>Other Asset</figcaption>
-		<img alt="other asset" src="/assets/images/004-money-bag.png">
-	</a>
-	<a id="mortgage" class="asset-button  modal-trigger" href="#modal1">
-		<figcaption>Mortgage</figcaption>
-		<img alt="Mortgage" src="/assets/images/007-loan.png">
-	</a>
-	<a id="student-loan" class="asset-button  modal-trigger" href="#modal1">
-		<figcaption>Student Loan</figcaption>
-		<img alt="Student Loan" src="/assets/images/005-scholarship.png">
-	</a>
-	<a id="other-debt" class="asset-button  modal-trigger" href="#modal1">
-		<figcaption>Other Debt</figcaption>
-		<img alt="Other Debt" src="/assets/images/006-documents.png">
-	</a>
-</div>
+<main>
+	<div id="asset-buttons-container">
+		<a id="investments" class="asset-button  modal-trigger" href="#modal1">
+			<figcaption>Investments</figcaption>
+			<img alt="Investments" src="/assets/images/002-screen.png">
+		</a>
+		<a id="cash" class="asset-button  modal-trigger" href="#modal1">
+			<figcaption>Cash</figcaption>
+			<img alt="Cash" src="/assets/images/001-notes.png">
+		</a>
+		<a id="property" class="asset-button  modal-trigger" href="#modal1">
+			<figcaption>Property</figcaption>
+			<img alt="Property" src="/assets/images/003-house.png">
+		</a>
+		<a id="other-asset" class="asset-button  modal-trigger" href="#modal1">
+			<figcaption>Other Asset</figcaption>
+			<img alt="other asset" src="/assets/images/004-money-bag.png">
+		</a>
+		<a id="mortgage" class="asset-button  modal-trigger" href="#modal1">
+			<figcaption>Mortgage</figcaption>
+			<img alt="Mortgage" src="/assets/images/007-loan.png">
+		</a>
+		<a id="student-loan" class="asset-button  modal-trigger" href="#modal1">
+			<figcaption>Student Loan</figcaption>
+			<img alt="Student Loan" src="/assets/images/005-scholarship.png">
+		</a>
+		<a id="other-debt" class="asset-button  modal-trigger" href="#modal1">
+			<figcaption>Other Debt</figcaption>
+			<img alt="Other Debt" src="/assets/images/006-documents.png">
+		</a>
+	</div>
 
-<!--Form Bottom-->
-<div class="page-bottom">
-	<div class="row">
+
+
+	<!--Modal-->
+	<div id="modal1" class="modal">
+		<!--Modal Content-->
+	    <div class="modal-content">
+			<!--Modal Header-->
+	    	<h4>Enter details about your <span id="account-type"></span></h4>
+	    	<!--Modal Questions-->
+	    	<form>
+	    		<!--Name-->
+		    	<div class="input-field">
+			      <input id="account-name" type="text" class="validate" required>
+			      <label for="account-name">What is the name of your account?</label>
+			      <p class="error-message" id="account-name-error"></p>
+		  		</div>
+		  		<!--Balance-->
+		  		<div class="input-field">
+			      <input id="account-balance" type="text" class="validate" required>
+			      <label for="account-balance">What is your account balance?</label>
+			      <p class="error-message" id="account-balance-error"></p>
+		  		</div>
+		  		<!--FIRE-->
+		  		<div class="form-bottom">
+		  			<legend>Count this account toward financial independence?</legend>
+					<label for="yes">
+						<input id="yes" type="radio" name="fire" value="yes" checked="checked">
+						<span>Yes</span>
+					</label>
+					<label for="no">
+						<input id="no" type="radio" name="fire" value="no">
+						<span>No</span>
+					</label>
+		 		</div>
+		  	</form>
+	    </div>
+	    <div class="modal-footer">
+	    	<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+	    	<a href="#!" data-category="" class="modal-save waves-effect waves-green btn-flat">Save</a>
+	    </div>
+	</div>
+</main>
+<!--Footer-->
+<footer class="onboarding">
+	<!--Next Button-->
+	<div class="page-bottom">
 		<a class="btn waves-effect waves-light" name="action" href="/budget">Next
 		</a>
 	</div>
-</div>
-
-<!--Modal-->
-<div id="modal1" class="modal">
-	<!--Modal Content-->
-    <div class="modal-content">
-		<!--Modal Header-->
-    	<h4>Enter details about your <span id="account-type"></span></h4>
-    	<!--Modal Questions-->
-    	<form>
-    		<!--Name-->
-	    	<div class="input-field">
-		      <input id="account-name" type="text" class="validate" required>
-		      <label for="account-name">What is the name of your account?</label>
-		      <p class="error-message" id="account-name-error"></p>
-	  		</div>
-	  		<!--Balance-->
-	  		<div class="input-field">
-		      <input id="account-balance" type="text" class="validate" required>
-		      <label for="account-balance">What is your account balance?</label>
-		      <p class="error-message" id="account-balance-error"></p>
-	  		</div>
-	  		<!--FIRE-->
-	  		<div class="form-bottom">
-	  			<legend>Count this account toward financial independence?</legend>
-				<label for="yes">
-					<input id="yes" type="radio" name="fire" value="yes" checked="checked">
-					<span>Yes</span>
-				</label>
-				<label for="no">
-					<input id="no" type="radio" name="fire" value="no">
-					<span>No</span>
-				</label>
-	 		</div>
-	  	</form>
-    </div>
-    <div class="modal-footer">
-    	<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-    	<a href="#!" data-category="" class="modal-save waves-effect waves-green btn-flat">Save</a>
-    </div>
-</div>
+</footer>
 
 <script>
 	//Updating progress bar

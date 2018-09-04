@@ -1,73 +1,106 @@
-<!--
-Budget
 
-Monthly
-Categories / Cost
+<!--Budget Categories Container-->
+<main>
+	<div id="budget-container">
+		<form>
+			<!--Monthly Expenses-->
+			<legend>What reoccuring monthly expenses do you have?</legend>
+			<p>
+				<label for="housing">
+					<input id="housing"  value="housing" name="monthy" type="checkbox" />
+					<span>Housing</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="phone">
+					<input name="monthy" id="phone"  value="phone" name="monthy" type="checkbox" />
+					<span>Phone</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="transportation">
+					<input type="checkbox" id="transportation"  value="transportation" name="monthy" />
+					<span>Transportation</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="groceries">
+					<input type="checkbox" id="groceries"  value="groceries" name="monthy"/>
+					<span>Groceries</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="gym">
+					<input type="checkbox" id="gym"  value="gym" name="monthy"/>
+					<span>Gym</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="discretionary">
+					<input type="checkbox" id="discretionary"  value="discretionary" name="monthy"/>
+					<span>Discretionary</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="utilities">
+					<input type="checkbox" id="utilities"  value="utilities" name="monthy"/>
+					<span>Utilities</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="gas">
+					<input type="checkbox" id="gas"  value="gas" name="monthy"/>
+					<span>Gas</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="student">
+					<input type="checkbox" id="student"  value="student" name="monthy"/>
+					<span>Student Loans</span>
+				</label>
+		    </p>
 
-One-time 
+			<!--Monthly Savings-->
+		    <legend>What reoccuring monthly savings do you have?</legend>
+			<p>
+				<label for="fire">
+					<input id="fire"  value="fire" name="savings" type="checkbox" />
+					<span>Financial Independence Savings</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="emergency">
+					<input name="savings" id="emergency"  value="phone" type="checkbox" />
+					<span>Emergency Fund</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="travel">
+					<input type="checkbox" id="travel"  value="travel" name="savings" />
+					<span>Travel</span>
+				</label>
+		    </p>
+		    <p>
+				<label for="holidays">
+					<input type="checkbox" id="holidays"  value="holidays" name="savings"/>
+					<span>Holidays</span>
+				</label>
+		    </p>
 
-
-Savings
-
--->
-
-<div id="budget-container">
-	<form>
-		<legend>What reoccuring monthly expenses do you have?</legend>
-		<p>
-			<label for="housing">
-				<input id="housing"  value="housing" name="monthy" type="checkbox" />
-				<span>Housing</span>
-			</label>
-	    </p>
-	    <p>
-			<label for="phone">
-				<input name="monthy" id="phone"  value="phone" name="monthy" type="checkbox" />
-				<span>Phone</span>
-			</label>
-	    </p>
-	    <p>
-			<label for="transportation">
-				<input type="checkbox" id="transportation"  value="transportation" name="monthy" />
-				<span>Transportation</span>
-			</label>
-	    </p>
-	    <p>
-			<label for="groceries">
-				<input type="checkbox" id="groceries"  value="groceries" name="monthy"/>
-				<span>Groceries</span>
-			</label>
-	    </p>
-	    <p>
-			<label for="gym">
-				<input type="checkbox" id="gym"  value="gym" name="monthy"/>
-				<span>Gym</span>
-			</label>
-	    </p>
-	    <p>
-			<label for="discretionary">
-				<input type="checkbox" id="discretionary"  value="discretionary" name="monthy"/>
-				<span>Discretionary</span>
-			</label>
-	    </p>
-	    <p>
-			<label for="utilities">
-				<input type="checkbox" id="utilities"  value="utilities" name="monthy"/>
-				<span>Utilities</span>
-			</label>
-	    </p>
-	    <p>
-			<label for="gas">
-				<input type="checkbox" id="gas"  value="gas" name="monthy"/>
-				<span>Gas</span>
-			</label>
-	    </p>
-
-
-		
-	</form>
-</div>
-
+		</form>
+	</div>
+	<!--Budget Allocation Container-->
+	<div id="allocation-container">
+	</div>
+</main>
+<!--Footer-->
+<footer class="onboarding">
+	<!--Next Button-->
+	<div class="page-bottom">
+		<a class="btn waves-effect waves-light" name="action" href="/budget">Next
+		</a>
+	</div>
+</footer>
 
 <script>
 	//Updating progress bar
