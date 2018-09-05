@@ -7,21 +7,25 @@
 		<!--Monthly Expenses-->
 		<form>
 			<legend>Expenses</legend>
-			<div id="expense-container">
+			<div id="expense-container" class="list-container">
 			</div>
+			<div class="budget-add">
+		    	<label for="add-expense" class="visually-hidden">Add your own expense category</label>
+		    	<input placeholder="Enter new expense category" type="text" id="add-expense">
+		    	<div class="add" id="expense-add">+</div>		    </div>
 		</form>
 
 			<!--Monthly Savings-->
 		<form>
 		    <legend>Savings</legend>
-			<div id="saving-container">
+			<div id="saving-container" class="list-container">
 			</div>
-		    <p>
-		    	<label for="add-saving" class="visually-hidden">Add your ownsavings category</label>
+		    <div class="budget-add">
+		    	<label for="add-saving" class="visually-hidden">Add your own savings category</label>
 		    	<input placeholder="Enter new savings category" type="text" id="add-saving">
-		    	<button class="btn waves-effect waves-light" name="action" href="/#">Add
-				</button>
-		    </p>
+
+		    	<div class="add" id="saving-add">+</div>
+		    </div>
 		</form>
 	</div>
 	<!--Budget Allocation Container-->

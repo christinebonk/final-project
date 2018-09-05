@@ -234,7 +234,8 @@ footer.onboarding {
   right: 0;
   background: #FABC09;
   position: fixed;
-  height: 10%; }
+  height: 10%;
+  z-index: 1; }
   footer.onboarding a {
     position: absolute;
     right: 10%;
@@ -377,10 +378,36 @@ footer.onboarding {
   background: #68e1ca; }
 
 #budget-container {
-  width: 50%;
+  height: 200px;
   display: flex; }
   #budget-container form {
     width: 50%; }
+
+.list-container {
+  display: flex;
+  flex-wrap: wrap; }
+  .list-container p {
+    width: 50%; }
+
+.budget-add {
+  display: flex;
+  width: 40%; }
+  .budget-add .add {
+    border-radius: 50%;
+    background: #FABC09;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); }
+    .budget-add .add:hover {
+      background-color: #FACC43;
+      background-color: 0.2s ease-out; }
+  .budget-add input::placeholder {
+    font-size: 1.2rem; }
 
 /*Main Styles*/
 html {
@@ -391,6 +418,6 @@ main {
   margin: 0 auto; }
 
 body {
-  height: 100vh; }
+  height: 120vh; }
 
 /*# sourceMappingURL=styles.css.map */

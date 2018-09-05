@@ -159,6 +159,40 @@ function generateCategories(array, type) {
 	}
 }
 
+//To do: Make this DRY
+$("#saving-add").on("click", function(event) {
+	event.preventDefault();
+	var newCategory = $("#add-saving").val();
+	var p = $("<p>");
+	var label = $(`<label for=${newCategory}>`);
+	var input = $(`<input id=${newCategory} value=${newCategory} name='savings' type='checkbox'>`);
+	var span = $(`<span>${newCategory}</span>`);
+	label.append(input, span);
+	p.append(label);
+	if (!newCategory) {
+ 	} else {
+		$(`#saving-container`).append(p);
+	}
+});
+
+$("#expense-add").on("click", function(event) {
+	event.preventDefault();
+	var newCategory = $("#add-expense").val();
+	var p = $("<p>");
+	var label = $(`<label for=${newCategory}>`);
+	var input = $(`<input id=${newCategory} value=${newCategory} name='expense' type='checkbox'>`);
+	var span = $(`<span>${newCategory}</span>`);
+	label.append(input, span);
+	p.append(label);
+	if (!newCategory) {
+ 	} else {
+		$(`#expense-container`).append(p);
+	}
+});
+
+
+
+
 generateCategories(expenseCategories, "expense");
 generateCategories(savingsCategories, "saving");
 

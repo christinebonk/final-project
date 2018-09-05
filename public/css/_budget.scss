@@ -1,8 +1,46 @@
 #budget-container {
-	width: 50%;
+	height: 200px;
 	display: flex;
 
 		form {
 			width: 50%;
 		}
 }
+
+.list-container {
+	display: flex;
+	flex-wrap: wrap;
+
+		p {
+			width: 50%;
+		}
+}
+
+.budget-add {
+	display: flex;
+	width: 40%;
+		
+		.add {
+			border-radius: 50%;
+			background: $primary;
+			width: 25px;
+			height: 25px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 1.5rem;
+			cursor: pointer;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+			
+
+			&:hover {
+				background-color: $accent;
+				background-color: 0.2s ease-out;
+			}
+		}
+
+		input::placeholder {
+			font-size: 1.2rem;
+		}
+}
+
