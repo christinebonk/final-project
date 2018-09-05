@@ -25,7 +25,7 @@ function routes(app) {
 	});
 
 	app.get("/budget", function(req,res) {
-		res.render('budget', {layout: 'onboarding.handlebars'});
+		res.render('budget', {layout: 'onboarding.handlebars', title: "Create your Budget"});
 	});
 
 	app.get("/result", function(req,res) {

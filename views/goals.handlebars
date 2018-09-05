@@ -5,8 +5,9 @@
   <form class="col s12">
     <div class="row">
     <div class="input-field col s12">
-      <label class="browser-default" for="date">What's your dream financial independence date?</label>
+      <h3 class="onboarding-label">What's your dream financial independence date?</h3>
       <input type="text" name="date" id="date" class="datepicker validate" required>
+      <label class="browser-default visually-hidden" for="date">What's your dream financial independence date?</label>
       <p id="date-error"></p>
       </div>
       
@@ -14,8 +15,12 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <input id="retirement-amount" type="text" class="validate" required>
-        <label class="browser-default" for="retirement-amount">How much will your annual expenses be in retirement?</label>
+        <h3 class="onboarding-label">How much will your annual expenses be in retirement?</h3>
+        <!--Range Input-->
+          <input type="range" id="retirement-amount" name="retirement-amount" min="0" max="300000" step="5000" value="slider" onchange="document.querySelector('.rangeValue').innerHTML = this.value">
+          <span>$</span>
+          <span class="rangeValue">150,000</span>
+        <label class="browser-default visually-hidden" for="retirement-amount">Enter annual expenses in retirement</label>
         <p id="retirement-amount-error"></p>
       </div>
     </div>

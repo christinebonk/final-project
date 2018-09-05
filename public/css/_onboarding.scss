@@ -1,3 +1,16 @@
+//main styles
+h1.onboarding {
+	text-align: center;
+	font-weight: bold;
+	padding-bottom: 3rem;
+	font-size: 3rem;
+}
+
+h3.onboarding-label {
+	font-size: 2rem;
+	color: $secondary;
+}
+
 //Networth page
 
 #asset-buttons-container {
@@ -19,26 +32,30 @@
 	flex-direction: column;
 	border: 4px $secondary solid;
 	border-radius: 5px;
-	padding: 10px;
+	padding: 15px;
 	margin: 10px;
-	background: $accent;
-	height: 100px;
-	width: 100px;
+	background: lighten($secondary,10%);
+	opacity: 0.9;
+	height: 110px;
+	width: 110px;
 
 		img {
 			display: block;
-			max-height: 30px
+			max-height: 30px;
+			display: none;
+		}
+
+		figcaption {
+			color: black;
 		}
 
 }
 
 .asset-button:hover {
-	background: lighten($accent, 10%)
+	background: lighten($secondary, 20%)
 }
 
-h1.onboarding {
-	text-align: center;
-}
+
 
 
 

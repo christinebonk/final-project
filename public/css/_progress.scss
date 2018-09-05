@@ -1,6 +1,6 @@
 .progress-container {
 	width: 100%;
-	height: 100%
+	height: 100%;
 }
 .progress-bar {
 	counter-reset: step;
@@ -12,6 +12,7 @@
 	width: 20%;
 	position: relative;
 	text-align: center;
+	font-size: 1.2rem;
 }
 
 .progress-bar li:before {
@@ -46,27 +47,40 @@
 }
 
 .progress-bar li.active {
-	color: green;
+	color: $secondary;
 }
 
 .progress-bar li.complete:before {
 	content: "✔";
-	color: green;
-	border: 1px solid green;
+	color: $secondary;
+	border: 1px solid $secondary;
 }
 
 .progress-bar li.complete {
-	color: green;
+	color: $secondary;
 }
 
 .progress-bar li.active:before {
-	border: 1px solid green;
+	border: 1px solid $secondary;
 }
 
 .progress-bar li.active:after {
-	border: 1px solid green;
+	border: 1px solid $secondary;
 }
 
 .progress-bar li.complete:after {
-	border: 1px solid green;
+	border: 1px solid $secondary;
+}
+
+.progress-bar li.active a {
+	color: $secondary;
+}
+
+.progress-bar li.complete a {
+	color: $secondary;
+}
+
+.progress-bar a {
+	color: black;
+	font-size: 1.2rem;
 }

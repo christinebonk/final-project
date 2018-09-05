@@ -133,4 +133,11 @@ $(".modal-save").on("click", function(event) {
 	}).then(function(res) {
 		//TO DO: need to close modal 
 	})
+});
+
+//range slider
+$("#retirement-amount").change(function() {
+	var amount = $(this).val();
+	amount = amount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+	$(".rangeValue").text(amount);
 })

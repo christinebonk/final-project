@@ -171,6 +171,27 @@ template {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden; }
+
+h1.onboarding {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 3rem;
+  font-size: 3rem; }
+
+h3.onboarding-label {
+  font-size: 2rem;
+  color: #25BEA0; }
+
 #asset-buttons-container {
   display: flex;
   flex-wrap: wrap; }
@@ -186,20 +207,21 @@ template {
   flex-direction: column;
   border: 4px #25BEA0 solid;
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px;
   margin: 10px;
-  background: #FACC43;
-  height: 100px;
-  width: 100px; }
+  background: #3dd9bb;
+  opacity: 0.9;
+  height: 110px;
+  width: 110px; }
   .asset-button img {
     display: block;
-    max-height: 30px; }
+    max-height: 30px;
+    display: none; }
+  .asset-button figcaption {
+    color: black; }
 
 .asset-button:hover {
-  background: #fbd975; }
-
-h1.onboarding {
-  text-align: center; }
+  background: #68e1ca; }
 
 footer.onboarding {
   position: relative;
@@ -258,7 +280,8 @@ footer.onboarding {
   float: left;
   width: 20%;
   position: relative;
-  text-align: center; }
+  text-align: center;
+  font-size: 1.2rem; }
 
 .progress-bar li:before {
   content: counter(step);
@@ -289,24 +312,34 @@ footer.onboarding {
   content: none; }
 
 .progress-bar li.active {
-  color: green; }
+  color: #25BEA0; }
 
 .progress-bar li.complete:before {
   content: "✔";
-  color: green;
-  border: 1px solid green; }
+  color: #25BEA0;
+  border: 1px solid #25BEA0; }
 
 .progress-bar li.complete {
-  color: green; }
+  color: #25BEA0; }
 
 .progress-bar li.active:before {
-  border: 1px solid green; }
+  border: 1px solid #25BEA0; }
 
 .progress-bar li.active:after {
-  border: 1px solid green; }
+  border: 1px solid #25BEA0; }
 
 .progress-bar li.complete:after {
-  border: 1px solid green; }
+  border: 1px solid #25BEA0; }
+
+.progress-bar li.active a {
+  color: #25BEA0; }
+
+.progress-bar li.complete a {
+  color: #25BEA0; }
+
+.progress-bar a {
+  color: black;
+  font-size: 1.2rem; }
 
 /*Main Styles*/
 html {
