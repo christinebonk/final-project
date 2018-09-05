@@ -141,3 +141,30 @@ $("#retirement-amount").change(function() {
 	amount = amount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 	$(".rangeValue").text(amount);
 })
+
+//budget 
+
+var expenseCategories = ["Housing", "Phone", "Transportation", "Groceries", "Gym", "Discretionary", "Utilities", "Gas", "Student Loans"];
+var savingsCategories = ["Financial Independence Savings", "Emergency Fund", "Travel", "Holidays", "Gifts", "Down Payment"];
+
+function generateCategories(array, type) {
+	for (i=0; i<array.length;i++) {
+		var p = $("<p>");
+		var label = $(`<label for=${array[i]}>`);
+		var input = $(`<input id=${array[i]} value=${array[i]} name=${type} type='checkbox'>`);
+		var span = $(`<span>${array[i]}</span>`);
+		label.append(input, span);
+		p.append(label);
+		$(`#${type}-container`).append(p);
+	}
+}
+
+generateCategories(expenseCategories, "expense");
+generateCategories(savingsCategories, "saving");
+
+
+
+
+
+
+
