@@ -59,6 +59,8 @@ $(".goals-submit").on("click", function(event) {
 //networth
 $(".asset-button").on("click", function(event) {
 	event.preventDefault();
+	$("#account-balance-error").empty();
+	$("#account-name-error").empty();
 	var category = $(this).attr("id");
 	$(".modal-save").attr("data-category", category);
 	$("#account-type").text(category);
@@ -67,8 +69,6 @@ $(".asset-button").on("click", function(event) {
 
 $(".modal-save").on("click", function(event) {
 	event.preventDefault();
-	$("#account-balance-error").empty();
-	$("#account-name-error").empty();
 	var category = $(this).attr("data-category");
 	var name = $("#account-name").val().trim();
 	var balance = $("#account-balance").val().trim();
@@ -97,14 +97,21 @@ $(".modal-save").on("click", function(event) {
 		} 
 	}
 
-	if (isNaN(balance)) {
+	if(balance.length === 0) {
+		$("#account-balance-error").text("Please enter an account balance");
+		error = true;
+	} else if (isNaN(balance)) {
 		$("#account-balance-error").text("Account balance must be a number");
 		error = true;
 	} else if (balance.length > 40) {
 		$("#account-balance-error").text("Account balance must be 40 characters or fewer");
 		error = true;
 	}
-	if (name.length > 40) {
+
+	if(name.length === 0) {
+		$("#account-name-error").text("Please enter an account name");
+		error = true;
+	} else if (name.length > 40) {
 		$("#account-name-error").text("Account name must be 40 characters or fewer");
 		error = true;
 	}

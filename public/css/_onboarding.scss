@@ -3,7 +3,6 @@
 #asset-buttons-container {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
 
 		figcaption {
 			text-align: center;
@@ -23,10 +22,12 @@
 	padding: 10px;
 	margin: 10px;
 	background: $accent;
+	height: 100px;
+	width: 100px;
 
 		img {
 			display: block;
-			max-height: 60px
+			max-height: 30px
 		}
 
 }
@@ -39,12 +40,6 @@ h1.onboarding {
 	text-align: center;
 }
 
-//footer 
 
-footer.onboarding {
-	position: relative;
-	bottom: 0;
-	background: $primary;
-}
 
 
