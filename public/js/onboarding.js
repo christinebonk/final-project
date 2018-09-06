@@ -140,9 +140,11 @@ $.ajax("/account", {
 }).then(function(res) {
 
 	res.forEach(function(element) {
+		var balanceAmount = JSON.stringify(element.balance);
+		balanceAmount = balanceAmount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 		var row = $("<tr>");
 		var account = $(`<td>${element.account}</td>`);
-		var balance = $(`<td>${element.balance}</td>`);
+		var balance = $(`<td>${balanceAmount}</td>`);
 		var type = $(`<td>${element.type}</td>`);
 		row.append(account, balance, type);
 		$("#networth-table").append(row);
