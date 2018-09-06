@@ -131,6 +131,7 @@ $(".modal-save").on("click", function(event) {
 		type: "POST",
 		data: account
 	}).then(function(res) {
+		location.reload();
 		//TO DO: need to close modal 
 	})
 });
@@ -148,16 +149,16 @@ $.ajax("/account", {
 		var balance = $(`<td>${balanceAmount}</td>`);
 		var type = $(`<td>${element.type}</td>`);
 		row.append(account, balance, type);
-		$("#networth-table").append(row);
+		$("#networth-body").append(row);
 	});
-	var totalRow = $("<tr>");
+	var totalRow = $(`<tr class="total-row">`);
 	var totalAccount = $(`<td class="total">Total</td>`);
 	totalBalanceAmount = JSON.stringify(totalBalanceAmount);
 	totalBalanceAmount = totalBalanceAmount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 	var totalBalance = $(`<td class="total">${totalBalanceAmount}</td>`);
 	var totalType = $(`<td></td>`);
 	totalRow.append(totalAccount, totalBalance, totalType);
-	$("#networth-table").append(totalRow);
+	$("#networth-body").append(totalRow);
 })
 
 //range slider
