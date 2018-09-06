@@ -71,6 +71,15 @@ function routes(app) {
 		})
 	});
 
+	//make DRY
+	app.get("/account", function (req,res,next) {
+		var user = req.user;
+
+		db.Account.findAll({where: {userid: user}}).then(function(result) {
+			res.json(result);
+		});
+	});
+
 
 	app.post("/account", function(req,res,next) {
 		var type = req.body.type;

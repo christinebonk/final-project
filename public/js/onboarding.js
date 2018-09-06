@@ -135,6 +135,20 @@ $(".modal-save").on("click", function(event) {
 	})
 });
 
+$.ajax("/account", {
+	type: "GET"
+}).then(function(res) {
+
+	res.forEach(function(element) {
+		var row = $("<tr>");
+		var account = $(`<td>${element.account}</td>`);
+		var balance = $(`<td>${element.balance}</td>`);
+		var type = $(`<td>${element.type}</td>`);
+		row.append(account, balance, type);
+		$("#networth-table").append(row);
+	})
+})
+
 //range slider
 $("#retirement-amount").change(function() {
 	var amount = $(this).val();
