@@ -3,6 +3,7 @@
 #asset-buttons-container {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 
 		figcaption {
 			text-align: center;
@@ -23,8 +24,8 @@
 	margin: 10px;
 	background: lighten($secondary,10%);
 	opacity: 0.9;
-	height: 110px;
-	width: 110px;
+	height: 100px;
+	width: 100px;
 
 		img {
 			display: block;
@@ -40,4 +41,8 @@
 
 .asset-button:hover {
 	background: lighten($secondary, 20%)
+}
+
+.total {
+	font-weight: bold;
 }

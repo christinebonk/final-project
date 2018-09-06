@@ -138,8 +138,9 @@ $(".modal-save").on("click", function(event) {
 $.ajax("/account", {
 	type: "GET"
 }).then(function(res) {
-
+	var totalBalanceAmount = 0;
 	res.forEach(function(element) {
+		totalBalanceAmount += element.balance;
 		var balanceAmount = JSON.stringify(element.balance);
 		balanceAmount = balanceAmount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 		var row = $("<tr>");
@@ -148,7 +149,15 @@ $.ajax("/account", {
 		var type = $(`<td>${element.type}</td>`);
 		row.append(account, balance, type);
 		$("#networth-table").append(row);
-	})
+	});
+	var totalRow = $("<tr>");
+	var totalAccount = $(`<td class="total">Total</td>`);
+	totalBalanceAmount = JSON.stringify(totalBalanceAmount);
+	totalBalanceAmount = totalBalanceAmount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+	var totalBalance = $(`<td class="total">${totalBalanceAmount}</td>`);
+	var totalType = $(`<td></td>`);
+	totalRow.append(totalAccount, totalBalance, totalType);
+	$("#networth-table").append(totalRow);
 })
 
 //range slider
