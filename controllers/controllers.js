@@ -56,7 +56,9 @@ function routes(app) {
 		var date = req.body.date;
 		var amount = req.body.amount;
 		var user = req.user.userid;
-		console.log(user);
+		if (!user) {
+			user = req.user;
+		}
 
 		db.User.update({
 			retirement_date: date,
@@ -73,6 +75,9 @@ function routes(app) {
 	//make DRY
 	app.get("/account", function (req,res,next) {
 		var user = req.user.userid;
+		if (!user) {
+			user = req.user;
+		}
 
 		db.Account.findAll({where: {userid: user}}).then(function(result) {
 			res.json(result);
@@ -86,6 +91,9 @@ function routes(app) {
 		var balance = req.body.balance;
 		var include = req.body.include;
 		var user = req.user.userid;
+		if (!user) {
+			user = req.user;
+		}
 		console.log(user);
 
 			db.Account.create({
