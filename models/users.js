@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     	type: DataTypes.STRING(60),
     	allowNull: false
     },
-    retirement_date: DataTypes.DATE,
+    retirement_date: DataTypes.INTEGER(4),
     retirement_cost: DataTypes.INTEGER,
     retirement_withdrawal: {
     	type: DataTypes.FLOAT,

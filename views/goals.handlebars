@@ -6,8 +6,8 @@
     <!--Row-->
     <div class="row">
       <div class="input-field col s12">
-        <h3 class="onboarding-label">My dream financial independence date is</h3>
-        <input type="text" name="date" id="date" class="datepicker validate" required>
+        <h3 class="onboarding-label">My dream is to be financially independent by the year <span class="spend dateRangeValue">2040</span></h3>
+        <input type="range" id="date" name="date" min="2019" max="2060" step="1" value="slider" onchange="document.querySelector('.dateRangeValue').innerHTML = this.value">
         <label class="browser-default visually-hidden" for="date">What's your dream financial independence date?</label>
         <p id="date-error"></p>
       </div>
@@ -18,8 +18,6 @@
         <h3 class="onboarding-label">I plan to spend <span class="spend">$</span><span class="spend rangeValue">80,000</span> annually in retirement</h3>
         <!--Range Input-->
           <input type="range" id="retirement-amount" name="retirement-amount" min="5000" max="150000" step="5000" value="slider" onchange="document.querySelector('.rangeValue').innerHTML = this.value">
-          
-          
         <label class="browser-default visually-hidden" for="retirement-amount">Enter annual expenses in retirement</label>
         <p id="retirement-amount-error"></p>
       </div>
