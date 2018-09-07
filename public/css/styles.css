@@ -394,8 +394,9 @@ footer.onboarding {
 #budget-container {
   height: 200px;
   display: flex; }
-  #budget-container form {
-    width: 50%; }
+
+#saving-form {
+  display: none; }
 
 .list-container {
   display: flex;
