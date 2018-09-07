@@ -383,6 +383,14 @@ footer.onboarding {
 .total-row {
   background: #fde7a6; }
 
+.networth-box {
+  float: left;
+  width: 50%;
+  padding: 2rem; }
+
+#networth-table {
+  text-transform: capitalize; }
+
 #budget-container {
   height: 200px;
   display: flex; }

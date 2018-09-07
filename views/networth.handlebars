@@ -1,8 +1,9 @@
 
 <!--Button Container-->
-<main>
-	<h3 class="onboarding-label">Select the category of the asset or liability you would like to add to your networth</h3>
-	<div id="asset-buttons-container">
+<main class="clearfix">
+	<section class="networth-box" id="networth-selection">
+		<h3 class="onboarding-label">Select the category of the asset or liability you would like to add to your networth</h3>
+		<div id="asset-buttons-container">
 		<a id="investments" class="asset-button  modal-trigger" href="#modal1">
 			<figcaption>Investments</figcaption>
 			<img alt="Investments" src="/assets/images/002-screen.png">
@@ -31,11 +32,12 @@
 			<figcaption>Other Debt</figcaption>
 			<img alt="Other Debt" src="/assets/images/006-documents.png">
 		</a>
-	</div>
+		</div>
+	</section>
 	<!--Listed Assets/Liabilities-->
-	<section id="your-networth">
-		<h3 class="onboarding-label">Your Networth</h3>
-		<table id="networth-table">
+	<section class="networth-box" id="your-networth">
+{{!-- 		<h3 class="onboarding-label">Your Networth</h3>
+ --}}		<table id="networth-table">
 			<thead> 
 				<tr>
 					<th>Account</th>

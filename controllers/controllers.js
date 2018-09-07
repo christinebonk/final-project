@@ -20,7 +20,6 @@ function routes(app) {
 	});
 
 	app.get("/networth", authenticationMiddleware(), function(req,res) {
-		console.log(req.user);
 		res.render('networth', {layout: 'onboarding.handlebars', title: "Networth"});
 	});
 
@@ -37,7 +36,6 @@ function routes(app) {
 	});
 
 	app.get("/dashboard", authenticationMiddleware(), function(req,res) {
-		console.log(req.user);
 		console.log(req.isAuthenticated());
 		res.render('freedom', {title: "Financial Freedom Dashboard"});
 	});
@@ -57,7 +55,8 @@ function routes(app) {
 	app.put("/profile", function(req,res,next) {
 		var date = req.body.date;
 		var amount = req.body.amount;
-		var user = req.user;
+		var user = req.user.userid;
+		console.log(user);
 
 		db.User.update({
 			retirement_date: date,
@@ -73,7 +72,7 @@ function routes(app) {
 
 	//make DRY
 	app.get("/account", function (req,res,next) {
-		var user = req.user;
+		var user = req.user.userid;
 
 		db.Account.findAll({where: {userid: user}}).then(function(result) {
 			res.json(result);
@@ -86,7 +85,7 @@ function routes(app) {
 		var account = req.body.account;
 		var balance = req.body.balance;
 		var include = req.body.include;
-		var user = req.user;
+		var user = req.user.userid;
 		console.log(user);
 
 			db.Account.create({
