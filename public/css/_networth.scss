@@ -52,8 +52,26 @@
 
 .networth-box {
 	float: left;
-	width: 50%;
 	padding: 2rem;
+}
+
+#networth-selection {
+	width: 65%;
+	padding: 0px 50px;
+}
+
+#your-networth {
+	width: 35%;
+	padding: 0px 50px 20px;
+	background: $accent;
+	border-radius: 10px;
+
+		h4 {
+			text-align: center;
+			color: darken($secondary, 20%);
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
 }
 
 #networth-table {

@@ -16,15 +16,15 @@ function routes(app) {
 	});
 
 	app.get("/income", authenticationMiddleware(), function(req,res) {
-		res.render('income', {layout: 'onboarding.handlebars', title: 'Income'});
+		res.render('income', {layout: 'onboarding.handlebars', title: 'Where does your money come from?'});
 	});
 
 	app.get("/networth", authenticationMiddleware(), function(req,res) {
-		res.render('networth', {layout: 'onboarding.handlebars', title: "Networth"});
+		res.render('networth', {layout: 'onboarding.handlebars', title: "What do you already have?"});
 	});
 
 	app.get("/budget", function(req,res) {
-		res.render('budget', {layout: 'onboarding.handlebars', title: "Create your Budget"});
+		res.render('budget', {layout: 'onboarding.handlebars', title: "Where does your money go?"});
 	});
 
 	app.get("/result", function(req,res) {
