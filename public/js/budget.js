@@ -46,9 +46,54 @@ $("#expense-add").on("click", function(event) {
 	}
 });
 
-
 generateCategories(expenseCategories, "expense");
 generateCategories(savingsCategories, "saving");
+
+var yourExpenses = [];
+var yourSavings = [];
+
+function expense() {
+	event.preventDefault();
+	
+	 var checkboxes = document.getElementsByName("expense");
+	 for (i=0;i<checkboxes.length;i++) {
+	 	if (checkboxes[i].checked) {
+        yourExpenses.push(checkboxes[i]);
+     	}
+	 }
+	 $("#saving-form").toggleClass("hide");
+	 $("#expense-form").toggleClass("hide");
+	 console.log(yourExpenses);
+	 $("#budget-button").attr("onclick", "saving()");
+}
+
+function saving() {
+ 	event.preventDefault();
+
+	
+	
+	 var checkboxes = document.getElementsByName("saving");
+	 for (i=0;i<checkboxes.length;i++) {
+	 	if (checkboxes[i].checked) {
+        yourSavings.push(checkboxes[i]);
+     	}
+	 }
+	 $("#saving-form").toggleClass("hide");
+	 $("#budget-button").attr("onclick", "budget()");
+	 budget();
+	 console.log(yourSavings);
+}
+	
+function budget() {
+	event.preventDefault();
+
+	for (i=0;i<yourExpenses.length;i++) {
+		console.log("hi");
+		var input = $(`<input type='range' id='${yourExpenses[i]}-category' min='0' max='5000' step='1' value='slider'>`);
+		$("#expense-range-container").append(input);
+	}
+}
+	
 
 	//Updating progress bar
   $(".progress-bar li:first-child").addClass("complete");

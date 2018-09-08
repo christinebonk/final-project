@@ -378,7 +378,7 @@ footer.onboarding {
   height: 200px;
   display: flex; }
 
-#saving-form {
+.hide {
   display: none; }
 
 .list-container {

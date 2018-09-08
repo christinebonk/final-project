@@ -6,7 +6,7 @@
 		
 		<!--Monthly Expenses-->
 		<form class="budget-form" id="expense-form">
-			<h3 class="onboarding-label">My reoccuring expenses are:</h3>
+			<h3 class="onboarding-label">My monthly reoccuring expenses are:</h3>
 			<div id="expense-container" class="list-container">
 			</div>
 			<div class="budget-add">
@@ -16,7 +16,7 @@
 		</form>
 
 			<!--Monthly Savings-->
-		<form class="budget-form" id="saving-form">
+		<form class="budget-form hide" id="saving-form">
 			<h3 class="onboarding-label">My reoccuring savings are:</h3> 
 			<div id="saving-container" class="list-container">
 			</div>
@@ -30,13 +30,19 @@
 	</div>
 	<!--Budget Allocation Container-->
 	<div id="allocation-container">
+		<div id="income-allocation">
+		</div>
+		<div id="expense-range-container">
+		</div>
+		<div id="saving-range-container">
+		</div>
 	</div>
 </main>
 <!--Footer-->
 <footer class="onboarding">
 	<!--Next Button-->
 	<div class="page-bottom">
-		<a class="btn waves-effect waves-light" name="action" href="/budget">Next
+		<a class="btn waves-effect waves-light" onclick="expense()" id="budget-button" name="action" href="/budget">Next
 		</a>
 	</div>
 </footer>
