@@ -26,6 +26,26 @@ $(".modal-income-save").on("click", function(event) {
 			period: period
 		}
 	}).then(function(res) {
-		console.log(res);
+		location.reload();
 	});
 });
+
+
+$.ajax("/api/income", {
+	type: "GET"
+}).then(function(res) {
+	res.forEach(function(element) {
+		if (element.type === "income") {
+			var amount = JSON.stringify(element.amount);
+			amount = amount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+			var row = $("<tr>");
+			var name = $(`<td>${element.name}</td>`);
+			var amount = $(`<td>${amount}</td>`);
+			var time = $(`<td>${element.time}</td>`)
+			var period = $(`<td>${element.period}</td>`);
+			row.append(name, amount, time, period);
+			$("#income-body").append(row);
+		}
+	});
+	
+})

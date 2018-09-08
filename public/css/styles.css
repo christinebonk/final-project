@@ -196,37 +196,6 @@ h3.onboarding-label {
   font-weight: bold;
   color: #146958; }
 
-#asset-buttons-container {
-  display: flex;
-  flex-wrap: wrap; }
-  #asset-buttons-container figcaption {
-    text-align: center;
-    font-size: 1.5rem; }
-
-.asset-button {
-  display: block;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 4px #25BEA0 solid;
-  border-radius: 5px;
-  padding: 15px;
-  margin: 10px;
-  background: #3dd9bb;
-  opacity: 0.9;
-  height: 110px;
-  width: 110px; }
-  .asset-button img {
-    display: block;
-    max-height: 30px;
-    display: none; }
-  .asset-button figcaption {
-    color: black; }
-
-.asset-button:hover {
-  background: #68e1ca; }
-
 footer.onboarding {
   position: relative;
   bottom: 0;
@@ -437,6 +406,9 @@ footer.onboarding {
       background-color: 0.2s ease-out; }
   .budget-add input::placeholder {
     font-size: 1.2rem; }
+
+#income-buttons-container {
+  display: flex; }
 
 .income-button {
   display: block;
