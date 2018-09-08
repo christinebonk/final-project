@@ -14,11 +14,41 @@
 	margin: 10px;
 	background: lighten($secondary,10%);
 	opacity: 0.9;
-	width: 30%;
+	height: 80px;
+	width: 200px;
 	color: white;
 
 		&:hover {
 			background: lighten($secondary, 20%)
 		}
+
+}
+
+.income-box {
+	float: left;
+	padding: 2rem;
+}
+
+#income-container {
+	width: 65%;
+	padding: 0px 50px;
+}
+
+#your-income-container {
+	width: 35%;
+	padding: 0px 50px 20px;
+	background: $accent;
+	border-radius: 10px;
+
+		h4 {
+			text-align: center;
+			color: darken($secondary, 20%);
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+}
+
+#income-table {
+	text-transform: capitalize;
 
 }
