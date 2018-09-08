@@ -94,7 +94,6 @@ function routes(app) {
 		if (!user) {
 			user = req.user;
 		}
-		console.log(user);
 
 			db.Account.create({
 				type: type,
@@ -105,6 +104,29 @@ function routes(app) {
 			}).then(function(result) {
 				res.json("complete");
 			})
+	});
+
+	app.put("/income", function(req,res,next) {
+		var name = req.body.name;
+		var amount = req.body.amount;
+		var time = req.body.time;
+		var user = req.user.userid;
+		var type = req.body.type;
+		var period = req.body.period;
+		if (!user) {
+			user = req.user;
+		}
+
+		db.Budget.create({
+				type: type,
+				amount: amount,
+				time: time,
+				name: name,
+				userid: user,
+				period: period
+			}).then(function(result) {
+				res.json("complete");
+			});
 	});
 
 	app.post("/signup", function(req,res,next) {
@@ -134,6 +156,8 @@ function routes(app) {
 		failureRedirect: "/"
 	}));
 };
+
+	
 
 passport.serializeUser(function(userid, done) {
   done(null, userid);
