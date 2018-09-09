@@ -49,8 +49,8 @@ $("#expense-add").on("click", function(event) {
 generateCategories(expenseCategories, "expense");
 generateCategories(savingsCategories, "saving");
 
-var yourExpenses = [];
-var yourSavings = [];
+var yourExpenses = ["Groceries", "Cats", "Grass"];
+var yourSavings = ["Food", "Housing"];
 
 function expense() {
 	event.preventDefault();
@@ -58,7 +58,7 @@ function expense() {
 	 var checkboxes = document.getElementsByName("expense");
 	 for (i=0;i<checkboxes.length;i++) {
 	 	if (checkboxes[i].checked) {
-        yourExpenses.push(checkboxes[i]);
+        yourExpenses.push(checkboxes[i].value);
      	}
 	 }
 	 $("#saving-form").toggleClass("hide");
@@ -75,24 +75,79 @@ function saving() {
 	 var checkboxes = document.getElementsByName("saving");
 	 for (i=0;i<checkboxes.length;i++) {
 	 	if (checkboxes[i].checked) {
-        yourSavings.push(checkboxes[i]);
+
+        yourSavings.push(checkboxes[i].value);
      	}
 	 }
-	 $("#saving-form").toggleClass("hide");
+	 $("#budget-container").toggleClass("hide");
 	 $("#budget-button").attr("onclick", "budget()");
 	 budget();
 	 console.log(yourSavings);
 }
 	
 function budget() {
-	event.preventDefault();
+	// event.preventDefault();
 
 	for (i=0;i<yourExpenses.length;i++) {
-		console.log("hi");
-		var input = $(`<input type='range' id='${yourExpenses[i]}-category' min='0' max='5000' step='1' value='slider'>`);
-		$("#expense-range-container").append(input);
+		var container = $("<div class='input-container'>");
+		var label = $(`<label for='${yourExpenses[i]}-category'>${yourExpenses[i]}</label>`)
+		var input = $(`<input type='text' class='expense-input budget-input' id='${yourExpenses[i]}-category'>`);
+		container.append(label, input);
+		$("#expense-range-container").append(container);
+	}
+	for (i=0;i<yourSavings.length;i++) {
+		var container = $("<div class='input-container'>");
+		var label = $(`<label for '${yourSavings[i]}-category'>${yourSavings[i]}</label>`);
+		var input = $(`<input type='text' class='savings-input budget-input' id='${yourSavings[i]}-category'>`);
+		container.append(label, input);
+		$("#saving-range-container").append(container);
 	}
 }
+
+budget();
+
+var totalIncome = 0;
+$.ajax("/api/income", {
+	type: "GET",
+}).then(function(res) {
+	for (i=0;i<res.length;i++) {
+		if(res[i].period === "monthly") {
+			totalIncome += res[i].amount;
+		}
+	}
+	$("#budget-remaining").text(totalIncome);
+});
+
+$(".budget-input").focusout(function() {
+	var totalSpent = 0;
+	for (i=0;i<yourExpenses.length;i++) {
+		var expenseValue = $(`#${yourExpenses[i]}-category`).val();
+		if (!expenseValue) {
+			expenseValue = 0;
+		}
+		var expenseValue = parseInt(expenseValue);
+		totalSpent += expenseValue;
+	}
+	for (i=0;i<yourSavings.length;i++) {
+		var savingValue = $(`#${yourSavings[i]}-category`).val();
+		if (!savingValue) {
+			savingValue = 0;
+		}
+		var savingValue = parseInt(savingValue);
+		totalSpent += savingValue;
+	}
+	var totalRemaining = totalIncome - totalSpent;
+	$("#budget-spent").text(totalSpent);
+	$("#budget-remaining").text(totalRemaining);
+
+	var spentPercentage = (totalSpent/totalIncome)*100;
+	var remainingPercentage = (totalRemaining/totalIncome)*100;
+	console.log(spentPercentage);
+	console.log(remainingPercentage);
+
+	$("#budget-full").css("width", `${spentPercentage}%`);
+	$("#budget-empty").css("width", `${remainingPercentage}%`);
+})
 	
 
 	//Updating progress bar

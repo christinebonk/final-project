@@ -2,7 +2,7 @@
 <!--Budget Categories Container-->
 <main>
 	
-	<div id="budget-container">
+	<div id="budget-container" class="hide">
 		
 		<!--Monthly Expenses-->
 		<form class="budget-form" id="expense-form">
@@ -27,6 +27,17 @@
 		    	<div class="add" id="saving-add">+</div>
 		    </div>
 		</form>
+	</div>
+	<!--Remaining Budget Container-->
+	<div id="remaining-budget">
+		<div class="bar-container">
+            <div class="bar-full" id="budget-full">
+               <p>$<span id="budget-spent">0</span> allocated</p>
+            </div>
+            <div class="bar-empty" id="budget-empty">
+            	 <p>$<span id="budget-remaining">0</span> remaining</p>
+            </div>
+        </div>
 	</div>
 	<!--Budget Allocation Container-->
 	<div id="allocation-container">

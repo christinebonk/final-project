@@ -407,6 +407,13 @@ footer.onboarding {
   .budget-add input::placeholder {
     font-size: 1.2rem; }
 
+/*Bar*/
+#budget-full {
+  width: 0%; }
+
+#budget-empty {
+  width: 100%; }
+
 #income-buttons-container {
   display: flex; }
 
