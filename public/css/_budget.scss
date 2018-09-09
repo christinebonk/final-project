@@ -55,10 +55,31 @@
 /*Bar*/
 
 #budget-full {
+	background: $accent;
 	width: 0%;
+
 }
 
 #budget-empty {
+	background: $secondary;
 	width: 100%;
+		p {
+			right: 0;
+		}
 }
+
+
+
+.budget-bar-container {
+	display: flex;
+	height: 30px;
+	position: relative;
+
+		p {
+			position: absolute;
+			top: -30px;
+		}
+}
+
+
 

@@ -49,8 +49,8 @@ $("#expense-add").on("click", function(event) {
 generateCategories(expenseCategories, "expense");
 generateCategories(savingsCategories, "saving");
 
-var yourExpenses = ["Groceries", "Cats", "Grass"];
-var yourSavings = ["Food", "Housing"];
+var yourExpenses = [];
+var yourSavings = [];
 
 function expense() {
 	event.preventDefault();
@@ -82,16 +82,17 @@ function saving() {
 	 $("#budget-container").toggleClass("hide");
 	 $("#budget-button").attr("onclick", "budget()");
 	 budget();
-	 console.log(yourSavings);
 }
 	
 function budget() {
-	// event.preventDefault();
+	event.preventDefault();
+	$("#remaining-budget").toggleClass("hide");
 
 	for (i=0;i<yourExpenses.length;i++) {
 		var container = $("<div class='input-container'>");
 		var label = $(`<label for='${yourExpenses[i]}-category'>${yourExpenses[i]}</label>`)
 		var input = $(`<input type='text' class='expense-input budget-input' id='${yourExpenses[i]}-category'>`);
+		input.attr("onfocusout", "updateBars()");
 		container.append(label, input);
 		$("#expense-range-container").append(container);
 	}
@@ -99,12 +100,12 @@ function budget() {
 		var container = $("<div class='input-container'>");
 		var label = $(`<label for '${yourSavings[i]}-category'>${yourSavings[i]}</label>`);
 		var input = $(`<input type='text' class='savings-input budget-input' id='${yourSavings[i]}-category'>`);
+		input.attr("onfocusout", "updateBars()");
 		container.append(label, input);
 		$("#saving-range-container").append(container);
+
 	}
 }
-
-budget();
 
 var totalIncome = 0;
 $.ajax("/api/income", {
@@ -118,7 +119,7 @@ $.ajax("/api/income", {
 	$("#budget-remaining").text(totalIncome);
 });
 
-$(".budget-input").focusout(function() {
+function updateBars() {
 	var totalSpent = 0;
 	for (i=0;i<yourExpenses.length;i++) {
 		var expenseValue = $(`#${yourExpenses[i]}-category`).val();
@@ -145,9 +146,18 @@ $(".budget-input").focusout(function() {
 	console.log(spentPercentage);
 	console.log(remainingPercentage);
 
+	if (totalRemaining < 0) {
+		$("#budget-empty p").css("color", "red");
+	}  else {
+		$("#budget-empty p").css("color", "black");
+	}
+
 	$("#budget-full").css("width", `${spentPercentage}%`);
 	$("#budget-empty").css("width", `${remainingPercentage}%`);
-})
+}
+	
+
+
 	
 
 	//Updating progress bar

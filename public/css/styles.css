@@ -409,10 +409,22 @@ footer.onboarding {
 
 /*Bar*/
 #budget-full {
+  background: #FACC43;
   width: 0%; }
 
 #budget-empty {
+  background: #25BEA0;
   width: 100%; }
+  #budget-empty p {
+    right: 0; }
+
+.budget-bar-container {
+  display: flex;
+  height: 30px;
+  position: relative; }
+  .budget-bar-container p {
+    position: absolute;
+    top: -30px; }
 
 #income-buttons-container {
   display: flex; }
