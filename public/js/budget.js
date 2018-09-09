@@ -87,6 +87,7 @@ function saving() {
 function budget() {
 	event.preventDefault();
 	$("#remaining-budget").toggleClass("hide");
+	$("#allocation-container").toggleClass("hide");
 
 	for (i=0;i<yourExpenses.length;i++) {
 		var container = $("<div class='input-container'>");
@@ -121,12 +122,17 @@ $.ajax("/api/income", {
 
 function updateBars() {
 	var totalSpent = 0;
+	$("#allocation-error").text("");
 	for (i=0;i<yourExpenses.length;i++) {
 		var expenseValue = $(`#${yourExpenses[i]}-category`).val();
 		if (!expenseValue) {
 			expenseValue = 0;
 		}
 		expenseValue = parseInt(expenseValue);
+		if (isNaN(expenseValue)) {
+			$("#allocation-error").text("Please only enter numbers");
+			return;
+		}
 		totalSpent += expenseValue;
 	}
 	for (i=0;i<yourSavings.length;i++) {
@@ -135,6 +141,10 @@ function updateBars() {
 			savingValue = 0;
 		}
 		savingValue = parseInt(savingValue);
+		if (isNaN(savingValue)) {
+			$("#allocation-error").text("Please only enter numbers");
+			return;
+		}
 		totalSpent += savingValue;
 	}
 	var totalRemaining = totalIncome - totalSpent;
@@ -159,11 +169,13 @@ function updateBars() {
 function submitBudget() {
 	event.preventDefault();
 	for (i=0;i<yourExpenses.length;i++) {
+		
 		var expenseValue = $(`#${yourExpenses[i]}-category`).val();
 		if (!expenseValue) { 
 			return;
 		}
 		expenseValue = parseInt(expenseValue);
+
 		var name = yourExpenses[i];
 		var amount = expenseValue;
 		var type = "expense";
@@ -192,8 +204,6 @@ function submitBudget() {
 	}
 }
 	
-
-
 	
 
 	//Updating progress bar
