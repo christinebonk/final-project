@@ -80,7 +80,7 @@ function saving() {
      	}
 	 }
 	 $("#budget-container").toggleClass("hide");
-	 $("#budget-button").attr("onclick", "budget()");
+	 $("#budget-button").attr("onclick", "submitBudget()");
 	 budget();
 }
 	
@@ -126,7 +126,7 @@ function updateBars() {
 		if (!expenseValue) {
 			expenseValue = 0;
 		}
-		var expenseValue = parseInt(expenseValue);
+		expenseValue = parseInt(expenseValue);
 		totalSpent += expenseValue;
 	}
 	for (i=0;i<yourSavings.length;i++) {
@@ -134,7 +134,7 @@ function updateBars() {
 		if (!savingValue) {
 			savingValue = 0;
 		}
-		var savingValue = parseInt(savingValue);
+		savingValue = parseInt(savingValue);
 		totalSpent += savingValue;
 	}
 	var totalRemaining = totalIncome - totalSpent;
@@ -154,6 +154,42 @@ function updateBars() {
 
 	$("#budget-full").css("width", `${spentPercentage}%`);
 	$("#budget-empty").css("width", `${remainingPercentage}%`);
+}
+
+function submitBudget() {
+	event.preventDefault();
+	for (i=0;i<yourExpenses.length;i++) {
+		var expenseValue = $(`#${yourExpenses[i]}-category`).val();
+		if (!expenseValue) { 
+			return;
+		}
+		expenseValue = parseInt(expenseValue);
+		var name = yourExpenses[i];
+		var amount = expenseValue;
+		var type = "expense";
+		var period = "monthly";
+
+		$.ajax("/income", {
+			type: "PUT",
+			data: {
+				name: name,
+				amount: amount,
+				type: type,
+				period: period
+			}
+		}).then(function(res) {
+			window.location.href = "/result";
+		});
+		};
+		
+	
+	for (i=0;i<yourSavings.length;i++) {
+		var savingValue = $(`#${yourSavings[i]}-category`).val();
+		if (!savingValue) {
+			savingValue = 0;
+		}
+		var savingValue = parseInt(savingValue);
+	}
 }
 	
 
