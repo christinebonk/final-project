@@ -5,6 +5,7 @@
   $(".progress-bar li:nth-child(4)").addClass("complete");
   $(".progress-bar li:nth-child(5)").addClass("active");
 
+
 function getTotalNeeded() {
 	$.ajax("/profile", {
 		type: "GET"
@@ -13,55 +14,53 @@ function getTotalNeeded() {
 		var retirementCost = res[0].retirement_cost;
 		var withdrawal = res[0].retirement_withdrawal;
 		totalNeeded = retirementCost/withdrawal;
-		console.log(totalNeeded);
+		getCurrentAmount(totalNeeded);
 	});
 }
 
-function getCurrentAmount() {
+function getCurrentAmount(t) {
 	$.ajax("/account", {
 		type: "GET"
 	}).then(function(res) {
-		console.log(res);
+		var totalNeeded = t;
 		var currentAmount = 0;
 		for (i=0;i<res.length;i++) {
 			if(res[i].include) {
 				currentAmount += res[i].balance;
 			}
 		}
-		console.log(currentAmount);
+		getContribution(totalNeeded, currentAmount);
 	})
 }
 
-function getContribution() {
-	$.ajax("/account", {
+function getContribution(t, c) {
+	$.ajax("/profile", {
 		type: "GET"
 	}).then(function(res) {
+		var totalNeeded = t;
+		var currentAmount = c;
 		var contribution = res[0].retirement_contribution;
-	})
-}
-
-function getGrowth() {
-	$.ajax("/account", {
-		type: "GET"
-	}).then(function(res) {
 		var growth = res[0].yearly_growth;
+		getProjectedTime(totalNeeded, currentAmount, contribution, growth)
 	})
 }
 
 
 function getProjectedTime(total, current, contribution, growth) {
+	console.log(total);
+	console.log(current);
+	console.log(contribution);
+	console.log(growth);
 	var i = current; 
 	var time = 0;
 	while (i < total ){
 		i = i + contribution + i * growth;
 		time ++;
-		console.log(i);
 	}
-	console.log(i);
-	console.log(time);
+
+	var currentYear = (new Date()).getFullYear();
+	var retirementYear = currentYear + time;
+	console.log(retirementYear);
 }
 
-getProjectedTime(100000,99999,1000,0.06);
-
-// getTotalNeeded();
-// getCurrentAmount();
+getTotalNeeded();

@@ -14,11 +14,11 @@ module.exports = function(sequelize, DataTypes) {
     retirement_contribution: DataTypes.INTEGER,
     retirement_withdrawal: {
     	type: DataTypes.FLOAT,
-    	defaultValue: 0.4
+    	defaultValue: 0.04
     },
     yearly_growth: {
     	type: DataTypes.FLOAT,
-    	defaultValue: 0.6
+    	defaultValue: 0.06
     },
     income_increase: { 
     	type: DataTypes.FLOAT,
