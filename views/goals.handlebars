@@ -7,6 +7,7 @@
     <div class="row">
       <div class="input-field col s12">
         <h3 class="onboarding-label">My dream is to be financially independent by the year <span class="spend dateRangeValue">2040</span></h3>
+        <!--Range Input-->
         <input type="range" id="date" name="date" min="2019" max="2060" step="1" value="slider" onchange="document.querySelector('.dateRangeValue').innerHTML = this.value">
         <label class="browser-default visually-hidden" for="date">What's your dream financial independence date?</label>
         <p id="date-error"></p>
@@ -19,6 +20,16 @@
         <!--Range Input-->
           <input type="range" id="retirement-amount" name="retirement-amount" min="5000" max="150000" step="5000" value="slider" onchange="document.querySelector('.rangeValue').innerHTML = this.value">
         <label class="browser-default visually-hidden" for="retirement-amount">Enter annual expenses in retirement</label>
+        <p id="retirement-amount-error"></p>
+      </div>
+    </div>
+     <!--Row-->
+    <div class="row">
+      <div class="input-field col s12">
+        <h3 class="onboarding-label">I plan to contribute <span class="spend">$</span><span class="spend contributionRangeValue">50,000</span> a year toward financial independence</h3>
+        <!--Range Input-->
+          <input type="range" id="contribution" name="contribution" min="0" max="100000" step="500" value="slider" onchange="document.querySelector('.contributionRangeValue').innerHTML = this.value">
+        <label class="browser-default visually-hidden" for="retirement-amount">Enter annual contribution</label>
         <p id="retirement-amount-error"></p>
       </div>
     </div>

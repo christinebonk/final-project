@@ -28,7 +28,7 @@ function routes(app) {
 	});
 
 	app.get("/result", function(req,res) {
-		res.render('result', {layout: 'onboarding.handlebars'});
+		res.render('result', {layout: 'onboarding.handlebars', title: "Your FIRE Summary"});
 	});
 
 	app.get("/monthly", function(req,res) {
@@ -52,17 +52,31 @@ function routes(app) {
 
 	//apis to do - fix validation
 
+	app.get("/profile", function(req,res,next) {
+		var user = req.user.userid;
+		if (!user) {
+			user = req.user;
+		}
+		console.log(user);
+
+		db.User.findAll({where: {id: user}}).then(function(result) {
+			res.json(result);
+		});
+	})
+
 	app.put("/profile", function(req,res,next) {
 		var date = req.body.date;
 		var amount = req.body.amount;
 		var user = req.user.userid;
+		var contribution = req.body.contribution; 
 		if (!user) {
 			user = req.user;
 		}
 
 		db.User.update({
 			retirement_date: date,
-			retirement_cost: amount
+			retirement_cost: amount,
+			retirement_contribution: contribution
 		},
 			{where: {id: user}
 		}).then(function(result) {
@@ -78,7 +92,6 @@ function routes(app) {
 		if (!user) {
 			user = req.user;
 		}
-
 		db.Account.findAll({where: {userid: user}}).then(function(result) {
 			res.json(result);
 		});

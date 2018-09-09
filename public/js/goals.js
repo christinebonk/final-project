@@ -3,6 +3,7 @@ $(".goals-submit").on("click", function(event) {
 	event.preventDefault();
 	var date = $("#date").val().trim();
 	var amount = $("#retirement-amount").val().trim();
+	var contribution = $("#contribution").val().trim();
 	var error = false;
 
 	if (!amount) {
@@ -26,7 +27,8 @@ $(".goals-submit").on("click", function(event) {
 		type: "PUT",
 		data: {
 			date: date,
-			amount: amount
+			amount: amount,
+			contribution: contribution
 		}
 	}).then(function(res) {
 		window.location.href = "/networth";
@@ -44,6 +46,12 @@ $("#retirement-amount").change(function() {
 $("#date").change(function() {
 	var amount = $(this).val();
 	$(".dateRangeValue").text(amount);
+});
+
+$("#contribution").change(function() {
+	var amount = $(this).val();
+	amount = amount.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+	$(".contributionRangeValue").text(amount);
 });
 
 //Updating progress bar
