@@ -3,16 +3,26 @@ var bodyparser = require("body-parser");
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var passport = require("passport");
+const path = require("path");
+
 
 
 function routes(app) {
 	//pages
-	app.get("/", function(req, res){
+	app.get("/homepage", function(req, res){
+		res.render("index");
+	});
+
+	app.get("/homepage", function(req, res){
 		res.render("index");
 	});
 
 	app.get("/goals", authenticationMiddleware(), function(req,res) {
 		res.render('goals', {layout: 'onboarding.handlebars', title: `Let's Get Started!`});
+	});
+
+	app.get("/test", authenticationMiddleware(), function(req,res) {
+		res.sendFile(path.join(__dirname, "../client/build/index.html"));
 	});
 
 	app.get("/income", authenticationMiddleware(), function(req,res) {
