@@ -12,8 +12,9 @@ class Home extends Component {
     date: 0,
     withdrawal: 0.04,
     growth: 0.06,
-    increase: 0,
-    fire_amount: 0
+    increase: 100,
+    fire_amount: 0,
+    goal: 1000000
   };
 
   componentDidMount() {
@@ -30,9 +31,11 @@ class Home extends Component {
       fireAccounts.forEach(fire => {
         fireTotal += fire.balance;
       });
-      this.setState({fire_amount: fireTotal})
+      this.setState({fire_amount: fireTotal}, () => {
+        this.getProjection();
+      });
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
   }
  
   getUser = () => {
@@ -53,11 +56,42 @@ class Home extends Component {
           withdrawal: withdrawal,
           growth: growth,
           increase: increase
-        })
-      }
-      )
+         });
+        this.getProjection();
+      })
       .catch(err => console.log(err));
   };
+
+  getProjection = () => {
+    let fireAmount = this.state.fire_amount;
+    const increase = this.state.increase;
+    const goal = this.state.goal;
+    let growth = this.state.growth;
+    let contribution = this.state.contribution;
+    let arr = [];
+    let date = new Date();
+    let month = date.getMonth();
+    let monthLeft = 12 - month; 
+    let year = date.getFullYear();
+    let roi = 0;
+    while (fireAmount > 0 && fireAmount < goal) {
+      var newObj = {
+        year: year,
+        contribution: contribution,
+        roi: roi,
+        fireAmount: fireAmount
+      };
+      console.log(newObj)
+      arr.push(newObj);
+
+      //increment
+      year++
+      contribution = contribution + increase; 
+      roi = fireAmount * growth;
+      fireAmount = fireAmount + contribution + roi;
+    }
+    this.setState({projection: arr});
+  }
 
   render() {
     return (
@@ -67,34 +101,25 @@ class Home extends Component {
             <Table>
               <Thead>
                 <th>Year</th>
-                <th>Goal</th>
-                <th>Actual</th>
-                <th>Difference</th>
                 <th>Contribution</th>
+                <th>ROI</th>
+                <th>Fire Amount</th>
               </Thead>
-              <Tbody>
-                <tr>
-                    <td>2018</td>
-                    <td>$12000</td>
-                    <td>$11000</td>
-                    <td>$1000</td>
-                    <td>$1500</td>
-                </tr>
-                <tr>
-                    <td>2019</td>
-                      <td>$15000</td>
-                      <td>$11000</td>
-                      <td>$1000</td>
-                      <td>$1500</td>
-                </tr>
-                <tr>
-                    <td>2020</td>
-                      <td>$20000</td>
-                      <td>$11000</td>
-                      <td>$1000</td>
-                      <td>$1500</td>
-                </tr>
-              </Tbody>
+              {this.state.projection.length ? (
+                <Tbody>
+                {this.state.projection.map (projection => (
+                  <tr key={projection.year}>
+                    <td>{projection.year}</td>
+                    <td>{projection.contribution}</td>
+                    <td>{projection.roi}</td>
+                    <td>{projection.fireAmount}</td>
+                  </tr>
+                  ))}
+                  </Tbody> )  : (
+                <h3>No Results to Display </h3>
+                )}
+                
+              }
             </Table>
           </Col>
         </Row>
@@ -103,11 +128,6 @@ class Home extends Component {
   }
 
 }
-
-
-
-         
-                  
 
 
 
