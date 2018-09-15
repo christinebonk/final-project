@@ -32,11 +32,14 @@ class Home extends Component {
     const goal = this.state.goal;
     const amount = this.state.fire_amount;
     let percentage = Math.round(amount/goal*100);
-    let remainingPercentage = 100 - percentage;
+    let remainingPercentage = (100 - percentage);
+    remainingPercentage = remainingPercentage + "%";
+    percentage = percentage + "%";
+    console.log(percentage);
+    console.log(remainingPercentage);
     $(".bar-full").css("width", percentage);
     $(".bar-empty").css("width", remainingPercentage);
-
-    this.setState({percentage: percentage, remainingPercentage: remainingPercentage})
+    this.setState({percentage: percentage, remainingPercentage: remainingPercentage});
   };
 
   getAmount = () => {

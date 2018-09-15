@@ -1,0 +1,13 @@
+/*Website Colours*/
+.bar-container {
+  display: flex;
+  height: 30px;
+  width: 100%; }
+
+.bar-full {
+  background: #25BEA0; }
+
+.bar-empty {
+  background: #FACC43; }
+
+/*# sourceMappingURL=style.css.map */

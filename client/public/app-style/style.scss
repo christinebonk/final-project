@@ -1,0 +1,19 @@
+/*Website Colours*/
+$primary: #FABC09;
+$secondary: #25BEA0;
+$accent: #FACC43;
+
+
+.bar-container {
+	display: flex;
+	height: 30px;
+	width: 100%;
+}
+
+.bar-full {
+	background: $secondary;
+}
+
+.bar-empty{
+	background: $accent;
+}
