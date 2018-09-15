@@ -74,21 +74,35 @@ class Home extends Component {
     let monthLeft = 12 - month; 
     let year = date.getFullYear();
     let roi = 0;
+    let firstContribution = contribution/12*monthLeft;
+    let firstRoi = fireAmount*growth/12*monthLeft;
+
+    fireAmount = fireAmount + firstContribution + firstRoi;
+
+    var firstObj = {
+      year: year,
+      contribution: firstContribution,
+      roi: firstRoi,
+      fireAmount: fireAmount
+    }
+    arr.push(firstObj);
+
     while (fireAmount > 0 && fireAmount < goal) {
+      year++
+      contribution = contribution + increase; 
+      roi = fireAmount * growth;
+      fireAmount = fireAmount + contribution + roi;
+
       var newObj = {
         year: year,
         contribution: contribution,
         roi: roi,
         fireAmount: fireAmount
       };
-      console.log(newObj)
       arr.push(newObj);
 
       //increment
-      year++
-      contribution = contribution + increase; 
-      roi = fireAmount * growth;
-      fireAmount = fireAmount + contribution + roi;
+      
     }
     this.setState({projection: arr});
   }
@@ -101,24 +115,28 @@ class Home extends Component {
             <Table>
               <Thead>
                 <th>Year</th>
+                <th>Fire Amount</th>
                 <th>Contribution</th>
                 <th>ROI</th>
-                <th>Fire Amount</th>
               </Thead>
               {this.state.projection.length ? (
                 <Tbody>
                 {this.state.projection.map (projection => (
                   <tr key={projection.year}>
                     <td>{projection.year}</td>
+                    <td>{projection.fireAmount}</td>
                     <td>{projection.contribution}</td>
                     <td>{projection.roi}</td>
-                    <td>{projection.fireAmount}</td>
                   </tr>
                   ))}
                   </Tbody> )  : (
-                <h3>No Results to Display </h3>
-                )}
-                
+                <Tbody>
+                <tr><td>No Results to Display</td></tr> 
+                <tr><td>No Results to Display</td></tr>
+                <tr><td>No Results to Display</td></tr>
+                <tr><td>No Results to Display</td></tr>
+                </Tbody>
+                )
               }
             </Table>
           </Col>
