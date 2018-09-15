@@ -5,14 +5,56 @@ import { Thead, Table, Tbody } from "../../components/Table";
 
 
 class Home extends Component {
+  state = {
+    projection: [],
+    contribution: 0,
+    cost: 0,
+    date: 0,
+    withdrawal: 0.04,
+    growth: 0.06,
+    increase: 0,
+    fire_amount: 0
+  };
 
   componentDidMount() {
-    this.loadBooks();
+    this.getUser();
+    this.getAmount();
+  }
+
+  getAmount = () => {
+    API.searchAccount()
+    .then(res => {
+      const data = res.data;
+      let fireAccounts = data.filter(entry => entry.include === true);
+      let fireTotal = 0;
+      fireAccounts.forEach(fire => {
+        fireTotal += fire.balance;
+      });
+      this.setState({fire_amount: fireTotal})
+    })
+    .catch(err => console.log(err))
   }
  
-  loadBooks = () => {
+  getUser = () => {
     API.searchUser()
-      .then(res => console.log(res)
+      .then(res => {
+        const data = res.data[0];
+        console.log(data)
+        const contribution = data.retirement_contribution;
+        const cost = data.retirement_cost;
+        const date = data.retirement_date;
+        const withdrawal = data.retirement_withdrawl;
+        const growth = data.yearly_growth;
+        const increase = data.income_increase;
+        this.setState({
+          contribution: contribution,
+          cost: cost,
+          date: date,
+          withdrawal: withdrawal,
+          growth: growth,
+          increase: increase
+        })
+      }
       )
       .catch(err => console.log(err));
   };
