@@ -3,9 +3,8 @@ import API from "../../utils/App.js";
 import { Col, Row, Container } from "../../components/Grid";
 import { Thead, Table, Tbody } from "../../components/Table";
 import { EmptyBar, FullBar } from "../../components/Bars";
+import DataBlock from "../../components/DataBlock";
 import $ from "jquery";
-
-
 
 class Home extends Component {
   state = {
@@ -167,8 +166,29 @@ class Home extends Component {
                 </div>
                 <h5>${this.state.fire_amount} out of ${this.state.goal}</h5>
             </div>
-
           </Col>
+        </Row>
+        <Row>
+          <Col size="s4">
+            <div className="data-block">
+              <h3>Years Behind Goals</h3>
+              <p>4</p>    
+            </div>
+          </Col>
+          <Col size="s4">
+            <div className="data-block">
+              <h3>Years Behind Goals</h3>
+              <p>4</p>    
+            </div>
+          </Col>
+          <Col size="s4">
+            <div className="data-block">
+              <h3>Years Behind Goals</h3>
+              <p>4</p>    
+            </div>
+          </Col>
+        </Row>
+        <Row>
           <Col size="s12">
             <Table>
               <Thead>
