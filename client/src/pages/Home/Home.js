@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import API from "../../utils/App.js";
 import { Col, Row, Container } from "../../components/Grid";
 import { Thead, Table, Tbody } from "../../components/Table";
+import { EmptyBar, FullBar } from "../../components/Bars";
+import $ from "jquery";
+
 
 
 class Home extends Component {
@@ -16,21 +19,25 @@ class Home extends Component {
     fire_amount: 0,
     goal: 1000000,
     final_year: 0,
-    percentage: 0
+    percentage: 0,
+    remainingPercentage: 100
   };
 
   componentDidMount() {
     this.getUser();
     this.getAmount();
-  }
+  };
 
   calculateBars = () => {
     const goal = this.state.goal;
     const amount = this.state.fire_amount;
     let percentage = Math.round(amount/goal*100);
+    let remainingPercentage = 100 - percentage;
+    $(".bar-full").css("width", percentage);
+    $(".bar-empty").css("width", remainingPercentage);
 
-    this.setState({percentage: percentage})
-  }
+    this.setState({percentage: percentage, remainingPercentage: remainingPercentage})
+  };
 
   getAmount = () => {
     API.searchAccount()
@@ -47,7 +54,7 @@ class Home extends Component {
       });
     })
     .catch(err => console.log(err));
-  }
+  };
  
   getUser = () => {
     API.searchUser()
@@ -84,7 +91,7 @@ class Home extends Component {
     display = display.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
     display = "$" + display; 
     return display;
-  }
+  };
 
   getProjection = () => {
     let fireAmount = this.state.fire_amount;
@@ -150,17 +157,14 @@ class Home extends Component {
                <h3 className="data-header">You will Reach Financial Freedom by:</h3>
                   <p className="data-value">{this.state.final_year}</p>
                   <div className="section-bottom">
-                  <div className="bar-container">
-                    <div className="bar-full">
-                        <p>{this.state.percentage}%</p>
-                    </div>
-                    <div className="bar-empty">
+                    <div className="bar-container" >
+                      <FullBar />
+                      <EmptyBar />
                     </div>
                 </div>
                 <h5>${this.state.fire_amount} out of ${this.state.goal}</h5>
             </div>
 
-            </div>
           </Col>
           <Col size="s12">
             <Table>
