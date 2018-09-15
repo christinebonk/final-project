@@ -62,6 +62,14 @@ class Home extends Component {
       .catch(err => console.log(err));
   };
 
+  displayNumber = (num) => {
+    let display = Math.round(num);
+    display = JSON.stringify(display);
+    display = display.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    display = "$" + display; 
+    return display;
+  }
+
   getProjection = () => {
     let fireAmount = this.state.fire_amount;
     const increase = this.state.increase;
@@ -78,12 +86,15 @@ class Home extends Component {
     let firstRoi = fireAmount*growth/12*monthLeft;
 
     fireAmount = fireAmount + firstContribution + firstRoi;
+    let fireDisplay = this.displayNumber(fireAmount)
+    let contributionDisplay = this.displayNumber(firstContribution);
+    let roiDisplay = this.displayNumber(firstRoi)
 
     var firstObj = {
       year: year,
-      contribution: firstContribution,
-      roi: firstRoi,
-      fireAmount: fireAmount
+      contribution: contributionDisplay,
+      roi: roiDisplay,
+      fireAmount: fireDisplay
     }
     arr.push(firstObj);
 
@@ -92,12 +103,15 @@ class Home extends Component {
       contribution = contribution + increase; 
       roi = fireAmount * growth;
       fireAmount = fireAmount + contribution + roi;
+      let fireDisplay = this.displayNumber(fireAmount);
+      let contributionDisplay = this.displayNumber(contribution);
+      let roiDisplay = this.displayNumber(roi)
 
       var newObj = {
         year: year,
-        contribution: contribution,
-        roi: roi,
-        fireAmount: fireAmount
+        contribution: contributionDisplay,
+        roi: roiDisplay,
+        fireAmount: fireDisplay
       };
       arr.push(newObj);
 
@@ -116,7 +130,7 @@ class Home extends Component {
               <Thead>
                 <th>Year</th>
                 <th>Fire Amount</th>
-                <th>Contribution</th>
+                <th>Goal Contribution</th>
                 <th>ROI</th>
               </Thead>
               {this.state.projection.length ? (
