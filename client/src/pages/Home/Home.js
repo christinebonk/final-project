@@ -14,12 +14,22 @@ class Home extends Component {
     growth: 0.06,
     increase: 100,
     fire_amount: 0,
-    goal: 1000000
+    goal: 1000000,
+    final_year: 0,
+    percentage: 0
   };
 
   componentDidMount() {
     this.getUser();
     this.getAmount();
+  }
+
+  calculateBars = () => {
+    const goal = this.state.goal;
+    const amount = this.state.fire_amount;
+    let percentage = Math.round(amount/goal*100);
+
+    this.setState({percentage: percentage})
   }
 
   getAmount = () => {
@@ -33,6 +43,7 @@ class Home extends Component {
       });
       this.setState({fire_amount: fireTotal}, () => {
         this.getProjection();
+        this.calculateBars();
       });
     })
     .catch(err => console.log(err));
@@ -46,16 +57,21 @@ class Home extends Component {
         const contribution = data.retirement_contribution;
         const cost = data.retirement_cost;
         const date = data.retirement_date;
-        const withdrawal = data.retirement_withdrawl;
+        const withdrawal = data.retirement_withdrawal;
         const growth = data.yearly_growth;
         const increase = data.income_increase;
+        let totalAmount = cost/withdrawal;
+        console.log(totalAmount);
         this.setState({
           contribution: contribution,
           cost: cost,
           date: date,
           withdrawal: withdrawal,
           growth: growth,
-          increase: increase
+          increase: increase,
+          goal: totalAmount
+         }, () => {
+
          });
         this.getProjection();
       })
@@ -97,6 +113,7 @@ class Home extends Component {
       fireAmount: fireDisplay
     }
     arr.push(firstObj);
+    let finalYear;
 
     while (fireAmount > 0 && fireAmount < goal) {
       year++
@@ -114,17 +131,37 @@ class Home extends Component {
         fireAmount: fireDisplay
       };
       arr.push(newObj);
-
+      finalYear = year;
       //increment
       
     }
     this.setState({projection: arr});
+    this.setState({final_year: finalYear})
   }
+
+
 
   render() {
     return (
       <Container>
         <Row>
+          <Col size="s12">
+            <div className="data-block">
+               <h3 className="data-header">You will Reach Financial Freedom by:</h3>
+                  <p className="data-value">{this.state.final_year}</p>
+                  <div className="section-bottom">
+                  <div className="bar-container">
+                    <div className="bar-full">
+                        <p>{this.state.percentage}%</p>
+                    </div>
+                    <div className="bar-empty">
+                    </div>
+                </div>
+                <h5>${this.state.fire_amount} out of ${this.state.goal}</h5>
+            </div>
+
+            </div>
+          </Col>
           <Col size="s12">
             <Table>
               <Thead>
