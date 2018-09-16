@@ -42,6 +42,12 @@ class Home extends Component {
     this.setState({percentage: percentage, remainingPercentage: remainingPercentage});
   };
 
+  calculateGoal = (cost,withdrawal) => {
+    let goal = cost/withdrawal;
+    this.setState({goal: goal});
+    return goal;
+  }
+
   getAmount = () => {
     API.searchAccount()
     .then(res => {
@@ -173,7 +179,7 @@ class Home extends Component {
     let newContribution = contribution;
 
     while (finalYear > goalDate) {
-      newContribution = newContribution + 10000;
+      newContribution = newContribution + 500;
       finalYear = this.projectDate(newContribution, goal, fireAmount, growth, currentYear);
     }
     const addedContribution = newContribution - contribution;
@@ -201,10 +207,19 @@ class Home extends Component {
       value = value - increment;
     }
 
+    if (category === "cost") {
+      this.calculateGoal(value, this.state.withdrawal);
+    } else if (category === "withdrawal") {
+      this.calculateGoal(this.state.cost, value);
+    }
+
     let newObj = {} 
     newObj[category] = value;
+
     this.setState(newObj, () => {
       this.getProjection();
+      this.calculateBars();
+      this.getNeededAmount();
     })
   } 
 
