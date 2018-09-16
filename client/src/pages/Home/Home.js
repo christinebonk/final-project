@@ -6,6 +6,7 @@ import { EmptyBar, FullBar } from "../../components/Bars";
 import { UpdateBox, UpdateButton } from "../../components/UpdateBox";
 import $ from "jquery";
 import BarChart from "react-svg-bar-chart"
+import TopBar from "../../components/TopBar"
 
 class Home extends Component {
   state = {
@@ -262,11 +263,14 @@ class Home extends Component {
     growth = growth + "%";
 
     return (
+      <div>
+        <TopBar title="Financial Indepdence Dashboard"/>
+
       <Container>
         <Row>
           <Col size="s12">
             <div className="data-block head-block">
-               <h3 className="data-header">You will Reach Financial Freedom by <span className="data-value">{this.state.final_year}</span></h3>
+               <h3 className="data-header">You will Reach Financial Freedom by<span className="data-value">{this.state.final_year}</span></h3>
                   <div className="section-bottom">
                     <div className="bar-container" >
                       <FullBar />
@@ -298,46 +302,46 @@ class Home extends Component {
           </Col>
         </Row>
         <Row>
-        <Col size="s4 m2">
-          <UpdateBox title="Retirement Expenses" amount={cost}>
-            <UpdateButton onClick={() => this.handleClick("plus", 1000, "cost", this.state.cost )}>+</UpdateButton>
-            <UpdateButton onClick={() => this.handleClick("minus", 1000, "cost", this.state.cost )}>-</UpdateButton>
-          </UpdateBox>
-        </Col>
-        <Col size="s4 m2">
-          <UpdateBox title="Annual Withdrawal" amount={withdrawal}>
-            <UpdateButton onClick={() => this.handleClick("plus", 0.0025, "withdrawal", this.state.withdrawal )}>+</UpdateButton>
-            <UpdateButton onClick={() => this.handleClick("minus", 0.0025, "withdrawal", this.state.withdrawal )}>-</UpdateButton>
-          </UpdateBox>
-        </Col>
-        <Col size="s4 m2">
-          <UpdateBox title="Annual Contribution" amount={contribution}>
-            <UpdateButton onClick={() => this.handleClick("plus", 1000, "contribution", this.state.contribution )}>+</UpdateButton>
-            <UpdateButton onClick={() => this.handleClick("minus", 1000, "contribution", this.state.contribution )}>-</UpdateButton>
-          </UpdateBox>
-        </Col>
-        <Col size="s4 m2">
-          <UpdateBox title="Contribution Increase" amount={contributionIncrease}>
-            <UpdateButton onClick={() => this.handleClick("plus", 500, "increase", this.state.increase )}>+</UpdateButton>
-            <UpdateButton onClick={() => this.handleClick("minus", 500, "increase", this.state.increase )}>-</UpdateButton>
-          </UpdateBox>
-        </Col>
-        <Col size="s4 m2">
-          <UpdateBox title="Annual Growth Rate" amount={growth}>
-            <UpdateButton onClick={() => this.handleClick("plus", 0.005, "growth", this.state.growth )}>+</UpdateButton>
-            <UpdateButton onClick={() => this.handleClick("minus", 0.005, "growth", this.state.growth )}>-</UpdateButton>
-          </UpdateBox>
-        </Col>
-        <Col size="s4 m2">
-          <UpdateBox title="Target FIRE Year" amount={this.state.date}>
-            <UpdateButton onClick={() => this.handleClick("plus", 1, "date", this.state.date )}>+</UpdateButton>
-            <UpdateButton onClick={() => this.handleClick("minus", 1, "date", this.state.date )}>-</UpdateButton>
-          </UpdateBox>
-        </Col>
+            <Col size="s6 m4 l2">
+              <UpdateBox title="Retirement Expenses" amount={cost}>
+                <UpdateButton onClick={() => this.handleClick("plus", 1000, "cost", this.state.cost )}>+</UpdateButton>
+                <UpdateButton onClick={() => this.handleClick("minus", 1000, "cost", this.state.cost )}>-</UpdateButton>
+              </UpdateBox>
+            </Col>
+            <Col size="s6 m4 l2">
+              <UpdateBox title="Annual Withdrawal" amount={withdrawal}>
+                <UpdateButton onClick={() => this.handleClick("plus", 0.0025, "withdrawal", this.state.withdrawal )}>+</UpdateButton>
+                <UpdateButton onClick={() => this.handleClick("minus", 0.0025, "withdrawal", this.state.withdrawal )}>-</UpdateButton>
+              </UpdateBox>
+            </Col>
+            <Col size="s6 m4 l2">
+              <UpdateBox title="Annual Contribution" amount={contribution}>
+                <UpdateButton onClick={() => this.handleClick("plus", 1000, "contribution", this.state.contribution )}>+</UpdateButton>
+                <UpdateButton onClick={() => this.handleClick("minus", 1000, "contribution", this.state.contribution )}>-</UpdateButton>
+              </UpdateBox>
+            </Col>
+            <Col size="s6 m4 l2">
+              <UpdateBox title="Contribution Increase" amount={contributionIncrease}>
+                <UpdateButton onClick={() => this.handleClick("plus", 500, "increase", this.state.increase )}>+</UpdateButton>
+                <UpdateButton onClick={() => this.handleClick("minus", 500, "increase", this.state.increase )}>-</UpdateButton>
+              </UpdateBox>
+            </Col>
+            <Col size="s6 m4 l2">
+              <UpdateBox title="Annual Growth Rate" amount={growth}>
+                <UpdateButton onClick={() => this.handleClick("plus", 0.005, "growth", this.state.growth )}>+</UpdateButton>
+                <UpdateButton onClick={() => this.handleClick("minus", 0.005, "growth", this.state.growth )}>-</UpdateButton>
+              </UpdateBox>
+            </Col>
+            <Col size="s6 m4 l2">
+              <UpdateBox title="Target FIRE Year" amount={this.state.date}>
+                <UpdateButton onClick={() => this.handleClick("plus", 1, "date", this.state.date )}>+</UpdateButton>
+                <UpdateButton onClick={() => this.handleClick("minus", 1, "date", this.state.date )}>-</UpdateButton>
+              </UpdateBox>
+            </Col>
         </Row> 
         <Row>
           <div className="graph-div">
-            <BarChart data={this.state.data} onHover={this.handlePointHover} />
+            <BarChart labelsStepX={1} data={this.state.data} onHover={this.handlePointHover} />
           </div>
         </Row>
         <Row>
@@ -367,6 +371,7 @@ class Home extends Component {
           </Col>
         </Row>
       </Container>
+      </div>
       );
   }
 

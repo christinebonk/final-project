@@ -63,7 +63,11 @@ span.data-value {
 	color: $secondary;
 }
 
-
+div.edit-bar {
+	background: lighten($secondary, 30%);
+	width: 100%;
+	height: 100%;
+}
 
 
 div.graph-div {
@@ -71,6 +75,10 @@ div.graph-div {
 	margin: 0 auto;
 	svg {
 		padding-top: 20px;
+
+		text {
+			font-size: 1rem;
+		}
 	}
 }
 
