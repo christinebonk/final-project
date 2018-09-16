@@ -3,7 +3,6 @@ import API from "../../utils/App.js";
 import { Col, Row, Container } from "../../components/Grid";
 import { Thead, Table, Tbody } from "../../components/Table";
 import { EmptyBar, FullBar } from "../../components/Bars";
-import DataBlock from "../../components/DataBlock";
 import $ from "jquery";
 
 class Home extends Component {
@@ -19,7 +18,8 @@ class Home extends Component {
     goal: 1000000,
     final_year: 0,
     percentage: 0,
-    remainingPercentage: 100
+    remainingPercentage: 100,
+    addedContribution: 0
   };
 
   componentDidMount() {
@@ -53,6 +53,7 @@ class Home extends Component {
       this.setState({fire_amount: fireTotal}, () => {
         this.getProjection();
         this.calculateBars();
+        this.getNeededAmount();
       });
     })
     .catch(err => console.log(err));
@@ -148,9 +149,46 @@ class Home extends Component {
     this.setState({final_year: finalYear})
   }
 
+  projectDate = (contribution, goal, amount, growth, year) => {
+    let roi = 0;
+    while (amount > 0 && amount < goal) {
+      year++
+      roi = amount * growth;
+      amount = amount + contribution + roi;
+    }
+    return year;
+  } 
+
+  getNeededAmount = () => {
+    let fireAmount = this.state.fire_amount;
+    const goal = this.state.goal;
+    let growth = this.state.growth;
+    let contribution = this.state.contribution;
+    console.log(contribution);
+    const currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let goalDate = this.state.date;
+    let finalYear = this.state.final_year; 
+    let newContribution = contribution;
+
+    while (finalYear > goalDate) {
+      newContribution = newContribution + 10000;
+      finalYear = this.projectDate(newContribution, goal, fireAmount, growth, currentYear);
+    }
+    const addedContribution = newContribution - contribution;
+    this.setState({addedContribution: addedContribution})
+  }
+
+
+
 
 
   render() {
+    const timeDifference = this.state.final_year - this.state.date;
+    const fireAmount = this.displayNumber(this.state.fire_amount);
+    const goal = this.displayNumber(this.state.goal);
+    const addedContribution = this.displayNumber(this.state.addedContribution);
+
     return (
       <Container>
         <Row>
@@ -164,21 +202,21 @@ class Home extends Component {
                       <EmptyBar />
                     </div>
                 </div>
-                <h5>${this.state.fire_amount} out of ${this.state.goal}</h5>
+                <h5>{fireAmount} out of {goal}</h5>
             </div>
           </Col>
         </Row>
         <Row>
           <Col size="s4">
             <div className="data-block">
-              <h3>Years Behind Goals</h3>
-              <p>4</p>    
+              <h3>Years away from your goal:</h3>
+              <p>{timeDifference}</p>    
             </div>
           </Col>
           <Col size="s4">
             <div className="data-block">
-              <h3>Years Behind Goals</h3>
-              <p>4</p>    
+              <h3>Annual Increase needed to hit goal</h3>
+              <p>{addedContribution}</p>    
             </div>
           </Col>
           <Col size="s4">

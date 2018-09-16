@@ -1,4 +1,3 @@
-//i hope you had a good weekend 
 //sign up
 $(".sign-up-submit").on("click", function(event) {
 	event.preventDefault();
