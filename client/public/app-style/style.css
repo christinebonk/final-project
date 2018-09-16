@@ -1,4 +1,54 @@
 /*Website Colours*/
+button.update-btn {
+  background: #25BEA0;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  line-height: 12.5px;
+  margin: 0px 5px 10px; }
+
+div.update-block {
+  text-align: center;
+  padding: 10px;
+  background: #92ead9;
+  border-radius: 5px;
+  height: 120px; }
+  div.update-block p {
+    margin: 8px 0px; }
+  div.update-block h4 {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 5px; }
+
+div.head-block {
+  background: #D3E3DD;
+  height: 175px; }
+  div.head-block h3 {
+    margin: 15px 0px; }
+
+.data-block {
+  background: #fef4d8;
+  padding: 20px;
+  border-radius: 5px;
+  height: 150px; }
+  .data-block h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 5px; }
+  .data-block p {
+    font-size: 2rem;
+    margin: 10px;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    color: #34073D; }
+
+span.data-value {
+  margin: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: #25BEA0; }
+
 .bar-container {
   display: flex;
   height: 30px;
@@ -9,13 +59,5 @@
 
 .bar-empty {
   background: #FACC43; }
-
-.update-block h4 {
-	font-size: 1.2rem;
-}
-
-.data-block h3 {
-	font-size: 2rem;
-}
 
 /*# sourceMappingURL=style.css.map */

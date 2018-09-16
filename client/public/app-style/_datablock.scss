@@ -1,0 +1,64 @@
+button.update-btn {
+	background: $secondary; 
+	width: 20px;
+	height: 20px;
+	padding: 0px;
+	line-height: 12.5px;
+	margin: 0px 5px 10px;
+}
+
+div.update-block {
+	text-align: center;
+	padding: 10px;
+	background: lighten($secondary, 30%);
+	border-radius: 5px;
+	height: 120px;
+		p {
+			margin: 8px 0px;
+		}
+
+		h4 {
+			font-size: 0.9rem;
+			font-weight: bold;
+			margin-top: 5px;
+		}	
+}
+
+
+div.head-block {
+	background:#D3E3DD;
+	height: 175px;
+
+	h3 {
+		margin: 15px 0px;
+	}
+}
+
+.data-block {
+	background: lighten($accent, 30%);
+	padding: 20px;
+	border-radius: 5px;
+	height: 150px;
+
+	h3 {
+		font-size: 1.4rem;
+		font-weight: bold;
+		margin: 5px;
+	}
+
+	p {
+		font-size: 2rem;
+		margin: 10px;
+		margin: 0;
+		text-align: center;
+		font-weight: bold;
+		color: $accent2;
+	}
+}
+
+span.data-value {
+	margin: 10px;	
+	text-align: center;
+	font-weight: bold;
+	color: $secondary;
+}

@@ -244,9 +244,8 @@ class Home extends Component {
       <Container>
         <Row>
           <Col size="s12">
-            <div className="data-block">
-               <h3 className="data-header">You will Reach Financial Freedom by:</h3>
-                  <p className="data-value">{this.state.final_year}</p>
+            <div className="data-block head-block">
+               <h3 className="data-header">You will Reach Financial Freedom by <span className="data-value">{this.state.final_year}</span></h3>
                   <div className="section-bottom">
                     <div className="bar-container" >
                       <FullBar />
@@ -260,56 +259,56 @@ class Home extends Component {
         <Row>
           <Col size="s4">
             <div className="data-block">
-              <h3>Years away from your goal:</h3>
+              <h3>Years Away from Your Goal</h3>
               <p>{timeDifference}</p>    
             </div>
           </Col>
           <Col size="s4">
             <div className="data-block">
-              <h3>Annual Increase needed to hit goal</h3>
+              <h3>Annual Increase to Reach Goal</h3>
               <p>{addedContribution}</p>    
             </div>
           </Col>
           <Col size="s4">
             <div className="data-block">
-              <h3>Percentage of Expenses covered by Interest</h3>
+              <h3>Expenses covered by Interest</h3>
               <p>{covered}</p>    
             </div>
           </Col>
         </Row>
         <Row>
-        <Col size="s2">
+        <Col size="s4 m2">
           <UpdateBox title="Retirement Expenses" amount={cost}>
             <UpdateButton onClick={() => this.handleClick("plus", 1000, "cost", this.state.cost )}>+</UpdateButton>
             <UpdateButton onClick={() => this.handleClick("minus", 1000, "cost", this.state.cost )}>-</UpdateButton>
           </UpdateBox>
         </Col>
-        <Col size="s2">
-          <UpdateBox title="Withdrawal Rate" amount={withdrawal}>
+        <Col size="s4 m2">
+          <UpdateBox title="Annual Withdrawal" amount={withdrawal}>
             <UpdateButton onClick={() => this.handleClick("plus", 0.0025, "withdrawal", this.state.withdrawal )}>+</UpdateButton>
             <UpdateButton onClick={() => this.handleClick("minus", 0.0025, "withdrawal", this.state.withdrawal )}>-</UpdateButton>
           </UpdateBox>
         </Col>
-        <Col size="s2">
-          <UpdateBox title="Contribution" amount={contribution}>
+        <Col size="s4 m2">
+          <UpdateBox title="Annual Contribution" amount={contribution}>
             <UpdateButton onClick={() => this.handleClick("plus", 1000, "contribution", this.state.contribution )}>+</UpdateButton>
             <UpdateButton onClick={() => this.handleClick("minus", 1000, "contribution", this.state.contribution )}>-</UpdateButton>
           </UpdateBox>
         </Col>
-        <Col size="s2">
+        <Col size="s4 m2">
           <UpdateBox title="Contribution Increase" amount={contributionIncrease}>
             <UpdateButton onClick={() => this.handleClick("plus", 500, "increase", this.state.increase )}>+</UpdateButton>
             <UpdateButton onClick={() => this.handleClick("minus", 500, "increase", this.state.increase )}>-</UpdateButton>
           </UpdateBox>
         </Col>
-        <Col size="s2">
-          <UpdateBox title="Growth Rate" amount={growth}>
+        <Col size="s4 m2">
+          <UpdateBox title="Annual Growth Rate" amount={growth}>
             <UpdateButton onClick={() => this.handleClick("plus", 0.005, "growth", this.state.growth )}>+</UpdateButton>
             <UpdateButton onClick={() => this.handleClick("minus", 0.005, "growth", this.state.growth )}>-</UpdateButton>
           </UpdateBox>
         </Col>
-        <Col size="s2">
-          <UpdateBox title="Goal Year" amount={this.state.date}>
+        <Col size="s4 m2">
+          <UpdateBox title="Target FIRE Year" amount={this.state.date}>
             <UpdateButton onClick={() => this.handleClick("plus", 1, "date", this.state.date )}>+</UpdateButton>
             <UpdateButton onClick={() => this.handleClick("minus", 1, "date", this.state.date )}>-</UpdateButton>
           </UpdateBox>
