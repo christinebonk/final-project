@@ -193,6 +193,8 @@ class Home extends Component {
   }
 
   handleClick = (operation, increment, category, value) => {
+    console.log(increment);
+    console.log(value);
     if (operation === "plus") {
       value = value + increment;
     } else if (operation === "minus") {
@@ -202,7 +204,6 @@ class Home extends Component {
     let newObj = {} 
     newObj[category] = value;
     this.setState(newObj, () => {
-      console.log(this.state.cost);
       this.getProjection();
     })
   } 
@@ -217,6 +218,12 @@ class Home extends Component {
     const cost = this.displayNumber(this.state.cost);
     const addedContribution = this.displayNumber(this.state.addedContribution);
     const covered = this.getInterest();
+    const contribution = this.displayNumber(this.state.contribution);
+    const contributionIncrease = this.displayNumber(this.state.increase);
+    let withdrawal = (this.state.withdrawal * 100).toFixed(2);
+    withdrawal = withdrawal + "%";
+    let growth = (this.state.growth * 100).toFixed(2);
+    growth = growth + "%";
 
     return (
       <Container>
@@ -263,14 +270,34 @@ class Home extends Component {
           </UpdateBox>
         </Col>
         <Col size="s2">
+          <UpdateBox title="Withdrawal Rate" amount={withdrawal}>
+            <UpdateButton onClick={() => this.handleClick("plus", 0.0025, "withdrawal", this.state.withdrawal )}>+</UpdateButton>
+            <UpdateButton onClick={() => this.handleClick("minus", 0.0025, "withdrawal", this.state.withdrawal )}>-</UpdateButton>
+          </UpdateBox>
         </Col>
         <Col size="s2">
+          <UpdateBox title="Contribution" amount={contribution}>
+            <UpdateButton onClick={() => this.handleClick("plus", 1000, "contribution", this.state.contribution )}>+</UpdateButton>
+            <UpdateButton onClick={() => this.handleClick("minus", 1000, "contribution", this.state.contribution )}>-</UpdateButton>
+          </UpdateBox>
         </Col>
         <Col size="s2">
+          <UpdateBox title="Contribution Increase" amount={contributionIncrease}>
+            <UpdateButton onClick={() => this.handleClick("plus", 500, "increase", this.state.increase )}>+</UpdateButton>
+            <UpdateButton onClick={() => this.handleClick("minus", 500, "increase", this.state.increase )}>-</UpdateButton>
+          </UpdateBox>
         </Col>
         <Col size="s2">
+          <UpdateBox title="Growth Rate" amount={growth}>
+            <UpdateButton onClick={() => this.handleClick("plus", 0.005, "growth", this.state.growth )}>+</UpdateButton>
+            <UpdateButton onClick={() => this.handleClick("minus", 0.005, "growth", this.state.growth )}>-</UpdateButton>
+          </UpdateBox>
         </Col>
         <Col size="s2">
+          <UpdateBox title="Goal Year" amount={this.state.date}>
+            <UpdateButton onClick={() => this.handleClick("plus", 1, "date", this.state.date )}>+</UpdateButton>
+            <UpdateButton onClick={() => this.handleClick("minus", 1, "date", this.state.date )}>-</UpdateButton>
+          </UpdateBox>
         </Col>
         </Row> 
         <Row>
