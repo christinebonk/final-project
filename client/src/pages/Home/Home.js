@@ -33,14 +33,12 @@ class Home extends Component {
 
   createChart = () => {
     const projection = this.state.projection;
-    console.log(projection);
  
     let data = projection.map (projection => {
       const obj = {
         x: projection.year,
         y: projection.fireAmount
       }
-      console.log(obj);
       return obj
     });
 
@@ -56,8 +54,6 @@ class Home extends Component {
     let remainingPercentage = (100 - percentage);
     remainingPercentage = remainingPercentage + "%";
     percentage = percentage + "%";
-    console.log(percentage);
-    console.log(remainingPercentage);
     $(".bar-full").css("width", percentage);
     $(".bar-empty").css("width", remainingPercentage);
     this.setState({percentage: percentage, remainingPercentage: remainingPercentage});
@@ -100,7 +96,6 @@ class Home extends Component {
         const growth = data.yearly_growth;
         const increase = data.income_increase;
         let totalAmount = cost/withdrawal;
-        console.log(totalAmount);
         this.setState({
           contribution: contribution,
           cost: cost,
@@ -221,8 +216,6 @@ class Home extends Component {
   }
 
   handleClick = (operation, increment, category, value) => {
-    console.log(increment);
-    console.log(value);
     if (operation === "plus") {
       value = value + increment;
     } else if (operation === "minus") {
@@ -265,7 +258,7 @@ class Home extends Component {
     return (
       <div>
         <TopBar title="Financial Indepdence Dashboard"/>
-
+        <a href="/test">Gi</a>
       <Container>
         <Row>
           <Col size="s12">

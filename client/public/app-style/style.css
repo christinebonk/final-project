@@ -27,7 +27,7 @@ div.head-block {
     margin: 15px 0px; }
 
 .data-block {
-  background: #fef4d8;
+  background: #fbd975;
   padding: 20px;
   border-radius: 5px;
   height: 150px; }
@@ -63,7 +63,7 @@ div.graph-div {
       font-size: 1rem; }
 
 header {
-  background: #34073D;
+  background: #25BEA0;
   position: relative;
   top: 0;
   width: 100%; }
