@@ -3,6 +3,7 @@ import API from "../../utils/App.js";
 import { Col, Row, Container } from "../../components/Grid";
 import { Thead, Table, Tbody } from "../../components/Table";
 import { EmptyBar, FullBar } from "../../components/Bars";
+import { UpdateBox, UpdateButton } from "../../components/UpdateBox";
 import $ from "jquery";
 
 class Home extends Component {
@@ -142,8 +143,8 @@ class Home extends Component {
       };
       arr.push(newObj);
       finalYear = year;
+
       //increment
-      
     }
     this.setState({projection: arr});
     this.setState({final_year: finalYear})
@@ -191,6 +192,20 @@ class Home extends Component {
     return covered;
   }
 
+  handleClick = (operation, increment, category, value) => {
+    if (operation === "plus") {
+      value = value + increment;
+    } else if (operation === "minus") {
+      value = value - increment;
+    }
+
+    let newObj = {} 
+    newObj[category] = value;
+    this.setState(newObj, () => {
+      console.log(this.state.cost);
+      this.getProjection();
+    })
+  } 
 
 
 
@@ -199,6 +214,7 @@ class Home extends Component {
     const timeDifference = this.state.final_year - this.state.date;
     const fireAmount = this.displayNumber(this.state.fire_amount);
     const goal = this.displayNumber(this.state.goal);
+    const cost = this.displayNumber(this.state.cost);
     const addedContribution = this.displayNumber(this.state.addedContribution);
     const covered = this.getInterest();
 
@@ -240,15 +256,33 @@ class Home extends Component {
           </Col>
         </Row>
         <Row>
+        <Col size="s2">
+          <UpdateBox title="Retirement Expenses" amount={cost}>
+            <UpdateButton onClick={() => this.handleClick("plus", 1000, "cost", this.state.cost )}>+</UpdateButton>
+            <UpdateButton onClick={() => this.handleClick("minus", 1000, "cost", this.state.cost )}>-</UpdateButton>
+          </UpdateBox>
+        </Col>
+        <Col size="s2">
+        </Col>
+        <Col size="s2">
+        </Col>
+        <Col size="s2">
+        </Col>
+        <Col size="s2">
+        </Col>
+        <Col size="s2">
+        </Col>
+        </Row> 
+        <Row>
           <Col size="s12">
-            <Table>
-              <Thead>
-                <th>Year</th>
-                <th>Fire Amount</th>
-                <th>Goal Contribution</th>
-                <th>ROI</th>
-              </Thead>
               {this.state.projection.length ? (
+                <Table>
+                  <Thead>
+                    <th>Year</th>
+                    <th>Fire Amount</th>
+                    <th>Goal Contribution</th>
+                    <th>ROI</th>
+                  </Thead>
                 <Tbody>
                 {this.state.projection.map (projection => (
                   <tr key={projection.year}>
@@ -258,16 +292,11 @@ class Home extends Component {
                     <td>{projection.roi}</td>
                   </tr>
                   ))}
-                  </Tbody> )  : (
-                <Tbody>
-                <tr><td>No Results to Display</td></tr> 
-                <tr><td>No Results to Display</td></tr>
-                <tr><td>No Results to Display</td></tr>
-                <tr><td>No Results to Display</td></tr>
-                </Tbody>
+                  </Tbody></Table> )  : (
+                <h3>You are not on track for Financial Independence</h3>
                 )
               }
-            </Table>
+            
           </Col>
         </Row>
       </Container>
