@@ -179,6 +179,18 @@ class Home extends Component {
     this.setState({addedContribution: addedContribution})
   }
 
+  getInterest = () => {
+    const cost = this.state.cost;
+    const amount = this.state.fire_amount;
+    const growth = this.state.growth;
+
+    const yearlyRoi = amount * growth;
+    let covered = yearlyRoi/cost;
+    covered = Math.round(covered * 100);
+    covered = covered + "%";
+    return covered;
+  }
+
 
 
 
@@ -188,6 +200,7 @@ class Home extends Component {
     const fireAmount = this.displayNumber(this.state.fire_amount);
     const goal = this.displayNumber(this.state.goal);
     const addedContribution = this.displayNumber(this.state.addedContribution);
+    const covered = this.getInterest();
 
     return (
       <Container>
@@ -221,8 +234,8 @@ class Home extends Component {
           </Col>
           <Col size="s4">
             <div className="data-block">
-              <h3>Years Behind Goals</h3>
-              <p>4</p>    
+              <h3>Percentage of Expenses covered by Interest</h3>
+              <p>{covered}</p>    
             </div>
           </Col>
         </Row>
