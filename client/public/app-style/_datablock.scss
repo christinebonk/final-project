@@ -62,3 +62,16 @@ span.data-value {
 	font-weight: bold;
 	color: $secondary;
 }
+
+
+
+
+div.graph-div {
+	width: 90%;
+	margin: 0 auto;
+	svg {
+		padding-top: 20px;
+	}
+}
+
+

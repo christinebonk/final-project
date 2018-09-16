@@ -49,6 +49,12 @@ span.data-value {
   font-weight: bold;
   color: #25BEA0; }
 
+div.graph-div {
+  width: 90%;
+  margin: 0 auto; }
+  div.graph-div svg {
+    padding-top: 20px; }
+
 .bar-container {
   display: flex;
   height: 30px;

@@ -5,9 +5,11 @@ import { Thead, Table, Tbody } from "../../components/Table";
 import { EmptyBar, FullBar } from "../../components/Bars";
 import { UpdateBox, UpdateButton } from "../../components/UpdateBox";
 import $ from "jquery";
+import BarChart from "react-svg-bar-chart"
 
 class Home extends Component {
   state = {
+    data: [],
     projection: [],
     contribution: 0,
     cost: 0,
@@ -27,6 +29,24 @@ class Home extends Component {
     this.getUser();
     this.getAmount();
   };
+
+  createChart = () => {
+    const projection = this.state.projection;
+    console.log(projection);
+ 
+    let data = projection.map (projection => {
+      const obj = {
+        x: projection.year,
+        y: projection.fireAmount
+      }
+      console.log(obj);
+      return obj
+    });
+
+    this.setState({data:data})
+  
+  };
+  
 
   calculateBars = () => {
     const goal = this.state.goal;
@@ -61,6 +81,7 @@ class Home extends Component {
         this.getProjection();
         this.calculateBars();
         this.getNeededAmount();
+        
       });
     })
     .catch(err => console.log(err));
@@ -119,7 +140,6 @@ class Home extends Component {
     let firstRoi = fireAmount*growth/12*monthLeft;
 
     fireAmount = fireAmount + firstContribution + firstRoi;
-    let fireDisplay = this.displayNumber(fireAmount)
     let contributionDisplay = this.displayNumber(firstContribution);
     let roiDisplay = this.displayNumber(firstRoi)
 
@@ -127,7 +147,7 @@ class Home extends Component {
       year: year,
       contribution: contributionDisplay,
       roi: roiDisplay,
-      fireAmount: fireDisplay
+      fireAmount: fireAmount
     }
     arr.push(firstObj);
     let finalYear;
@@ -137,7 +157,6 @@ class Home extends Component {
       contribution = contribution + increase; 
       roi = fireAmount * growth;
       fireAmount = fireAmount + contribution + roi;
-      let fireDisplay = this.displayNumber(fireAmount);
       let contributionDisplay = this.displayNumber(contribution);
       let roiDisplay = this.displayNumber(roi)
 
@@ -145,14 +164,16 @@ class Home extends Component {
         year: year,
         contribution: contributionDisplay,
         roi: roiDisplay,
-        fireAmount: fireDisplay
+        fireAmount: fireAmount
       };
       arr.push(newObj);
       finalYear = year;
 
       //increment
     }
-    this.setState({projection: arr});
+    this.setState({projection: arr} , () => {
+      this.createChart();
+    });
     this.setState({final_year: finalYear})
   }
 
@@ -259,7 +280,7 @@ class Home extends Component {
         <Row>
           <Col size="s4">
             <div className="data-block">
-              <h3>Years Away from Your Goal</h3>
+              <h3>Projected Years Away from Your Goal</h3>
               <p>{timeDifference}</p>    
             </div>
           </Col>
@@ -314,6 +335,11 @@ class Home extends Component {
           </UpdateBox>
         </Col>
         </Row> 
+        <Row>
+          <div className="graph-div">
+            <BarChart data={this.state.data} onHover={this.handlePointHover} />
+          </div>
+        </Row>
         <Row>
           <Col size="s12">
               {this.state.projection.length ? (
