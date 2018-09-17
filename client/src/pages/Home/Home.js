@@ -137,12 +137,14 @@ class Home extends Component {
 
     fireAmount = fireAmount + firstContribution + firstRoi;
     let contributionDisplay = this.displayNumber(firstContribution);
-    let roiDisplay = this.displayNumber(firstRoi)
+    let roiDisplay = this.displayNumber(firstRoi);
+    let fireDisplay = this.displayNumber(fireAmount);
 
     var firstObj = {
       year: year,
       contribution: contributionDisplay,
       roi: roiDisplay,
+      fireDisplay: fireDisplay,
       fireAmount: fireAmount
     }
     arr.push(firstObj);
@@ -154,12 +156,13 @@ class Home extends Component {
       roi = fireAmount * growth;
       fireAmount = fireAmount + contribution + roi;
       let contributionDisplay = this.displayNumber(contribution);
+      let fireDisplay = this.displayNumber(fireAmount);
       let roiDisplay = this.displayNumber(roi)
-
       var newObj = {
         year: year,
         contribution: contributionDisplay,
         roi: roiDisplay,
+        fireDisplay: fireDisplay,
         fireAmount: fireAmount
       };
       arr.push(newObj);
@@ -258,7 +261,6 @@ class Home extends Component {
     return (
       <div>
         <TopBar title="Financial Indepdence Dashboard"/>
-        <a href="/test">Gi</a>
       <Container>
         <Row>
           <Col size="s12">
@@ -351,7 +353,7 @@ class Home extends Component {
                 {this.state.projection.map (projection => (
                   <tr key={projection.year}>
                     <td>{projection.year}</td>
-                    <td>{projection.fireAmount}</td>
+                    <td>{projection.fireDisplay}</td>
                     <td>{projection.contribution}</td>
                     <td>{projection.roi}</td>
                   </tr>
