@@ -8,23 +8,34 @@ import { Col, Row, Container } from "../../components/Grid";
 class Budget extends Component {
   state = {
     data: [],
+    budgetData: []
   };
 
   componentDidMount() {
-    this.createChart();
     this.retrieveBudget();
   }
 
   retrieveBudget = () => {
+    const color = ["#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD"];
     API.searchBudget()
     .then(res => {
-      let data = res.data;
-      console.log(data);
+      let budgetData = res.data.filter(entry => entry.type !== "income" && entry.period === "monthly");
+      budgetData = budgetData.map((entry, index) => {
+        let obj = {
+          title: entry.name,
+          value: entry.amount,
+          type: entry.type,
+          color: color[index]
+        }
+        return obj
+        });
+      this.setState({data:budgetData})
     })
 
   }
 
   createChart = () => {
+    
     const data = [
       {title: "Data 1", value: 100, color: "#22594e"},
       {title: "Data 2", value: 60, color: "#2f7d6d"},
