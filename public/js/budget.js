@@ -192,15 +192,33 @@ function submitBudget() {
 		}).then(function(res) {
 			window.location.href = "/result";
 		});
-		};
+	};
 		
 	
 	for (i=0;i<yourSavings.length;i++) {
 		var savingValue = $(`#${yourSavings[i]}-category`).val();
 		if (!savingValue) {
-			savingValue = 0;
+			return;
 		}
 		var savingValue = parseInt(savingValue);
+
+		var name = yourSavings[i];
+		var amount = savingValue;
+		var type = "saving";
+		var period = "monthly";
+
+		$.ajax("/income", {
+			type: "PUT",
+			data: {
+				name: name,
+				amount: amount,
+				type: type,
+				period: period
+			}
+		}).then(function(res) {
+			window.location.href = "/result";
+		});
+		
 	}
 }
 	

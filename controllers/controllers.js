@@ -153,6 +153,7 @@ function routes(app) {
 	});
 
 	app.get("/api/income", function(req,res,next) {
+		console.log("hi")
 		var user = req.user.userid;
 		if (!user) {
 			user = req.user;
@@ -160,7 +161,7 @@ function routes(app) {
 		db.Budget.findAll({where: {userid: user}}).then(function(result) {
 			res.json(result);
 		});
-	})
+	});
 
 	app.post("/signup", function(req,res,next) {
 		var password = req.body.password;

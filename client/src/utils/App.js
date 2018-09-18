@@ -10,5 +10,9 @@ export default {
 		return axios.get("/profile");
 	},
 
+	searchBudget: function() {
+		return axios.get("/api/income");
+	}
+
 
 };

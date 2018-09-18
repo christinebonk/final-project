@@ -12,6 +12,16 @@ class Budget extends Component {
 
   componentDidMount() {
     this.createChart();
+    this.retrieveBudget();
+  }
+
+  retrieveBudget = () => {
+    API.searchBudget()
+    .then(res => {
+      let data = res.data;
+      console.log(data);
+    })
+
   }
 
   createChart = () => {
