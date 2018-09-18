@@ -80,7 +80,6 @@ class Budget extends Component {
       <Container>
         <Row>
           <Col size="s4">
-          <div className="regular tooltip"><span>Hover me</span></div>
           <PieChart 
           expandOnHover expandSize={2} 
           data={this.state.budgetData}
@@ -88,6 +87,7 @@ class Budget extends Component {
           />
           </Col>
           <Col size="s8">
+          <div className="budget-right">
           <div className="top-box">
           <h2>Overview</h2>
           <Table>
@@ -108,7 +108,7 @@ class Budget extends Component {
           </Table>
             
           </div>
-          <h2>Transactions</h2>
+          <h2>Budget Categories</h2>
             {this.state.budgetData.length ? (
                 <Table>
                   <Thead>
@@ -128,6 +128,7 @@ class Budget extends Component {
                 <h3>You are not on track for Financial Independence</h3>
                 )
               }
+            </div>
           </Col>
         </Row>
       </Container>

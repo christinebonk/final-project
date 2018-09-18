@@ -74,13 +74,13 @@ header {
     margin: 0px 0px 20px;
     padding: 20px 0px 20px 70px; }
 
-.tooltip span {
-  display: none; }
+.budget-right {
+  padding-left: 30px; }
 
-.display span {
-  display: block;
-  position: fixed;
-  overflow: hidden; }
+#root h2 {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #25BEA0; }
 
 .bar-container {
   display: flex;
