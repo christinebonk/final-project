@@ -3,12 +3,17 @@ import API from "../../utils/App.js";
 import TopBar from "../../components/TopBar";
 import PieChart from "react-svg-piechart"
 import { Col, Row, Container } from "../../components/Grid";
+import { Thead, Table, Tbody } from "../../components/Table";
+
 
 
 class Budget extends Component {
   state = {
-    data: [],
-    budgetData: []
+    budgetData: [],
+    income: 0,
+    varation: 0, 
+    expenses: 0,
+    savingsRate: 0
   };
 
   componentDidMount() {
@@ -19,45 +24,113 @@ class Budget extends Component {
     const color = ["#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD"];
     API.searchBudget()
     .then(res => {
+       //create budet object
       let budgetData = res.data.filter(entry => entry.type !== "income" && entry.period === "monthly");
       budgetData = budgetData.map((entry, index) => {
         let obj = {
           title: entry.name,
           value: entry.amount,
           type: entry.type,
-          color: color[index]
+          color: color[index],
+          index: index
         }
         return obj
         });
-      this.setState({data:budgetData})
+
+      //determine income and expenses
+      let incomeData = res.data.filter(entry => entry.type === "income");
+      let income = 0;
+      let expenses = 0;
+      let savings = 0;
+      let spending = 0;
+      budgetData.forEach(entry => {
+        expenses += entry.value;
+        if (entry.type === "saving") {
+          savings += entry.value
+        } else if (entry.type === "expense") {
+          spending += entry.value
+        }
+      });
+
+      incomeData = incomeData.forEach(entry => {
+        income += entry.amount; 
+      })
+      let variation = income - expenses;
+      let savingsRate = Math.round(savings/income*100);
+
+      //set state
+      this.setState({budgetData:budgetData, income:income, variation:variation, expenses: expenses, savingsRate: savingsRate});
     })
 
   }
 
-  createChart = () => {
-    
-    const data = [
-      {title: "Data 1", value: 100, color: "#22594e"},
-      {title: "Data 2", value: 60, color: "#2f7d6d"},
-      {title: "Data 3", value: 30, color: "#3da18d"},
-      {title: "Data 4", value: 20, color: "#69c2b0"},
-      {title: "Data 5", value: 10, color: "#a1d9ce"} ]
-
-    this.setState({data:data});
+  findCategory = (d) => {
+    console.log(d);
+    const data = this.state.budgetData;
+    const result = data.filter(obj => {
+      return obj.title === d;
+    });
+    console.log(result);
   }
 
   render() {
     return (
       <div>
         <TopBar title="Budget"/>
-      
-      <Row>
-        <Col size="s6">
-        <PieChart data={this.state.data}/>
-        </Col>
-        <Col size="s6">
-        </Col>
-      </Row>
+      <Container>
+        <Row>
+          <Col size="s4">
+          <div className="regular tooltip"><span>Hover me</span></div>
+          <PieChart 
+          expandOnHover expandSize={2} 
+          data={this.state.budgetData}
+          onSectorHover={(d, i, e) => { this.findCategory(d) }}
+          />
+          </Col>
+          <Col size="s8">
+          <div className="top-box">
+          <h2>Overview</h2>
+          <Table>
+            <Thead>
+              <th>Income</th>
+              <th>Variation</th>
+              <th>Expenses</th>
+              <th>Savings Rate</th>
+            </Thead>
+            <Tbody>
+            <tr>
+              <td>{this.state.income}</td>
+              <td>{this.state.variation}</td>
+              <td>{this.state.expenses}</td>
+              <td>{this.state.savingsRate}%</td>
+            </tr>
+            </Tbody>
+          </Table>
+            
+          </div>
+          <h2>Transactions</h2>
+            {this.state.budgetData.length ? (
+                <Table>
+                  <Thead>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                  </Thead>
+                <Tbody>
+                {this.state.budgetData.map (budget => (
+                  <tr key={budget.index}>
+                    <td>{budget.title}</td>
+                    <td>{budget.value}</td>
+                    <td>{budget.type}</td>
+                  </tr>
+                  ))}
+                  </Tbody></Table> )  : (
+                <h3>You are not on track for Financial Independence</h3>
+                )
+              }
+          </Col>
+        </Row>
+      </Container>
       </div>
       );
   }
