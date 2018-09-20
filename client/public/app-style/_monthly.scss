@@ -1,0 +1,33 @@
+
+.budget-container {
+
+	.section-container {
+		display: flex;
+		margin: 10px;
+		padding: 10px;
+		border-top: 1px solid $background;
+
+		.budget-section-left {
+			width: 15%;
+		}
+
+		.budget-section-right {
+			display: flex;
+			align-items: center;
+			width: 85%;
+		}
+	}
+
+	h4 {
+		font-size: 1rem;
+		line-height: 2.3rem;
+		margin: 0px;
+	}
+
+	.bar-container {
+		height: 20px;
+	}
+
+}
+
+

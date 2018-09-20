@@ -9,6 +9,7 @@ $background: #D3E3DD;
 @import 'datablock';
 @import 'header';
 @import 'budget';
+@import 'monthly';
 
 #root h2 {
 	font-size: 1.7rem;
@@ -29,6 +30,7 @@ $background: #D3E3DD;
 
 .bar-empty{
 	background: $accent;
+	width: 100%;
 }
 
 

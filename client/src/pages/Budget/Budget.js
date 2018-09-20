@@ -22,6 +22,7 @@ class Budget extends Component {
 
   retrieveBudget = () => {
     const color = ["#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD"];
+
     API.searchBudget()
     .then(res => {
        //create budet object
@@ -137,8 +138,6 @@ class Budget extends Component {
   }
 
 }
-
-
 
          
                   

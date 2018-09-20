@@ -77,6 +77,24 @@ header {
 .budget-right {
   padding-left: 30px; }
 
+.budget-container .section-container {
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  border-top: 1px solid #D3E3DD; }
+  .budget-container .section-container .budget-section-left {
+    width: 15%; }
+  .budget-container .section-container .budget-section-right {
+    display: flex;
+    align-items: center;
+    width: 85%; }
+.budget-container h4 {
+  font-size: 1rem;
+  line-height: 2.3rem;
+  margin: 0px; }
+.budget-container .bar-container {
+  height: 20px; }
+
 #root h2 {
   font-size: 1.7rem;
   font-weight: bold;
@@ -91,6 +109,7 @@ header {
   background: #25BEA0; }
 
 .bar-empty {
-  background: #FACC43; }
+  background: #FACC43;
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
