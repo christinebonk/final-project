@@ -13,8 +13,9 @@ class Modal extends Component {
 	    <div className={showHideClassName}>
 	      <section className="modal-main">
 	        {this.props.children}
+	        <label for="item">Label</label>
+	        <input id="item" name="item" type="text" />
 	        <button onClick={this.props.handleClose}>close</button>
-	        <button onClick={this.retrieveBudget}>close</button>
 	      </section>
 	    </div>
 	  );

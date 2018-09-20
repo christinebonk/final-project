@@ -13,7 +13,7 @@ class Monthly extends Component {
     
     state = {
         budget: [],
-        show: false
+        show: true
     }
 
     showModal = () => {
@@ -62,7 +62,7 @@ class Monthly extends Component {
 render () {
     return ( 
     <div>
-        <TopBar title="Monthly View"/>
+        <TopBar onClick={this.showModal} title="Monthly View"/>
         <Container>
             <Row>
                 <Col size="s12">
@@ -90,12 +90,9 @@ render () {
                 <main>
                     <Modal show={this.state.show} handleClose={this.hideModal}>
                       <p>Modaaslkdjflkasjfklsajfkljdsklafjalksjfaklsjfklsjl</p>
-
                       <p>Data</p>
                     </Modal>
-                    <button type="button" onClick={this.showModal}>
-                      open
-                    </button>
+                    
               </main>
         </Container>
     </div>

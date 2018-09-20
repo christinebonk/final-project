@@ -1,10 +1,46 @@
-import React from "react";
+import React, { Component } from "react";
+import Modal from "../Modal/"
 
-const TopBar = (props) => (
-	<header className="top-bar">
-		<h1>{props.title}</h1>
-		{props.children}
-    </header>
-);
+class TopBar extends Component {
+	state = {
+        budget: [],
+        show: true
+    }
+
+    showModal = () => {
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
+
+	render () {
+		return (
+			<header className="top-bar">
+				<h1>{this.props.title}</h1>
+				{this.props.children}
+				<button type="button" onClick={this.showModal}>
+                      open
+                </button>
+                <main>
+                    <Modal show={this.state.show} handleClose={this.hideModal}>
+                      <p>Modaaslkdjflkasjfklsajfkljdsklafjalksjfaklsjfklsjl</p>
+                      <p>Data</p>
+                    </Modal>
+                    
+              </main>
+    		</header>
+		)
+		
+	}
+
+
+}
+
+	
+
+	
+
 
 export default TopBar;
