@@ -102,13 +102,17 @@ header {
   left: 10%;
   right: 10%;
   bottom: 10%;
-  border: 1px solid black; }
+  border: 1px solid black;
+  z-index: 4; }
 
 .display-block {
   display: block; }
 
 .display-none {
   display: none; }
+
+select#show {
+  display: block; }
 
 #root h2 {
   font-size: 1.7rem;
