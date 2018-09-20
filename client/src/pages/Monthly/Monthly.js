@@ -5,14 +5,24 @@ import PieChart from "react-svg-piechart"
 import { Col, Row, Container } from "../../components/Grid";
 import { EmptyBar, FullBar } from "../../components/Bars";
 import $ from "jquery";
+import Modal from "../../components/Modal";
 
 
 
 class Monthly extends Component {
     
     state = {
-        budget: []
+        budget: [],
+        show: false
     }
+
+    showModal = () => {
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
 
     componentDidMount() {
         this.retrieveBudget();
@@ -77,6 +87,16 @@ render () {
                         )}
                 </Col>
             </Row>
+                <main>
+                    <Modal show={this.state.show} handleClose={this.hideModal}>
+                      <p>Modaaslkdjflkasjfklsajfkljdsklafjalksjfaklsjfklsjl</p>
+
+                      <p>Data</p>
+                    </Modal>
+                    <button type="button" onClick={this.showModal}>
+                      open
+                    </button>
+              </main>
         </Container>
     </div>
 )};
