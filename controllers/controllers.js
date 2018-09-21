@@ -163,6 +163,26 @@ function routes(app) {
 		});
 	});
 
+	app.post("/api/tranasction", function(req,res,next) {
+		var user = req.user.userid;
+		var item = req.body.item;
+		var cost = req.body.cost;
+		var category = req.body.category;
+		var date = req.body.date;
+		if (!user) {
+			user = req.user;
+		}
+
+		db.Transaction.create({
+				item: item,
+				cost: cost,
+				category: category,				
+				transaction_date: date 
+			}).then(function(result) {
+				res.json("complete");
+			})
+	})
+
 	app.post("/signup", function(req,res,next) {
 		var password = req.body.password;
 		var username = req.body.username;

@@ -14,6 +14,10 @@ class Modal extends Component {
 		console.log(this.state.categories);
 	  };
 
+	submitTransaction() {
+		
+	}
+
 	retrieveBudget = () => {
 		API.searchBudget()
     	.then(res => {
@@ -52,13 +56,13 @@ class Modal extends Component {
 	        	<input id="amount" name="amount" type="text" />
 	        </div>
 	        <div className="modal-input">
-	        	<form>
 	        		<select id="show">
+	        			<option value="other">Other</option>
 			        	{this.state.categories.map (category => (
-							<option>{category.title}</option>
+							<option value={category.title}
+								>{category.title}</option>
 			        	))}
 			        </select>
-		        </form>
 				
 			</div>
 			<div> 
