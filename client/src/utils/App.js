@@ -16,6 +16,10 @@ export default {
 
 	submitTransaction: function(transaction) {
 		return axios.post("api/transaction", transaction)
+	},
+
+	searchTransaction: function() {
+		return axios.get("api/transaction")
 	}
 
 

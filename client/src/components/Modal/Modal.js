@@ -12,7 +12,6 @@ class Modal extends Component {
 
 	componentDidMount() {
 		this.retrieveBudget();
-		console.log(this.state.categories);
 	  };
 
 	submitTransaction(event) {
@@ -51,10 +50,8 @@ class Modal extends Component {
         return obj
         });
 
-    console.log(budgetData);
 
     this.setState({categories: budgetData}, () => {
-    	console.log(this.state.categories);
     })})
 
   	}

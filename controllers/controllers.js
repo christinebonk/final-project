@@ -182,10 +182,22 @@ function routes(app) {
 				category: category,				
 				transaction_date: date,
 				subcategory: subcategory,
-				happy: happy
+				happy: happy,
+				username: user
 			}).then(function(result) {
 				res.json("complete");
 			})
+	})
+
+	app.get("/api/transaction", function(req,res,next) {
+		console.log("hfi");
+		var user = req.user.userid;
+		if (!user) {
+			user = req.user;
+		}
+		db.Transaction.findAll({where: {username: user}}).then(function(result) {
+			res.json(result);
+		});
 	})
 
 	app.post("/signup", function(req,res,next) {

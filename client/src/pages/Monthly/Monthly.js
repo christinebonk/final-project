@@ -1,31 +1,33 @@
 import React, { Component } from "react";
 import API from "../../utils/App.js";
 import TopBar from "../../components/TopBar";
-import PieChart from "react-svg-piechart"
 import { Col, Row, Container } from "../../components/Grid";
 import { EmptyBar, FullBar } from "../../components/Bars";
 import $ from "jquery";
-import Modal from "../../components/Modal";
+import { Thead, Table, Tbody } from "../../components/Table";
+
 
 
 
 class Monthly extends Component {
+state = {
+    budget: [],
+    transactions: []
+}
     
-    state = {
-        budget: [],
-        show: true
-    }
-
-    showModal = () => {
-        this.setState({ show: true });
-    };
-
-    hideModal = () => {
-        this.setState({ show: false });
-    };
 
     componentDidMount() {
+        this.retrieveTransactions();
         this.retrieveBudget();
+        
+    }
+
+    retrieveTransactions = () => {
+        API.searchTransaction()
+        .then(res => {
+            console.log(res.data);
+            this.setState({transactions: res.data});
+        })
     }
 
     retrieveBudget = () => {
@@ -87,13 +89,31 @@ render () {
                         )}
                 </Col>
             </Row>
-                <main>
-                    <Modal show={this.state.show} handleClose={this.hideModal}>
-                      <p>Modaaslkdjflkasjfklsajfkljdsklafjalksjfaklsjfklsjl</p>
-                      <p>Data</p>
-                    </Modal>
-                    
-              </main>
+            <Row>
+                <Col size="s12">
+              {this.state.transactions.length ? (
+                <Table>
+                  <Thead>
+                    <th>Item</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                  </Thead>
+                <Tbody>
+                {this.state.transactions.map (transaction => (
+                  <tr key={transaction.id}>
+                    <td>{transaction.item}</td>
+                    <td>{transaction.cost}</td>
+                    <td>{transaction.category}</td>
+                  </tr>
+                  ))}
+                  </Tbody></Table> )  : (
+                <h3>You are not on track for Financial Independence</h3>
+                )
+              }
+            
+          </Col>
+            </Row>
+                
         </Container>
     </div>
 )};

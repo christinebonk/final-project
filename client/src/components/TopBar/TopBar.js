@@ -3,8 +3,7 @@ import Modal from "../Modal/"
 
 class TopBar extends Component {
 	state = {
-        budget: [],
-        show: true
+        show: false
     }
 
     showModal = () => {
