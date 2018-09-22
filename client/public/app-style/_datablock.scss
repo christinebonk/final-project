@@ -82,4 +82,22 @@ div.graph-div {
 	}
 }
 
+.variable-container {
+	display: flex;
+	align-items: center;
+
+		i {
+			margin: 10px 5px 40px;
+			font-size: 2rem;
+			color: $background;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+}
+
+.assumptions {
+	margin: 10px 10px 40px 0px;
+}
 

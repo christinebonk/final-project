@@ -20,6 +20,10 @@ export default {
 
 	searchTransaction: function() {
 		return axios.get("api/transaction")
+	},
+
+	submitUser: function(profile) {
+		return axios.put("/profile", profile)
 	}
 
 

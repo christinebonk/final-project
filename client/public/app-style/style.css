@@ -62,6 +62,19 @@ div.graph-div {
     div.graph-div svg text {
       font-size: 1rem; }
 
+.variable-container {
+  display: flex;
+  align-items: center; }
+  .variable-container i {
+    margin: 10px 5px 40px;
+    font-size: 2rem;
+    color: #D3E3DD; }
+    .variable-container i:hover {
+      cursor: pointer; }
+
+.assumptions {
+  margin: 10px 10px 40px 0px; }
+
 header {
   background: #25BEA0;
   position: relative;
@@ -131,15 +144,19 @@ input#show {
 
 header {
   display: flex !important;
-  position: relative; }
+  position: relative;
+  align-items: center;
+  margin-bottom: 20px; }
   header .title-container {
-    width: 20%; }
+    width: 30%; }
   header .nav-bar {
     width: 40%;
     position: absolute;
     right: 0;
     font-size: 0.7rem;
     text-align: center; }
+    header .nav-bar figcaption {
+      text-transform: uppercase; }
     header .nav-bar a {
       color: white; }
       header .nav-bar a:hover i, header .nav-bar a:hover figcaption {

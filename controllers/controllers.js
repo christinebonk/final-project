@@ -79,6 +79,9 @@ function routes(app) {
 		var amount = req.body.amount;
 		var user = req.user.userid;
 		var contribution = req.body.contribution; 
+		var withdrawal = req.body.withdrawal;
+		var growth = req.body.growth;
+		var increase = req.body.increase;
 		if (!user) {
 			user = req.user;
 		}
@@ -86,7 +89,10 @@ function routes(app) {
 		db.User.update({
 			retirement_date: date,
 			retirement_cost: amount,
-			retirement_contribution: contribution
+			retirement_contribution: contribution,
+			income_increase: increase,
+			yearly_growth: growth,
+			retirement_withdrawal: withdrawal
 		},
 			{where: {id: user}
 		}).then(function(result) {

@@ -31,6 +31,12 @@ class Home extends Component {
     this.getAmount();
   };
 
+  reset = () => {
+    this.getUser();
+    this.getAmount();
+    $(".assumption-icon").css("color", "#D3E3DD");
+  }
+
   createChart = () => {
     const projection = this.state.projection;
  
@@ -83,6 +89,27 @@ class Home extends Component {
     })
     .catch(err => console.log(err));
   };
+
+  updateAssumptions = () => {
+    var contribution = this.state.contribution;
+    var cost = this.state.cost;
+    console.log(cost);
+    var withdrawal = this.state.withdrawal;
+    var increase = this.state.increase;
+    var growth = this.state.growth;
+    var date = this.state.date;
+
+    var userData = {
+      date: date,
+      amount: cost,
+      contribution: contribution,
+      withdrawal: withdrawal,
+      increase: increase,
+      growth: growth
+
+    }
+    API.submitUser(userData);
+  }
  
   getUser = () => {
     API.searchUser()
@@ -191,7 +218,6 @@ class Home extends Component {
     const goal = this.state.goal;
     let growth = this.state.growth;
     let contribution = this.state.contribution;
-    console.log(contribution);
     const currentDate = new Date();
     let currentYear = currentDate.getFullYear();
     let goalDate = this.state.date;
@@ -219,6 +245,9 @@ class Home extends Component {
   }
 
   handleClick = (operation, increment, category, value) => {
+
+    $(".assumption-icon").css("color", "#FABC09");
+
     if (operation === "plus") {
       value = value + increment;
     } else if (operation === "minus") {
@@ -240,8 +269,6 @@ class Home extends Component {
       this.getNeededAmount();
     })
   } 
-
-
 
 
   render() {
@@ -297,6 +324,14 @@ class Home extends Component {
           </Col>
         </Row>
         <Row>
+        <div className="variable">
+            <Col size="s12">
+              <div className="variable-container">
+                <h2 className="assumptions">Your Assumptions</h2>
+                  <i id="reset-button" onClick={this.reset} className="assumption-icon material-icons">undo</i>
+                  <i onClick={this.updateAssumptions} className="assumption-icon material-icons">save</i>
+              </div>
+            </Col>
             <Col size="s6 m4 l2">
               <UpdateBox title="Retirement Expenses" amount={cost}>
                 <UpdateButton onClick={() => this.handleClick("plus", 1000, "cost", this.state.cost )}>+</UpdateButton>
@@ -333,11 +368,15 @@ class Home extends Component {
                 <UpdateButton onClick={() => this.handleClick("minus", 1, "date", this.state.date )}>-</UpdateButton>
               </UpdateBox>
             </Col>
+            </div>
         </Row> 
         <Row>
+        <Col size="s12">
+          <h2 className="assumptions">Projections</h2>
           <div className="graph-div">
             <BarChart labelsStepX={1} data={this.state.data} onHover={this.handlePointHover} />
           </div>
+        </Col>
         </Row>
         <Row>
           <Col size="s12">
