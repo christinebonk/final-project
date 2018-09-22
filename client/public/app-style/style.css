@@ -114,6 +114,9 @@ header {
 select#show {
   display: block; }
 
+input#show {
+  display: block; }
+
 #root h2 {
   font-size: 1.7rem;
   font-weight: bold;

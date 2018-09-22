@@ -12,6 +12,10 @@ export default {
 
 	searchBudget: function() {
 		return axios.get("/api/income");
+	},
+
+	submitTransaction: function(transaction) {
+		return axios.post("api/transaction", transaction)
 	}
 
 

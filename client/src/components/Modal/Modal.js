@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/App.js";
+import $ from "jquery";
 
 
 class Modal extends Component {
@@ -14,8 +15,26 @@ class Modal extends Component {
 		console.log(this.state.categories);
 	  };
 
-	submitTransaction() {
-		
+	submitTransaction(event) {
+		event.preventDefault();
+		const item = $("#item").val().trim();
+		const cost = $("#amount").val().trim();
+		const category = $('.categories').val().trim();
+		const date = new Date();
+		const subcategory = $('input[name=type]:checked').val();
+		let happy = $('input[name=happy]:checked').val();
+		if (happy === "yes") { happy = true } else {happy = false }
+
+		const data = {
+			item: item,
+			cost: cost, 
+			category: category,
+			date: date,
+			subcategory: subcategory,
+			happy: happy
+		}
+
+		API.submitTransaction(data)
 	}
 
 	retrieveBudget = () => {
@@ -46,28 +65,59 @@ class Modal extends Component {
 	  	return (
 	    <div className={showHideClassName}>
 	      <section className="modal-main">
-	        {this.props.children}
-	        <div className="modal-input">
-	        	<label htmlFor="item">Item</label>
-	        	<input id="item" name="item" type="text" />
-	        </div>
-	        <div className="modal-input">
-	        	<label htmlFor="amount">Amount</label>
-	        	<input id="amount" name="amount" type="text" />
-	        </div>
-	        <div className="modal-input">
-	        		<select id="show">
-	        			<option value="other">Other</option>
-			        	{this.state.categories.map (category => (
-							<option value={category.title}
-								>{category.title}</option>
-			        	))}
-			        </select>
-				
-			</div>
-			<div> 
-	        <button onClick={this.props.handleClose}>close</button>
-	        </div>
+	      	<form>
+	      		<div className="modal-input">
+	      			<p>
+				      <label>
+				        <input name="type" type="radio" value="expense" defaultChecked />
+				        <span>Expense</span>
+				      </label>
+				    </p>
+				    <p>
+				      <label>
+				        <input name="type" type="radio" value="income"  />
+				        <span>Income</span>
+				      </label>
+				    </p>
+	      		</div>
+		        <div className="modal-input">
+		        	<label htmlFor="item">Item</label>
+		        	<input id="item" name="item" type="text" />
+		        </div>
+		        <div className="modal-input">
+		        	<label htmlFor="amount">Amount</label>
+		        	<input id="amount" name="amount" type="text" />
+		        </div>
+		        <div className="modal-input">
+		        		<select id="show" className="categories">
+		        			<option value="other">Other</option>
+				        	{this.state.categories.map (category => (
+								<option key={category.index} value={category.title}
+									>{category.title}</option>
+				        	))}
+				        </select>
+					
+				</div>
+				<div className="modal-input">
+					<legend>Are you happy with this purchase?</legend>
+	      			<p>
+				      <label>
+				        <input name="happy" type="radio" value="yes" defaultChecked />
+				        <span>Yes</span>
+				      </label>
+				    </p>
+				    <p>
+				      <label>
+				        <input name="happy" type="radio" value="no"  />
+				        <span>No</span>
+				      </label>
+				    </p>
+	      		</div>
+				<div> 
+	        		<button onClick={this.props.handleClose}>close</button>
+	        		<button onClick={this.submitTransaction}>Submit</button>
+	        	</div>
+	        </form>
 	      </section>
 	    </div>
 	  );

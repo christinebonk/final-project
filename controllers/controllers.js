@@ -163,12 +163,15 @@ function routes(app) {
 		});
 	});
 
-	app.post("/api/tranasction", function(req,res,next) {
+	app.post("/api/transaction", function(req,res,next) {
+		console.log(req.body);
 		var user = req.user.userid;
 		var item = req.body.item;
 		var cost = req.body.cost;
 		var category = req.body.category;
 		var date = req.body.date;
+		var subcategory = req.body.subcategory;
+		var happy = req.body.happy;
 		if (!user) {
 			user = req.user;
 		}
@@ -177,7 +180,9 @@ function routes(app) {
 				item: item,
 				cost: cost,
 				category: category,				
-				transaction_date: date 
+				transaction_date: date,
+				subcategory: subcategory,
+				happy: happy
 			}).then(function(result) {
 				res.json("complete");
 			})
