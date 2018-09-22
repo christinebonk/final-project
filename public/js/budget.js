@@ -69,9 +69,6 @@ function expense() {
 
 function saving() {
  	event.preventDefault();
-
-	
-	
 	 var checkboxes = document.getElementsByName("saving");
 	 for (i=0;i<checkboxes.length;i++) {
 	 	if (checkboxes[i].checked) {

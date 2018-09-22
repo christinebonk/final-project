@@ -359,7 +359,7 @@ class Home extends Component {
                   </tr>
                   ))}
                   </Tbody></Table> )  : (
-                <h3>You are not on track for Financial Independence</h3>
+                <h3></h3>
                 )
               }
             
@@ -368,9 +368,8 @@ class Home extends Component {
       </Container>
       </div>
       );
+    }
   }
-
-}
 
 
 

@@ -21,14 +21,11 @@ $(".modal-save").on("click", function(event) {
 	var include = $("input[name='fire']:checked").val().trim();
 	var error = false;
 
-
-
 	if (include === "yes") {
 		include = true;
 	} else {
 		include = false;
 	}
-
 
 	//validations
 	if (category === "mortgage" || category === "student-loan" || category === "other-debt") {
@@ -72,7 +69,6 @@ $(".modal-save").on("click", function(event) {
 		include: include
 	}
 	console.log(account);
-
 	$.ajax("/account", {
 		type: "POST",
 		data: account
@@ -105,4 +101,4 @@ $.ajax("/account", {
 	var totalType = $(`<td></td>`);
 	totalRow.append(totalAccount, totalBalance, totalType);
 	$("#networth-body").append(totalRow);
-})
+});

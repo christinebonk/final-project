@@ -7,7 +7,8 @@ import { Thead, Table, Tbody } from "../../components/Table";
 class Networth extends Component {
 
     state = {
-        accounts: []
+        accounts: [],
+        total: 0
     }
 
     componentDidMount() {
@@ -17,10 +18,13 @@ class Networth extends Component {
     searchAccounts = () => {
         API.searchAccount()
         .then(res => {
-            console.log(res);
-            this.setState({accounts: res.data});
+            const account = res.data;
+            console.log(account);
+            this.setState({accounts: account});
+            let total = 0;
+            account.forEach(account => { total += account.balance });
+            this.setState({total: total});
         });
-        
     }
 
     render () { 
@@ -45,8 +49,13 @@ class Networth extends Component {
                                 <td>{account.type}</td>
                               </tr>
                               ))}
+                            <tr>
+                                 <td></td>
+                                <td>{this.state.total}</td>
+                                <td></td>
+                            </tr>
                               </Tbody></Table> )  : (
-                            <h3>You are not on track for Financial Independence</h3>
+                            <h3></h3>
                             )
                           }
             		</Col>
@@ -54,8 +63,8 @@ class Networth extends Component {
             </Container>
         </div>
     	)};
-
 }
+
 
 
 
