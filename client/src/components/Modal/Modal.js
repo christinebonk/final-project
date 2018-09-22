@@ -6,13 +6,12 @@ import $ from "jquery";
 class Modal extends Component {
 
 	state = {
-		categories: [],
-		test: 0
+		categories: []
 	};
 
 	componentDidMount() {
 		this.retrieveBudget();
-	  };
+	};
 
 	submitTransaction(event) {
 		event.preventDefault();
@@ -34,6 +33,7 @@ class Modal extends Component {
 		}
 
 		API.submitTransaction(data)
+
 	}
 
 	retrieveBudget = () => {
@@ -88,7 +88,7 @@ class Modal extends Component {
 		        <div className="modal-input">
 		        		<select id="show" className="categories">
 		        			<option value="other">Other</option>
-				        	{this.state.categories.map (category => (
+				        	{this.props.categories.map (category => (
 								<option key={category.index} value={category.title}
 									>{category.title}</option>
 				        	))}
@@ -112,7 +112,7 @@ class Modal extends Component {
 	      		</div>
 				<div> 
 	        		<button onClick={this.props.handleClose}>close</button>
-	        		<button onClick={this.submitTransaction}>Submit</button>
+	        		<button onClick={this.props.submitTransaction}>Submit</button>
 	        	</div>
 	        </form>
 	      </section>
