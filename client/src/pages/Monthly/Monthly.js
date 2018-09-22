@@ -91,6 +91,14 @@ render () {
                                     <h4>{budget.title}</h4>
                                 </div>
                                 <div className="budget-section-right">
+                                    <div className="stats-container">
+                                        <div className="stats stats-spent">
+                                            <span>Spent: ${budget.spent}</span>
+                                        </div>
+                                        <div className="stats stats-remaining">
+                                            <span>Budgeted: ${budget.value}</span>
+                                        </div>
+                                    </div>
                                     <div className="bar-container" >
                                       <FullBar />
                                       <EmptyBar />

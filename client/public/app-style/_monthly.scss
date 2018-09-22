@@ -12,9 +12,22 @@
 		}
 
 		.budget-section-right {
-			display: flex;
-			align-items: center;
+			// display: flex;
+			// align-items: center;
 			width: 85%;
+		}
+
+		.stats-container {
+			display: flex;
+		}
+
+		.stats {
+			width: 50%;
+			font-size: 0.8rem;
+		}
+
+		.stats-remaining {
+			text-align: right;
 		}
 	}
 

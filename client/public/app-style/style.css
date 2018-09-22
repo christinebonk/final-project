@@ -85,9 +85,14 @@ header {
   .budget-container .section-container .budget-section-left {
     width: 15%; }
   .budget-container .section-container .budget-section-right {
-    display: flex;
-    align-items: center;
     width: 85%; }
+  .budget-container .section-container .stats-container {
+    display: flex; }
+  .budget-container .section-container .stats {
+    width: 50%;
+    font-size: 0.8rem; }
+  .budget-container .section-container .stats-remaining {
+    text-align: right; }
 .budget-container h4 {
   font-size: 1rem;
   line-height: 2.3rem;
