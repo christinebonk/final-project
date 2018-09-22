@@ -20,14 +20,14 @@ class TopBar extends Component {
     };
 
     submitTransaction() {
+    	this.setState({ show: false });
 		const item = $("#item").val().trim();
 		const cost = $("#amount").val().trim();
 		const category = $('.categories').val().trim();
 		const date = new Date();
 		const subcategory = $('input[name=type]:checked').val();
 		let happy = $('input[name=happy]:checked').val();
-		if (happy === "yes") { happy = true } else {happy = false }
-
+		if (happy === "yes") { happy = true } else {happy = false };
 		const data = {
 			item: item,
 			cost: cost, 
@@ -36,10 +36,7 @@ class TopBar extends Component {
 			subcategory: subcategory,
 			happy: happy
 		}
-
-		API.submitTransaction(data)
-		this.props.handleClose();
-
+		API.submitTransaction(data);
 	}
 
 	retrieveBudget = () => {
