@@ -122,6 +122,25 @@ select#show {
 input#show {
   display: block; }
 
+.nav-bar ul {
+  display: flex;
+  color: white;
+  justify-content: space-around; }
+  .nav-bar ul i {
+    font-size: 2.5rem; }
+
+header {
+  display: flex !important;
+  position: relative; }
+  header .title-container {
+    width: 20%; }
+  header .nav-bar {
+    width: 40%;
+    position: absolute;
+    right: 0;
+    font-size: 0.7rem;
+    text-align: center; }
+
 #root h2 {
   font-size: 1.7rem;
   font-weight: bold;

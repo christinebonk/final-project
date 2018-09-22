@@ -62,16 +62,38 @@ class TopBar extends Component {
 	render () {
 		return (
 			<header className="top-bar">
-				<h1>{this.props.title}</h1>
-				{this.props.children}
-				<button type="button" onClick={this.showModal}>
-                      open
-                </button>
-                <main>
+				<div className="title-container">
+					<h1>{this.props.title}</h1>
+	            </div>
+              	<div className="nav-bar">
+              		<ul>
+              			<li>
+              				<i className="material-icons">trending_up</i>
+              				<figcaption>FI Dashboard</figcaption>
+              			</li>
+              			<li>
+              				<i className="material-icons">monetization_on</i>
+              				<figcaption>Networth</figcaption>
+              			</li>
+              			<li>
+              				<i className="material-icons" onClick={this.showModal}>add_circle</i>
+              				<figcaption>Add Transaction</figcaption>
+              			</li>
+              			<li>
+              				<i className="material-icons">pie_chart</i>
+              				<figcaption>Budget</figcaption>
+              			</li>
+              			<li>
+              				<i className="material-icons">timeline</i>
+              				<figcaption>Monthly</figcaption>
+              			</li>
+              		</ul>
+              	</div>
+              	<main>
                     <Modal show={this.state.show} handleClose={this.hideModal} submitTransaction={this.submitTransaction} categories={this.state.categories}>
-                    </Modal>
-                    
-              </main>
+                    </Modal>  
+              	</main>
+
     		</header>
 		)
 		
