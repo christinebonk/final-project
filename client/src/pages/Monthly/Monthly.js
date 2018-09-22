@@ -18,47 +18,62 @@ state = {
 
     componentDidMount() {
         this.retrieveTransactions();
-        this.retrieveBudget();
+        
         
     }
 
     retrieveTransactions = () => {
         API.searchTransaction()
         .then(res => {
-            console.log(res.data);
             this.setState({transactions: res.data});
+            this.retrieveBudget();
         })
     }
 
     retrieveBudget = () => {
     API.searchBudget()
     .then(res => {
-       //create budget object
+    
+
+    
+    //create budget object
       let budgetData = res.data.filter(entry => entry.type !== "income" && entry.period === "monthly");
       budgetData = budgetData.map((entry, index) => {
+        let transactions = this.state.transactions;
+        transactions = transactions.filter(item => item.category === entry.name);
+        let spent = 0;
+        transactions.forEach( (element) => {
+            spent += element.cost;
+        })
+        
         let obj = {
           title: entry.name,
           value: entry.amount,
           type: entry.type,
-          index: index
+          index: index,
+          spent: spent
         }
         return obj
         });
       //set state
-      this.setState({budget:budgetData}, this.calculateBars());
+      this.setState({budget:budgetData}, () => {this.calculateBars()});
     })
   }
 
     calculateBars = () => {
-        const goal = this.state.goal;
-        const amount = this.state.fire_amount;
-        let percentage = Math.round(amount/goal*100);
-        let remainingPercentage = (100 - percentage);
-        remainingPercentage = remainingPercentage + "%";
-        percentage = percentage + "%";
-        $(".bar-full").css("width", percentage);
-        $(".bar-empty").css("width", remainingPercentage);
-        this.setState({percentage: percentage, remainingPercentage: remainingPercentage});
+        const budget = this.state.budget;
+
+        budget.forEach((element) => {
+            const value = element.value;
+            const spent = element.spent;
+            let percentage = Math.round(spent/value*100);
+            let remainingPercentage = (100 - percentage);
+            remainingPercentage = remainingPercentage + "%";
+            percentage = percentage + "%";
+            console.log(remainingPercentage + percentage);
+            $(`#${element.title} .bar-full`).css("width", percentage);
+            $(`#${element.title} .bar-empty`).css("width", remainingPercentage);
+        })        
     };
 
 render () {
@@ -71,7 +86,7 @@ render () {
                     {this.state.budget.length ? (
                         <div className="budget-container">
                         {this.state.budget.map (budget => (
-                            <div key={budget.index} className="section-container">
+                            <div id={budget.title} key={budget.index} className="section-container">
                                 <div className="budget-section-left">
                                     <h4>{budget.title}</h4>
                                 </div>
