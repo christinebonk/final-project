@@ -140,6 +140,12 @@ header {
     right: 0;
     font-size: 0.7rem;
     text-align: center; }
+    header .nav-bar a {
+      color: white; }
+      header .nav-bar a:hover i, header .nav-bar a:hover figcaption {
+        color: #FABC09;
+        transition: color 0.3s ease;
+        cursor: pointer; }
 
 #root h2 {
   font-size: 1.7rem;

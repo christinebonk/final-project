@@ -68,24 +68,34 @@ class TopBar extends Component {
               	<div className="nav-bar">
               		<ul>
               			<li>
-              				<i className="material-icons">trending_up</i>
-              				<figcaption>FI Dashboard</figcaption>
+              				<a href="/">
+	              				<i className="material-icons">trending_up</i>
+	              				<figcaption>FI Dashboard</figcaption>
+              				</a>
               			</li>
               			<li>
-              				<i className="material-icons">monetization_on</i>
-              				<figcaption>Networth</figcaption>
+              				<a href="/networth">
+	              				<i className="material-icons">monetization_on</i>
+	              				<figcaption>Networth</figcaption>
+	              			</a>
               			</li>
               			<li>
-              				<i className="material-icons" onClick={this.showModal}>add_circle</i>
-              				<figcaption>Add Transaction</figcaption>
+              				<a onClick={this.showModal}>
+              					<i className="material-icons" onClick={this.showModal}>add_circle</i>
+              					<figcaption>Add Transaction</figcaption>
+              				</a>
               			</li>
               			<li>
-              				<i className="material-icons">pie_chart</i>
-              				<figcaption>Budget</figcaption>
+              				<a href="/test">
+              					<i className="material-icons">pie_chart</i>
+              					<figcaption>Budget</figcaption>
+              				</a>
               			</li>
               			<li>
-              				<i className="material-icons">timeline</i>
-              				<figcaption>Monthly</figcaption>
+              				<a href="/monthly">
+              					<i className="material-icons">timeline</i>
+              					<figcaption>Monthly</figcaption>
+              				</a>
               			</li>
               		</ul>
               	</div>
