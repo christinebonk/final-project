@@ -23,13 +23,38 @@ class Budget extends Component {
   }
 
   deleteBudget = (event, id) => {
-    API.deleteBudget(id);
+    API.deleteBudget(id)
+    .then(() => {
+      this.retrieveBudget();
+    })
+    
   }
 
   editBudget = () => {
     $(".budget-input").removeAttr("readonly");
     $("#edit-button").toggleClass("hide");
     $("#save-button").toggleClass("hide");
+    $(".delete-button").toggleClass("hide");
+    $("#add-budget").toggleClass("hide");
+  }
+
+  addBudget = () => {
+    var title = $("input[name=add-title]").val().trim();
+    var value = $("input[name=add-value]").val().trim();
+    var type = $(".add-type").val();
+    var data = {
+      title: title,
+      value: value,
+      type: type
+    }
+    $("input[name=add-title]").val("");
+    $("input[name=add-value]").val("");
+    API.addBudget(data)
+    .then(() => {
+      this.retrieveBudget();
+    })
+    
+    
   }
 
   saveBudget = () => {
@@ -39,6 +64,7 @@ class Budget extends Component {
     });
     $("#edit-button").toggleClass("hide");
     $("#save-button").toggleClass("hide");
+    $(".delete-button").toggleClass("hide");
     $(".budget-input").prop("readonly", true);
     this.retrieveBudget();
   }
@@ -178,9 +204,30 @@ class Budget extends Component {
                     <td>{budget.type}</td>
                     <td><i 
                       onClick={ (e) => this.deleteBudget(e, budget.id) }
-                      className=" delete-button material-icons">delete</i></td>
+                      className="hide delete-button material-icons">delete</i></td>
                   </tr>
                   ))}
+                  <tr className="hide" id="add-budget">
+                    <td><input 
+                      className="budget-add-input" 
+                      type="text" 
+                      name="add-title"
+                      /></td>
+                    <td><input 
+                      type="text" 
+                      className="budget-add-input" 
+                      name="add-value" 
+                      /></td>
+                    <td>
+                      <select id="show" className="add-type">
+                        <option value="saving">Saving</option>
+                        <option value="expense">Expense</option>
+                      </select>
+                    </td>
+                    <td><i 
+                      onClick={this.addBudget}
+                      className=" add-button material-icons">add_circle</i></td>
+                  </tr>
                   </Tbody></Table> )  : (
                 <h3></h3>
                 )

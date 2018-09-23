@@ -34,6 +34,10 @@ export default {
 		return axios.delete("/api/budget/" + id)
 	},
 
+	addBudget: function(data) {
+		return axios.post("/api/budget", data)
+	},
+
 	submitAccount: function(data) {
 		return axios.put("/api/account", data)
 	}

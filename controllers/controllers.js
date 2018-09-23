@@ -178,8 +178,28 @@ function routes(app) {
 			});
 	});
 
+	app.post("/api/budget", function(req,res,next){
+		var user = req.user.userid;
+		if (!user) {
+			user = req.user;
+		}
+		var period = "monthly";
+		var type = req.body.type;
+		var amount = req.body.value;
+		var name = req.body.title;
+
+		db.Budget.create({
+				type: type,
+				amount: amount,
+				period: period,
+				name: name,
+				userid: user
+			}).then(function(result) {
+				res.json("complete");
+			});
+	})
+
 	app.get("/api/income", function(req,res,next) {
-		console.log("hi")
 		var user = req.user.userid;
 		if (!user) {
 			user = req.user;
