@@ -14,7 +14,19 @@
     h2 {
       margin-top: 0;
     }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 0px 0px 10px;
+    }
 }
+
+.modal-input {
+  width: 50%;
+  padding: 10px;
+}
+
 
 .close-icon {
   position: absolute;
@@ -34,12 +46,35 @@
 }
 
 select#show {
-  display: block
+  display: block;
 }
 
 input#show {
   display: block;
 }
+
+/*Form Top*/
+
+.form-top, .form-bottom {
+  display: flex;
+}
+
+/*Income-Amount*/
+
+.item-amount {
+  display: flex;
+  width: 50%;
+}
+
+.item-amount-input {
+  width: 50%;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+} 
+
+/*Single Select Button*/
 
 .single-select {
   display: flex;
@@ -47,14 +82,18 @@ input#show {
 
 .single-select .selection {
   margin-bottom: 1em;
+
+    i {
+      font-size: 1rem;
+    }
 }
 
 .single-select .selection label {
   display: inline-block;
-  width:8em;
+  width: 100px;
   background-color: $background;
   border-radius: 6px;
-  padding: 1em;
+  padding: 15px;
   cursor: pointer;
   margin: 5px;
   text-align: center;

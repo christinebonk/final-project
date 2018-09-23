@@ -6,7 +6,7 @@ import API from "../../utils/App.js";
 
 class TopBar extends Component {
 	state = {
-        show: true,
+        show: false,
         categories: []
     }
 
@@ -19,7 +19,8 @@ class TopBar extends Component {
         this.setState({ show: false });
     };
 
-    submitTransaction() {
+    submitTransaction = (event) => {
+    	event.preventDefault();
     	this.setState({ show: false });
 		const item = $("#item").val().trim();
 		const cost = $("#amount").val().trim();

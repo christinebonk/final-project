@@ -13,30 +13,6 @@ class Modal extends Component {
 		this.retrieveBudget();
 	};
 
-	submitTransaction(event) {
-		event.preventDefault();
-		const item = $("#item").val().trim();
-		const cost = $("#amount").val().trim();
-		const category = $('.categories').val().trim();
-		const date = new Date();
-		const subcategory = $('input[name=type]:checked').val();
-		let happy = $('input[name=happy]:checked').val();
-		if (happy === "yes") { happy = true } else {happy = false }
-
-		const data = {
-			item: item,
-			cost: cost, 
-			category: category,
-			date: date,
-			subcategory: subcategory,
-			happy: happy
-		}
-
-		API.submitTransaction(data)
-
-	}
-
-
 
 	retrieveBudget = () => {
 		API.searchBudget()
@@ -67,27 +43,10 @@ class Modal extends Component {
 	      <i onClick={this.props.handleClose} className="close-icon material-icons">close</i>
 	      <h2>Add Transaction</h2>
 	      	<form>
-	      		<div className="clearfix type-input modal-input">
-					<div className="single-select">
-					  <div className="selection">
-					    <input id="expense" name="type" type="radio" defaultChecked/>
-					    <label htmlFor="expense">Expense</label>
-					  </div>
-				  <div className="selection">
-				    <input id="income" name="type" type="radio" />
-				    <label htmlFor="income">Income</label>
-				  </div>
-				</div>
-	      		</div>
-		        <div className="modal-input">
-		        	<label htmlFor="item">Item</label>
-		        	<input id="item" name="item" type="text" />
-		        </div>
-		        <div className="modal-input">
-		        	<label htmlFor="amount">Amount</label>
-		        	<input id="amount" name="amount" type="text" />
-		        </div>
-		        <div className="modal-input">
+	      		<div className="form-top">
+		      		
+		      		<div className="modal-input">
+			        	<h4>Category</h4>
 		        		<select id="show" className="categories">
 		        			<option value="other">Other</option>
 				        	{this.props.categories.map (category => (
@@ -95,26 +54,52 @@ class Modal extends Component {
 									>{category.title}</option>
 				        	))}
 				        </select>
-					
+					</div>
+					<div className="modal-input">
+		      		<h4>Transaction Type</h4>
+						<div className="single-select">
+						  <div className="selection">
+						    <input id="expense" value="expense" name="type" type="radio" defaultChecked/>
+						    <label htmlFor="expense">Expense</label>
+						  </div>
+					  <div className="selection">
+					    <input id="income" value="income" name="type" type="radio" />
+					    <label htmlFor="income">Income</label>
+					  </div>
+					</div>
+		      		</div>
 				</div>
-				<div className="modal-input">
-					<legend>Are you happy with this purchase?</legend>
-	      			<p>
-				      <label>
-				        <input name="happy" type="radio" value="yes" defaultChecked />
-				        <span>Yes</span>
-				      </label>
-				    </p>
-				    <p>
-				      <label>
-				        <input name="happy" type="radio" value="no"  />
-				        <span>No</span>
-				      </label>
-				    </p>
-	      		</div>
+				<div className="form-bottom">
+			        <div className="modal-input item-amount">
+			        	<div className="item-amount-input">
+			        		<h4>Item</h4>
+				        	<label className="visually-hidden" htmlFor="item">Item</label>
+				        	<input id="item" name="item" type="text" />
+				        </div>
+				        <div className="item-amount-input">
+				        	<h4>Amount</h4>
+				        	<label className="visually-hidden"  htmlFor="amount">Amount</label>
+				        	<input id="amount" name="amount" type="text" />
+				        </div>
+			        </div>
+					<div className="modal-input">
+						<h4>Purchase Satisfaction</h4>
+						<div className="clearfix modal-input">
+							<div className="single-select">
+	      					<div className="selection">
+						        <input name="happy" type="radio" value="yes" id="yes"  defaultChecked />
+						        <label htmlFor="yes"><span className="hide">Yes</span> <i className="material-icons">thumb_up</i></label>
+					     	</div>
+	    					<div className="selection">
+	        					<input name="happy" type="radio" value="no" id="no"  />
+	        					<label htmlFor="no"><span className="hide">No</span><i className="material-icons">thumb_down</i></label>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div> 
-	        		<button onClick={this.props.handleClose}>close</button>
-	        		<button onClick={this.props.submitTransaction}>Submit</button>
+	        		<button className="btn" onClick={this.props.submitTransaction}>Submit</button>
 	        	</div>
 	        </form>
 	      </section>
