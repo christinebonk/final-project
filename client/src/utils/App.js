@@ -30,6 +30,10 @@ export default {
 		return axios.put("/api/budget", data)
 	},
 
+	deleteBudget: function(id) {
+		return axios.delete("/api/budget/" + id)
+	},
+
 	submitAccount: function(data) {
 		return axios.put("/api/account", data)
 	}

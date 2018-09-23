@@ -209,6 +209,22 @@ function routes(app) {
 		})
 	});
 
+	app.delete("/api/budget/:id", function(req,res,next) {
+		var user = req.user.userid;
+		if (!user) {
+			user = req.user;
+		}
+		var id = req.params.id;
+
+		console.log(id);
+		db.Budget.destroy( {where: {userid: user, id: id}
+		}).then(function(result) {
+			res.json(result);
+		}).catch(function(err) {
+			if (err) {console.log(err)};
+		})
+	});
+
 	app.post("/api/transaction", function(req,res,next) {
 		console.log(req.body);
 		var user = req.user.userid;

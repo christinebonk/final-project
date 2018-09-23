@@ -22,6 +22,10 @@ class Budget extends Component {
     this.retrieveBudget();
   }
 
+  deleteBudget = (event, id) => {
+    API.deleteBudget(id);
+  }
+
   editBudget = () => {
     $(".budget-input").removeAttr("readonly");
     $("#edit-button").toggleClass("hide");
@@ -172,6 +176,9 @@ class Budget extends Component {
                       index={budget.index} 
                       readOnly/></td>
                     <td>{budget.type}</td>
+                    <td><i 
+                      onClick={ (e) => this.deleteBudget(e, budget.id) }
+                      className=" delete-button material-icons">delete</i></td>
                   </tr>
                   ))}
                   </Tbody></Table> )  : (
