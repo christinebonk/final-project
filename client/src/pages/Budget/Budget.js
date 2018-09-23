@@ -4,6 +4,7 @@ import TopBar from "../../components/TopBar";
 import PieChart from "react-svg-piechart"
 import { Col, Row, Container } from "../../components/Grid";
 import { Thead, Table, Tbody } from "../../components/Table";
+import $ from "jquery";
 
 
 
@@ -18,6 +19,29 @@ class Budget extends Component {
 
   componentDidMount() {
     this.retrieveBudget();
+  }
+
+  editBudget = () => {
+    console.log("hi");
+    $(".budget-input").removeAttr("readonly");
+    $("#edit-button").toggleClass("hide");
+    $("#save-button").toggleClass("hide");
+  }
+
+  saveBudget = () => {
+    let data = this.state.budgetData;
+
+  }
+
+  updateInput = (event, index) => {
+    let { name, value } = event.target;
+    let data = this.state.budgetData;
+    let selection = data[index];
+    value = parseInt(value);
+    selection[name] = value;
+    data[index] = selection;
+    console.log(data);
+    this.setState({budgetData:data});
   }
 
   retrieveBudget = () => {
@@ -58,6 +82,7 @@ class Budget extends Component {
       })
       let variation = income - expenses;
       let savingsRate = Math.round(savings/income*100);
+      console.log(budgetData);
 
       //set state
       this.setState({budgetData:budgetData, income:income, variation:variation, expenses: expenses, savingsRate: savingsRate});
@@ -109,7 +134,11 @@ class Budget extends Component {
           </Table>
             
           </div>
-          <h2>Budget Categories</h2>
+          <div className="budget-title">
+            <h2>Budget Categories</h2>
+            <i id="edit-button" onClick={this.editBudget} className="material-icons">edit</i>
+            <i id="save-button" className="hide material-icons">save</i>
+          </div>
             {this.state.budgetData.length ? (
                 <Table>
                   <Thead>
@@ -120,13 +149,27 @@ class Budget extends Component {
                 <Tbody>
                 {this.state.budgetData.map (budget => (
                   <tr key={budget.index}>
-                    <td>{budget.title}</td>
-                    <td>{budget.value}</td>
+                    <td><input 
+                      onChange={ (e) => this.updateInput(e, budget.index) }
+                      className="budget-input" 
+                      type="text" 
+                      value={budget.title} 
+                      name="title"
+                      index={budget.index} 
+                      readOnly/></td>
+                    <td><input 
+                      onChange={ (e) => this.updateInput(e, budget.index) }
+                      type="text" 
+                      className="budget-input" 
+                      value={budget.value} 
+                      name="value" 
+                      index={budget.index} 
+                      readOnly/></td>
                     <td>{budget.type}</td>
                   </tr>
                   ))}
                   </Tbody></Table> )  : (
-                <h3>You are not on track for Financial Independence</h3>
+                <h3></h3>
                 )
               }
             </div>

@@ -1,3 +1,28 @@
 .budget-right {
 	padding-left: 30px;
 }
+
+.budget-title {
+	display: flex;
+
+		i {
+			margin: 33px 0px 20px 10px;
+			color: $primary;
+		}
+}
+
+input[readonly].budget-input {
+    border-bottom: none !important;
+}
+
+#toggle_readonly{
+  padding: 5px;
+  border: 1px solid grey;
+  background: lightgrey;
+  cursor: pointer;
+  float:left;
+}
+
+.hide {
+	display: none;
+}
