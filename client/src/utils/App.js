@@ -24,6 +24,10 @@ export default {
 
 	submitUser: function(profile) {
 		return axios.put("/profile", profile)
+	},
+
+	submitBudget: function(data) {
+		return axios.put("/api/budget", data)
 	}
 
 

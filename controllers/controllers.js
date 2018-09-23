@@ -169,6 +169,26 @@ function routes(app) {
 		});
 	});
 
+	app.put("/api/budget", function(req,res,next) {
+		var user = req.user.userid;
+		var name = req.body.title;
+		var amount = req.body.value;
+		var id = req.body.id;
+		if (!user) {
+			user = req.user;
+		}
+		db.Budget.update({
+			name: name,
+			amount: amount
+		},
+			{where: {userid: user, id: id}
+		}).then(function(result) {
+			res.json(result);
+		}).catch(function(err) {
+			if (err) {console.log(err)};
+		})
+	});
+
 	app.post("/api/transaction", function(req,res,next) {
 		console.log(req.body);
 		var user = req.user.userid;

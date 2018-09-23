@@ -30,6 +30,14 @@ class Budget extends Component {
 
   saveBudget = () => {
     let data = this.state.budgetData;
+    data.forEach(entry => {
+      API.submitBudget(entry)
+    });
+    $("#edit-button").toggleClass("hide");
+    $("#save-button").toggleClass("hide");
+    $(".budget-input").prop("readonly", true);
+
+    this.retrieveBudget();
 
   }
 
@@ -37,7 +45,10 @@ class Budget extends Component {
     let { name, value } = event.target;
     let data = this.state.budgetData;
     let selection = data[index];
-    value = parseInt(value);
+    if (name === "value") {
+      value = parseInt(value);
+    }
+    
     selection[name] = value;
     data[index] = selection;
     console.log(data);
@@ -57,7 +68,8 @@ class Budget extends Component {
           value: entry.amount,
           type: entry.type,
           color: color[index],
-          index: index
+          index: index,
+          id: entry.id
         }
         return obj
         });
@@ -137,7 +149,7 @@ class Budget extends Component {
           <div className="budget-title">
             <h2>Budget Categories</h2>
             <i id="edit-button" onClick={this.editBudget} className="material-icons">edit</i>
-            <i id="save-button" className="hide material-icons">save</i>
+            <i id="save-button" onClick={this.saveBudget} className="hide material-icons">save</i>
           </div>
             {this.state.budgetData.length ? (
                 <Table>
