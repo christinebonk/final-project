@@ -5,6 +5,7 @@ import PieChart from "react-svg-piechart"
 import { Col, Row, Container } from "../../components/Grid";
 import { Thead, Table, Tbody } from "../../components/Table";
 import $ from "jquery";
+import Networth from "../Networth";
 
 
 
@@ -123,6 +124,8 @@ class Budget extends Component {
           data={this.state.budgetData}
           onSectorHover={(d, i, e) => { this.findCategory(d) }}
           />
+          <h2>Assets</h2>
+          <Networth />
           </Col>
           <Col size="s8">
           <div className="budget-right">

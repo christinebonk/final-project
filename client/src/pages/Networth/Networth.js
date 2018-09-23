@@ -30,37 +30,30 @@ class Networth extends Component {
     render () { 
         return ( 
     	<div>
-            <TopBar title="Networth"/>
-            <Container>
-            	<Row>
-            		<Col size="s12">
-                        {this.state.accounts.length ? (
-                            <Table>
-                              <Thead>
-                                <th>Account</th>
-                                <th>Balance</th>
-                                <th>Category</th>
-                              </Thead>
-                            <Tbody>
-                            {this.state.accounts.map (account => (
-                              <tr key={account.id}>
-                                <td>{account.account}</td>
-                                <td>{account.balance}</td>
-                                <td>{account.type}</td>
-                              </tr>
-                              ))}
-                            <tr>
-                                 <td></td>
-                                <td>{this.state.total}</td>
-                                <td></td>
-                            </tr>
-                              </Tbody></Table> )  : (
-                            <h3></h3>
-                            )
-                          }
-            		</Col>
-            	</Row>
-            </Container>
+            {this.state.accounts.length ? (
+                <Table>
+                  <Thead>
+                    <th>Account</th>
+                    <th>Balance</th>
+                    <th>Category</th>
+                  </Thead>
+                <Tbody>
+                {this.state.accounts.map (account => (
+                  <tr key={account.id}>
+                    <td>{account.account}</td>
+                    <td>{account.balance}</td>
+                    <td>{account.type}</td>
+                  </tr>
+                  ))}
+                <tr>
+                     <td>Total</td>
+                    <td>{this.state.total}</td>
+                    <td></td>
+                </tr>
+                  </Tbody></Table> )  : (
+                <h3></h3>
+                )
+              }
         </div>
     	)};
 }

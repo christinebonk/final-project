@@ -74,12 +74,6 @@ class TopBar extends Component {
               				</a>
               			</li>
               			<li>
-              				<a href="/networth">
-	              				<i className="material-icons">monetization_on</i>
-	              				<figcaption>Networth</figcaption>
-	              			</a>
-              			</li>
-              			<li>
               				<a onClick={this.showModal}>
               					<i className="material-icons" onClick={this.showModal}>add_circle</i>
               					<figcaption>Add Transaction</figcaption>
