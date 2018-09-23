@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     cost: DataTypes.INTEGER,
     category: DataTypes.STRING,
     subcategory: DataTypes.STRING,
-    transaction_date: DataTypes.DATE
+    transaction_date: DataTypes.DATE,
+    happy: DataTypes.BOOLEAN
   });
   return Transaction;
 };
