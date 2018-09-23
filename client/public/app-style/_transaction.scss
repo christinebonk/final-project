@@ -5,9 +5,25 @@
   left: 10%; 
   right: 10%;
   bottom: 10%;
-  border: 1px solid black;
+  border: 1px solid $background;
   z-index:4;
+  padding: 50px 100px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 52px -4px rgba(0,0,0,0.2);
+
+    h2 {
+      margin-top: 0;
+    }
 }
+
+.close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  cursor: pointer;
+}
+
 
 .display-block {
   display: block;
@@ -23,4 +39,37 @@ select#show {
 
 input#show {
   display: block;
+}
+
+.single-select {
+  display: flex;
+}
+
+.single-select .selection {
+  margin-bottom: 1em;
+}
+
+.single-select .selection label {
+  display: inline-block;
+  width:8em;
+  background-color: $background;
+  border-radius: 6px;
+  padding: 1em;
+  cursor: pointer;
+  margin: 5px;
+  text-align: center;
+  color: black;
+}
+
+.single-select .selection label:hover {
+  background-color: $secondary;
+}
+
+.single-select .selection input[type=radio] {
+  display: none;
+}
+
+.single-select .selection input[type=radio]:checked ~ label {
+  background-color: $secondary;
+  color: white;
 }

@@ -6,7 +6,7 @@ import API from "../../utils/App.js";
 
 class TopBar extends Component {
 	state = {
-        show: false,
+        show: true,
         categories: []
     }
 

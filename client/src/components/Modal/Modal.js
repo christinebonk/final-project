@@ -64,20 +64,20 @@ class Modal extends Component {
 	  	return (
 	    <div className={showHideClassName}>
 	      <section className="modal-main">
+	      <i onClick={this.props.handleClose} className="close-icon material-icons">close</i>
+	      <h2>Add Transaction</h2>
 	      	<form>
-	      		<div className="modal-input">
-	      			<p>
-				      <label>
-				        <input name="type" type="radio" value="expense" defaultChecked />
-				        <span>Expense</span>
-				      </label>
-				    </p>
-				    <p>
-				      <label>
-				        <input name="type" type="radio" value="income"  />
-				        <span>Income</span>
-				      </label>
-				    </p>
+	      		<div className="clearfix type-input modal-input">
+					<div className="single-select">
+					  <div className="selection">
+					    <input id="expense" name="type" type="radio" defaultChecked/>
+					    <label htmlFor="expense">Expense</label>
+					  </div>
+				  <div className="selection">
+				    <input id="income" name="type" type="radio" />
+				    <label htmlFor="income">Income</label>
+				  </div>
+				</div>
 	      		</div>
 		        <div className="modal-input">
 		        	<label htmlFor="item">Item</label>
