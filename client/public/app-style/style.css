@@ -111,6 +111,9 @@ input[readonly].asset-input {
     margin: 33px 0px 20px 10px;
     color: #FABC09; }
 
+table {
+  text-transform: capitalize; }
+
 .budget-container .section-container {
   display: flex;
   margin: 10px;

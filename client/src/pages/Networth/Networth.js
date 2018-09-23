@@ -16,6 +16,24 @@ class Networth extends Component {
     componentDidMount() {
         this.searchAccounts();   
     }
+
+    addAccount = () => {
+        var title = $("input[name=add-asset-title]").val().trim();
+        var value = $("input[name=add-asset-value]").val().trim();
+        var type = $(".add-asset-type").val();
+        var data = {
+          account: title,
+          balance: value,
+          type: type,
+          include: false
+        }
+        $("input[name=add-asset-title]").val("");
+        $("input[name=add-asset-value]").val("");
+        API.addAccount(data)
+        .then(() => {
+          this.searchAccounts();
+        }) 
+    }
     
     searchAccounts = () => {
         API.searchAccount()
@@ -42,6 +60,7 @@ class Networth extends Component {
         $(".asset-input").removeAttr("readonly");
         $("#edit-assets-button").toggleClass("hide");
         $("#save-assets-button").toggleClass("hide");
+        $("#add-asset").toggleClass("hide");
       }
 
       saveAssets = () => {
@@ -52,6 +71,7 @@ class Networth extends Component {
         });
         $("#edit-assets-button").toggleClass("hide");
         $("#save-assets-button").toggleClass("hide");
+        $("#add-asset").toggleClass("hide");
         $(".asset-input").prop("readonly", true);
       }
 
@@ -106,6 +126,27 @@ class Networth extends Component {
                     <td>{account.type}</td>
                   </tr>
                   ))}
+                <tr className="hide" id="add-asset">
+                    <td><input 
+                      className="asset-add-input" 
+                      type="text" 
+                      name="add-asset-title"
+                      /></td>
+                    <td><input 
+                      type="text" 
+                      className="asset-add-input" 
+                      name="add-asset-value" 
+                      /></td>
+                    <td>
+                      <select id="show" className="add-asset-type">
+                        <option value="asset">Asset</option>
+                        <option value="liability">Liability</option>
+                      </select>
+                    </td>
+                    <td><i 
+                      onClick={this.addAccount}
+                      className="add-asset-button material-icons">add_circle</i></td>
+                  </tr>
                 <tr>
                      <td>Total</td>
                     <td>{this.state.total}</td>

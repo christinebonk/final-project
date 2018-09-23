@@ -36,6 +36,8 @@ class Modal extends Component {
 
 	}
 
+
+
 	retrieveBudget = () => {
 		API.searchBudget()
     	.then(res => {

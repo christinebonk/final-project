@@ -52,9 +52,7 @@ class Budget extends Component {
     API.addBudget(data)
     .then(() => {
       this.retrieveBudget();
-    })
-    
-    
+    }) 
   }
 
   saveBudget = () => {

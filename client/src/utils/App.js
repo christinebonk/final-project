@@ -40,6 +40,10 @@ export default {
 
 	submitAccount: function(data) {
 		return axios.put("/api/account", data)
+	},
+
+	addAccount: function(data) {
+		return axios.post("/account", data)
 	}
 
 
