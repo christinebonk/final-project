@@ -23,7 +23,6 @@ class Budget extends Component {
   }
 
   editBudget = () => {
-    console.log("hi");
     $(".budget-input").removeAttr("readonly");
     $("#edit-button").toggleClass("hide");
     $("#save-button").toggleClass("hide");
@@ -37,9 +36,7 @@ class Budget extends Component {
     $("#edit-button").toggleClass("hide");
     $("#save-button").toggleClass("hide");
     $(".budget-input").prop("readonly", true);
-
     this.retrieveBudget();
-
   }
 
   updateInput = (event, index) => {
@@ -49,10 +46,8 @@ class Budget extends Component {
     if (name === "value") {
       value = parseInt(value);
     }
-    
     selection[name] = value;
     data[index] = selection;
-    console.log(data);
     this.setState({budgetData:data});
   }
 
@@ -95,7 +90,6 @@ class Budget extends Component {
       })
       let variation = income - expenses;
       let savingsRate = Math.round(savings/income*100);
-      console.log(budgetData);
 
       //set state
       this.setState({budgetData:budgetData, income:income, variation:variation, expenses: expenses, savingsRate: savingsRate});
@@ -104,12 +98,10 @@ class Budget extends Component {
   }
 
   findCategory = (d) => {
-    console.log(d);
     const data = this.state.budgetData;
     const result = data.filter(obj => {
       return obj.title === d;
     });
-    console.log(result);
   }
 
   render() {
@@ -124,7 +116,6 @@ class Budget extends Component {
           data={this.state.budgetData}
           onSectorHover={(d, i, e) => { this.findCategory(d) }}
           />
-          <h2>Assets</h2>
           <Networth />
           </Col>
           <Col size="s8">

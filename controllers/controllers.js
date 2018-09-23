@@ -135,6 +135,26 @@ function routes(app) {
 			})
 	});
 
+	app.put("/api/account", function(req,res,next) {
+		var account = req.body.account;
+		var balance = req.body.balance;
+		var id = req.body.id;
+		var user = req.user.userid;
+		if (!user) {
+			user = req.user;
+		}
+		db.Account.update({
+			account: account,
+			balance: balance
+		},
+			{where: {userid: user, id: id}
+		}).then(function(result) {
+			res.json(result);
+		}).catch(function(err) {
+			if (err) {console.log(err)};
+		})
+	})
+
 	app.put("/income", function(req,res,next) {
 		var name = req.body.name;
 		var amount = req.body.amount;

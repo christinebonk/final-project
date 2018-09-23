@@ -109,7 +109,10 @@ class Home extends Component {
 
     }
     API.submitUser(userData);
+    $(".assumption-icon").css("color", "#D3E3DD");
   }
+
+
  
   getUser = () => {
     API.searchUser()

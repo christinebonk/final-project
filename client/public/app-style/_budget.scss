@@ -15,14 +15,20 @@ input[readonly].budget-input {
     border-bottom: none !important;
 }
 
-#toggle_readonly{
-  padding: 5px;
-  border: 1px solid grey;
-  background: lightgrey;
-  cursor: pointer;
-  float:left;
+input[readonly].asset-input {
+    border-bottom: none !important;
 }
+
 
 .hide {
 	display: none;
+}
+
+.asset-title {
+	display: flex;
+
+		i {
+			margin: 33px 0px 20px 10px;
+			color: $primary;
+		}
 }

@@ -28,6 +28,10 @@ export default {
 
 	submitBudget: function(data) {
 		return axios.put("/api/budget", data)
+	},
+
+	submitAccount: function(data) {
+		return axios.put("/api/account", data)
 	}
 
 
