@@ -1,3 +1,18 @@
+//shift 
+
+$(".shift").on("click", function(event) {
+	event.preventDefault();
+	var line = $(".line");
+	if (line.hasClass("right")) {
+		line.removeClass("right")
+	} else {
+		line.addClass("right")
+	}
+
+	$("#sign-up-container").toggleClass("hide");
+	$("#sign-in-container").toggleClass("hide");
+})
+
 //sign up
 $(".sign-up-submit").on("click", function(event) {
 	event.preventDefault();

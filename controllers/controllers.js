@@ -9,6 +9,11 @@ const path = require("path");
 
 function routes(app) {
 	//pages
+
+	app.get("/", authenticationMiddleware(), function(req,res) {
+		res.sendFile(path.join(__dirname, "../client/build/index.html"));
+	});
+	
 	app.get("/homepage", function(req, res){
 		res.render("index");
 	});
@@ -21,7 +26,11 @@ function routes(app) {
 		res.render('goals', {layout: 'onboarding.handlebars', title: `Let's Get Started!`});
 	});
 
-	app.get("/test", authenticationMiddleware(), function(req,res) {
+	app.get("/overview", authenticationMiddleware(), function(req,res) {
+		res.sendFile(path.join(__dirname, "../client/build/index.html"));
+	});
+
+	app.get("/monthly", authenticationMiddleware(), function(req,res) {
 		res.sendFile(path.join(__dirname, "../client/build/index.html"));
 	});
 
@@ -39,10 +48,6 @@ function routes(app) {
 
 	app.get("/result", function(req,res) {
 		res.render('result', {layout: 'onboarding.handlebars', title: "Your FIRE Summary"});
-	});
-
-	app.get("/monthly", function(req,res) {
-		res.render('monthly', {title: "Monthly Insights"});
 	});
 
 	app.get("/dashboard", authenticationMiddleware(), function(req,res) {
@@ -325,7 +330,7 @@ function authenticationMiddleware () {
 		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
 	    if (req.isAuthenticated()) return next();
-	    res.redirect('/')
+	    res.redirect('/homepage')
 	}
 }
 

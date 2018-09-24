@@ -29,8 +29,62 @@ main {
 }
 
 body {
-	height: 120vh;
+	height: 100vh;
+}
+
+.hide {
+	display:none;
 }
 
 
+#login-page {
+	background: linear-gradient(to bottom right, $secondary , lighten($secondary,40%));
+	.container {
+		width: 30%;
+		padding-top: 100px;
+		color: white;
 
+			label {
+				color: white;
+			}
+
+			input {
+				border-bottom: 2px white solid;
+			}
+	}
+}
+
+#title-top {
+		width: 200px;
+		#titles { 
+			display: flex;
+		}
+		h1 {
+			margin-right: 30px;
+			margin-bottom: 5px;
+		}
+			
+}
+
+div.line-container {
+	position: relative;
+	width: 100%;
+}
+span.line {
+		background: white;
+		width: 40%;
+		height: 2px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: all 200ms ease;
+
+		&.right {
+			left: 50%;
+			
+		}
+	}
+
+
+
+	

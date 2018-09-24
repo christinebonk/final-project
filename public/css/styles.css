@@ -478,6 +478,43 @@ main {
   margin: 0 auto; }
 
 body {
-  height: 120vh; }
+  height: 100vh; }
+
+.hide {
+  display: none; }
+
+#login-page {
+  background: linear-gradient(to bottom right, #25BEA0, #bdf2e8); }
+  #login-page .container {
+    width: 30%;
+    padding-top: 100px;
+    color: white; }
+    #login-page .container label {
+      color: white; }
+    #login-page .container input {
+      border-bottom: 2px white solid; }
+
+#title-top {
+  width: 200px; }
+  #title-top #titles {
+    display: flex; }
+  #title-top h1 {
+    margin-right: 30px;
+    margin-bottom: 5px; }
+
+div.line-container {
+  position: relative;
+  width: 100%; }
+
+span.line {
+  background: white;
+  width: 40%;
+  height: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 200ms ease; }
+  span.line.right {
+    left: 50%; }
 
 /*# sourceMappingURL=styles.css.map */

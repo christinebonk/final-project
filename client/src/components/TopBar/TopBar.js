@@ -81,7 +81,7 @@ class TopBar extends Component {
               				</a>
               			</li>
               			<li>
-              				<a href="/test">
+              				<a href="/overview">
               					<i className="material-icons">pie_chart</i>
               					<figcaption>Budget</figcaption>
               				</a>

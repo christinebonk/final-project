@@ -112,6 +112,7 @@ render () {
             </Row>
             <Row>
                 <Col size="s12">
+                <h2>Monthly Transactions</h2>
               {this.state.transactions.length ? (
                 <Table>
                   <Thead>
