@@ -1,5 +1,20 @@
+@media only screen and (max-width: 900px) {
+	
+
+	#login-page { 
+
+		.container {
+			width: 50% !important;
+		}
+	}
+}
+
 @media only screen and (max-width: 700px) {
 	html {
 		font-size: 10%;
+	}
+
+	#login-page .container {
+		width: 80% !important;
 	}
 }

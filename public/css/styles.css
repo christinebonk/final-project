@@ -239,9 +239,15 @@ footer.onboarding {
   background: #FACC43;
   width: 70%; }
 
+@media only screen and (max-width: 900px) {
+  #login-page .container {
+    width: 50% !important; } }
 @media only screen and (max-width: 700px) {
   html {
-    font-size: 10%; } }
+    font-size: 10%; }
+
+  #login-page .container {
+    width: 80% !important; } }
 .progress-container {
   width: 100%;
   height: 100%; }
@@ -493,6 +499,8 @@ body {
       color: white; }
     #login-page .container input {
       border-bottom: 2px white solid; }
+  #login-page button {
+    background: #FABC09; }
 
 #title-top {
   width: 200px; }
