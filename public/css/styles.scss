@@ -30,6 +30,7 @@ main {
 
 body {
 	height: 100vh;
+	background: linear-gradient(to bottom right, lighten($secondary,5%) , lighten($secondary,40%));
 }
 
 .hide {

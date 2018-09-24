@@ -4,11 +4,12 @@ h1.onboarding {
 	font-weight: bold;
 	padding-bottom: 3rem;
 	font-size: 3rem;
+	color: white;
 }
 
 h3.onboarding-label {
 	font-size: 2rem;
-	color: $secondary;
+	color: white;
 }
 
 //Goal Pages
@@ -18,6 +19,9 @@ h3.onboarding-label {
 	color: darken($secondary, 20%)
 }
 
+input[type="range"] {
+	background: white !important;
+}
 
 
 
