@@ -1,0 +1,37 @@
+.result-container {
+	display: flex;
+	color: white;
+	text-align: center;
+	padding-top: 50px;
+
+		.results-box {
+			width: 33.33%;
+		}
+
+		h2 {
+			font-size: 2.2rem;
+		}
+
+		h3 {
+			color: $accent2;
+			font-weight: bold;
+			font-size: 4rem;
+			padding: 20px;
+		}
+
+
+}
+
+.result-bottom {
+	display: flex;
+	justify-content: center;
+	padding: 50px;
+
+		a {
+			background: $primary;
+
+			&:hover {
+				background: $accent;
+			}
+		}
+}

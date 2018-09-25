@@ -5,7 +5,7 @@
   $(".progress-bar li:nth-child(4)").addClass("complete");
   $(".progress-bar li:nth-child(5)").addClass("active");
 
-
+//total needed for retirement
 function getTotalNeeded() {
 	$.ajax("/profile", {
 		type: "GET"
@@ -15,6 +15,9 @@ function getTotalNeeded() {
 		var withdrawal = res[0].retirement_withdrawal;
 		totalNeeded = retirementCost/withdrawal;
 		getCurrentAmount(totalNeeded);
+		totalNeeded = JSON.stringify(totalNeeded);
+		totalNeeded = totalNeeded.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+		$("#retirement-amount").text("$" + totalNeeded);
 	});
 }
 
@@ -30,6 +33,8 @@ function getCurrentAmount(t) {
 			}
 		}
 		getContribution(totalNeeded, currentAmount);
+		var progress = currentAmount/totalNeeded*100;
+		$("#retirement-goal").text(progress + "%");
 	})
 }
 
@@ -60,7 +65,7 @@ function getProjectedTime(total, current, contribution, growth) {
 
 	var currentYear = (new Date()).getFullYear();
 	var retirementYear = currentYear + time;
-	console.log(retirementYear);
+	$("#retirement-year").text(retirementYear);
 }
 
 getTotalNeeded();
