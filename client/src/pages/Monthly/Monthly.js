@@ -12,7 +12,11 @@ import { Thead, Table, Tbody } from "../../components/Table";
 class Monthly extends Component {
 state = {
     budget: [],
-    transactions: []
+    transactions: [],
+    totalSpent: 0,
+    total: 0,
+    totalRemaining: 0,
+    totalHappiness: 0
 }
     
 
@@ -23,6 +27,7 @@ state = {
     retrieveTransactions = () => {
         API.searchTransaction()
         .then(res => {
+            console.log(res.data);
             this.setState({transactions: res.data});
             this.retrieveBudget();
         })
@@ -36,12 +41,19 @@ state = {
     
     //create budget object
       let budgetData = res.data.filter(entry => entry.type !== "income" && entry.period === "monthly");
+      let total = 0;
+      let totalSpent = 0;  
+        
+
       budgetData = budgetData.map((entry, index) => {
+        total += entry.amount;
         let transactions = this.state.transactions;
         transactions = transactions.filter(item => item.category === entry.name);
+        
         let spent = 0;
         transactions.forEach( (element) => {
             spent += element.cost;
+            totalSpent += element.cost;
         })
         
         let obj = {
@@ -53,8 +65,21 @@ state = {
         }
         return obj
         });
+
+      
+
+        let happyCount = this.state.transactions;
+        happyCount = happyCount.filter(item => item.happy === true);
+        let happinessAmount = 0;  
+        happyCount.forEach(element => {
+            happinessAmount += element.cost
+            console.log(happinessAmount);
+        });
+        let totalRemaining = total - totalSpent;
+        let totalHappy = happinessAmount / totalSpent * 100;
+        totalHappy = Math.round(totalHappy);
       //set state
-      this.setState({budget:budgetData}, () => {this.calculateBars()});
+      this.setState({budget:budgetData, total:total, totalSpent: totalSpent, totalRemaining: totalRemaining, totalHappy: totalHappy}, () => {this.calculateBars()});
     })
   }
 
@@ -68,17 +93,55 @@ state = {
             let remainingPercentage = (100 - percentage);
             remainingPercentage = remainingPercentage + "%";
             percentage = percentage + "%";
-            console.log(remainingPercentage + percentage);
             $(`#${element.title} .bar-full`).css("width", percentage);
             $(`#${element.title} .bar-empty`).css("width", remainingPercentage);
         })        
     };
 
+ 
+
+    displayNumber = (num) => {
+        let display = Math.round(num);
+        display = JSON.stringify(display);
+        display = display.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        display = "$" + display; 
+        return display;
+      };
+
 render () {
+    const totalSpent = this.displayNumber(this.state.totalSpent);
+    const totalRemaining = this.displayNumber(this.state.totalRemaining);
+
     return ( 
     <div>
         <TopBar onClick={this.showModal} title="Monthly View"/>
         <Container>
+            <Row>
+              <Col size="s3">
+                <div className="data-block">
+                  <h3>Total Spent</h3>
+                  <p>{totalSpent}</p>    
+                </div>
+              </Col>
+              <Col size="s3">
+                <div className="data-block">
+                  <h3>Total Remaining</h3>
+                  <p>{totalRemaining}</p>    
+                </div>
+              </Col>
+              <Col size="s3">
+                <div className="data-block">
+                  <h3>Savings Rate</h3>
+                  <p></p>    
+                </div>
+              </Col>
+              <Col size="s3">
+                <div className="data-block">
+                  <h3>Satisfaction</h3>
+                  <p>{this.state.totalHappy}%</p>    
+                </div>
+              </Col>
+            </Row>
             <Row>
                 <Col size="s12">
                     {this.state.budget.length ? (

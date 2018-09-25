@@ -228,7 +228,7 @@ class Home extends Component {
     let newContribution = contribution;
 
     while (finalYear > goalDate) {
-      newContribution = newContribution + 500;
+      newContribution = newContribution + 100;
       finalYear = this.projectDate(newContribution, goal, fireAmount, growth, currentYear);
     }
     const addedContribution = newContribution - contribution;
