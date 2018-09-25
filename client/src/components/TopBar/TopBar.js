@@ -92,6 +92,12 @@ class TopBar extends Component {
               					<figcaption>Monthly</figcaption>
               				</a>
               			</li>
+              			<li>
+              				<a href="/logout">
+              					<i className="material-icons">highlight_off</i>
+              					<figcaption>Logout</figcaption>
+              				</a>
+              			</li>
               		</ul>
               	</div>
               	<main>

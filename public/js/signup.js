@@ -1,5 +1,4 @@
 //shift 
-
 $(".shift").on("click", function(event) {
 	event.preventDefault();
 	var line = $(".line");
@@ -89,7 +88,7 @@ $(".sign-in-submit").on("click", function(event) {
 		data: user
 	}).then(function(res) {
 		if (res === "complete") {
-			window.location.href = "/dashboard";
+			window.location.href = "/";
 		}
 	});
 });

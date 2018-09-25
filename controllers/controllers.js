@@ -62,7 +62,7 @@ function routes(app) {
 	app.get("/logout", function(req,res) {
 		req.logout();
 		req.session.destroy();
-		res.redirect("/")
+		res.redirect("/homepage")
 	})
 
 	//apis to do - fix validation
