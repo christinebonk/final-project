@@ -1,14 +1,43 @@
 #budget-container {
 	height: 200px;
-	display: flex;
-
-	
+	display: flex;	
 }
 
 .budget-form {
+	span {
+		color: white;
+
+
+	}
 }
 
+[type="checkbox"]:checked+span:not(.lever):before{
+			color: $accent2;
+			border-right: $accent2 2px solid;
+			border-bottom: $accent2 2px solid;
+		}
+
 #saving-form {
+}
+
+input[type=text]:not(.browser-default) {
+	border-bottom: 1px solid white;
+}
+
+#expense-range-container label {
+	color: white ;
+}
+
+#saving-range-container label {
+	color: white ;
+}
+
+input#add-expense::placeholder {
+	color:white;
+}
+
+input#add-saving::placeholder {
+	color:white;
 }
 
 .hide {

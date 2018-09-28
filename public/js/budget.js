@@ -7,7 +7,7 @@ function generateCategories(array, type) {
 	for (i=0; i<array.length;i++) {
 		var p = $("<p>");
 		var label = $(`<label for=${array[i]}>`);
-		var input = $(`<input id=${array[i]} value=${array[i]} name=${type} type='checkbox'>`);
+		var input = $(`<input id=${array[i]}  value=${array[i]}   name=${type} type='checkbox'>`);
 		var span = $(`<span>${array[i]}</span>`);
 		label.append(input, span);
 		p.append(label);
@@ -60,10 +60,10 @@ function expense() {
 	 	if (checkboxes[i].checked) {
         yourExpenses.push(checkboxes[i].value);
      	}
+
 	 }
 	 $("#saving-form").toggleClass("hide");
 	 $("#expense-form").toggleClass("hide");
-	 console.log(yourExpenses);
 	 $("#budget-button").attr("onclick", "saving()");
 }
 
@@ -150,8 +150,7 @@ function updateBars() {
 
 	var spentPercentage = (totalSpent/totalIncome)*100;
 	var remainingPercentage = (totalRemaining/totalIncome)*100;
-	console.log(spentPercentage);
-	console.log(remainingPercentage);
+
 
 	if (totalRemaining < 0) {
 		$("#budget-empty p").css("color", "red");
