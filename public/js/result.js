@@ -33,7 +33,7 @@ function getCurrentAmount(t) {
 			}
 		}
 		getContribution(totalNeeded, currentAmount);
-		var progress = currentAmount/totalNeeded*100;
+		var progress = Math.round(currentAmount/totalNeeded*100);
 		$("#retirement-goal").text(progress + "%");
 	})
 }

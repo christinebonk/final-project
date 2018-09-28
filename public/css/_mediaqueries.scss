@@ -7,6 +7,43 @@
 			width: 50% !important;
 		}
 	}
+
+	section#networth-selection {
+		width: 100% ;
+		margin: 0;
+		padding: 0;
+		float: none;
+
+	}
+
+	section.networth-box {
+		width: 100%;
+		
+	}
+
+	section#your-networth {
+		width: 100%;
+		margin-bottom: 200px;
+	}
+
+	section#income-container {
+		width: 100%;
+	}
+
+	section#your-income-container {
+		width: 100%;
+		margin-top: 10px;
+	}
+
+	.result-container {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.result-container div.results-box {
+		width: 100%;
+	}
+
 }
 
 @media only screen and (max-width: 700px) {
