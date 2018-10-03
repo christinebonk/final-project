@@ -6,7 +6,8 @@ import $ from "jquery";
 class Modal extends Component {
 
 	state = {
-		categories: []
+		categories: [],
+		currentDate: new Date()
 	};
 
 	componentDidMount() {
@@ -44,7 +45,6 @@ class Modal extends Component {
 	      <h2>Add Transaction</h2>
 	      	<form>
 	      		<div className="form-top">
-		      		
 		      		<div className="modal-input">
 			        	<h4>Category</h4>
 		        		<select id="show" className="categories">
@@ -97,6 +97,9 @@ class Modal extends Component {
 							</div>
 						</div>
 					</div>
+				</div>
+				<div className="form-end">
+					 <input type="date"  className="datepicker"/>
 				</div>
 				<div> 
 	        		<button className="btn" onClick={this.props.submitTransaction}>Submit</button>

@@ -24,8 +24,8 @@ class TopBar extends Component {
     	this.setState({ show: false });
 		const item = $("#item").val().trim();
 		const cost = $("#amount").val().trim();
+		const date = $(".datepicker").val().trim();
 		const category = $('.categories').val().trim();
-		const date = new Date();
 		const subcategory = $('input[name=type]:checked').val();
 		let happy = $('input[name=happy]:checked').val();
 		if (happy === "yes") { happy = true } else {happy = false };
