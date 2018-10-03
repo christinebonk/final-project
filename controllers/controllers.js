@@ -276,13 +276,26 @@ function routes(app) {
 			})
 	})
 
-	app.get("/api/transaction", function(req,res,next) {
+	app.get("/api/transaction/:date", function(req,res,next) {
 		console.log("hfi");
 		var user = req.user.userid;
 		if (!user) {
 			user = req.user;
 		}
-		db.Transaction.findAll({where: {username: user}}).then(function(result) {
+		var date = req.params.date;
+		date = date.substring(0,8)
+		date = new Date(date);
+		var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+		var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+		console.log(firstDay + lastDay);
+		console.log(date);
+		db.Transaction.findAll({where: {
+			username: user,
+			transaction_date: {
+				$between: [firstDay, lastDay]
+			}
+
+		}}).then(function(result) {
 			res.json(result);
 		});
 	})

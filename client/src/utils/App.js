@@ -18,8 +18,8 @@ export default {
 		return axios.post("api/transaction", transaction)
 	},
 
-	searchTransaction: function() {
-		return axios.get("api/transaction")
+	searchTransaction: function(date) {
+		return axios.get("api/transaction/" + date)
 	},
 
 	submitUser: function(profile) {

@@ -16,7 +16,8 @@ state = {
     totalSpent: 0,
     total: 0,
     totalRemaining: 0,
-    totalHappiness: 0
+    totalHappiness: 0,
+    timePeriod: new Date()
 }
     
 
@@ -25,7 +26,11 @@ state = {
     }
 
     retrieveTransactions = () => {
-        API.searchTransaction()
+        let date = this.state.timePeriod;
+        date = new Date(date.getFullYear(), date.getMonth());
+        date = JSON.stringify(date);
+        console.log(date);
+        API.searchTransaction(date)
         .then(res => {
             console.log(res.data);
             this.setState({transactions: res.data});
@@ -116,6 +121,12 @@ render () {
     <div>
         <TopBar onClick={this.showModal} title="Monthly View"/>
         <Container>
+            <Row>
+                <select id="show" className="categories">
+                    <option value="2018-10">October 2018</option>
+                    <option value="2018-09">September 2018</option> 
+                </select>
+            </Row>
             <Row>
               <Col size="s3">
                 <div className="data-block">
