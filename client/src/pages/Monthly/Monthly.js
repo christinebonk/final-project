@@ -10,15 +10,23 @@ import { Thead, Table, Tbody } from "../../components/Table";
 
 
 class Monthly extends Component {
-state = {
-    budget: [],
-    transactions: [],
-    totalSpent: 0,
-    total: 0,
-    totalRemaining: 0,
-    totalHappiness: 0,
-    timePeriod: new Date()
-}
+    state = {
+        budget: [],
+        transactions: [],
+        totalSpent: 0,
+        total: 0,
+        totalRemaining: 0,
+        totalHappiness: 0,
+        timePeriod: new Date()
+    }
+
+    editBudget = () => {
+        $(".budget-input").removeAttr("readonly");
+        $("#edit-button").toggleClass("hide");
+        $("#save-button").toggleClass("hide");
+        $(".delete-button").toggleClass("hide");
+        $("#add-budget").toggleClass("hide");
+    }
     
 
     componentDidMount() {
@@ -190,7 +198,11 @@ render () {
                         )}
                 </Col>
                 <Col size="s12 m6">
+                <div className="budget-title">
                 <h2>Transactions</h2>
+                    <i id="edit-button" onClick={this.editBudget} className="material-icons">edit</i>
+                    <i id="save-button" onClick={this.saveBudget} className="hide material-icons">save</i>
+                </div>
               {this.state.transactions.length ? (
                 <Table>
                   <Thead>
