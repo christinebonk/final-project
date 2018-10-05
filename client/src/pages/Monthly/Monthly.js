@@ -159,7 +159,8 @@ render () {
               </Col>
             </Row>
             <Row>
-                <Col size="s12">
+                <Col size="s12 m6">
+                <h2>Budget</h2>
                     {this.state.budget.length ? (
                         <div className="budget-container">
                         {this.state.budget.map (budget => (
@@ -188,10 +189,8 @@ render () {
                         <div>Hi</div>
                         )}
                 </Col>
-            </Row>
-            <Row>
-                <Col size="s12">
-                <h2>Monthly Transactions</h2>
+                <Col size="s12 m6">
+                <h2>Transactions</h2>
               {this.state.transactions.length ? (
                 <Table>
                   <Thead>
