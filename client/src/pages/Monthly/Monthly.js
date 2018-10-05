@@ -29,10 +29,8 @@ state = {
         let date = this.state.timePeriod;
         date = new Date(date.getFullYear(), date.getMonth());
         date = JSON.stringify(date);
-        console.log(date);
         API.searchTransaction(date)
         .then(res => {
-            console.log(res.data);
             this.setState({transactions: res.data});
             this.retrieveBudget();
         })
@@ -78,7 +76,6 @@ state = {
         let happinessAmount = 0;  
         happyCount.forEach(element => {
             happinessAmount += element.cost
-            console.log(happinessAmount);
         });
         let totalRemaining = total - totalSpent;
         let totalHappy = happinessAmount / totalSpent * 100;
@@ -113,6 +110,14 @@ state = {
         return display;
       };
 
+    updatePeriod = () => {
+        let date = $(".period").val();
+        date = new Date(date);
+        this.setState({timePeriod: date}, () => {
+            this.retrieveTransactions();
+        });
+    }
+
 render () {
     const totalSpent = this.displayNumber(this.state.totalSpent);
     const totalRemaining = this.displayNumber(this.state.totalRemaining);
@@ -122,9 +127,9 @@ render () {
         <TopBar onClick={this.showModal} title="Monthly View"/>
         <Container>
             <Row>
-                <select id="show" className="categories">
-                    <option value="2018-10">October 2018</option>
-                    <option value="2018-09">September 2018</option> 
+                <select id="show" onChange={this.updatePeriod} className="period">
+                    <option value="Oct 2018">October 2018</option>
+                    <option value="Sept 2018">September 2018</option> 
                 </select>
             </Row>
             <Row>
