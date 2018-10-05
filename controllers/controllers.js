@@ -235,6 +235,7 @@ function routes(app) {
 	});
 
 	app.delete("/api/budget/:id", function(req,res,next) {
+
 		var user = req.user.userid;
 		if (!user) {
 			user = req.user;
@@ -274,7 +275,21 @@ function routes(app) {
 			}).then(function(result) {
 				res.json("complete");
 			})
-	})
+	});
+
+	app.delete("/api/transaction/:id", function(req,res,next) {
+		var user = req.user.userid;
+		if (!user) {
+			user = req.user;
+		}
+		var id = req.params.id;
+		db.Transaction.destroy( {where: {username: user, id: id}
+		}).then(function(result) {
+			res.json(result);
+		}).catch(function(err) {
+			if (err) {console.log(err)};
+		})
+	});
 
 	app.get("/api/transaction/:date", function(req,res,next) {
 		console.log("hfi");

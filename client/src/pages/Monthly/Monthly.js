@@ -27,7 +27,13 @@ class Monthly extends Component {
         $(".delete-button").toggleClass("hide");
         $("#add-budget").toggleClass("hide");
     }
-    
+
+    deleteTransaction = (event, id) => {
+        API.deleteTransaction(id)
+        .then(() => {
+          this.retrieveTransactions();
+        }) 
+    }
 
     componentDidMount() {
         this.retrieveTransactions();   
@@ -212,11 +218,30 @@ render () {
                   </Thead>
                 <Tbody>
                 {this.state.transactions.map (transaction => (
-                  <tr key={transaction.id}>
-                    <td>{transaction.item}</td>
-                    <td>{transaction.cost}</td>
-                    <td>{transaction.category}</td>
-                  </tr>
+                    <tr key={transaction.id}>
+                        <td><input 
+                          onChange={ (e) => this.updateInput(e, transaction.id) }
+                          className="budget-input" 
+                          type="text" 
+                          value={transaction.item} 
+                          name="item"
+                          index={transaction.id} 
+                          readOnly/>
+                        </td>
+                        <td><input 
+                          onChange={ (e) => this.updateInput(e, transaction.id) }
+                          className="budget-input" 
+                          type="text" 
+                          value={transaction.cost} 
+                          name="item"
+                          index={transaction.id} 
+                          readOnly/>
+                        </td>
+                        <td>{transaction.category}</td>
+                        <td><i 
+                      onClick={ (e) => this.deleteTransaction(e, transaction.id) }
+                      className="hide delete-button material-icons">delete</i></td>
+                    </tr>
                   ))}
                   </Tbody></Table> )  : (
                 <h3></h3>
