@@ -87,7 +87,16 @@ class Networth extends Component {
         this.setState({accounts:data});
       }
 
+      displayNumber = (num) => {
+        let display = Math.round(num);
+        display = JSON.stringify(display);
+        display = display.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        display = "$" + display; 
+        return display;
+      };
+
     render () { 
+
         return ( 
     	<div>
             <div className="asset-title">
@@ -118,7 +127,7 @@ class Networth extends Component {
                         <input onChange={ (e) => this.updateAssetInput(e, account.index) }
                         className="asset-input" 
                         type="text" 
-                        value={account.balance} 
+                        value={account.balance}
                         name="balance"
                         id={account.id} 
                         readOnly/>

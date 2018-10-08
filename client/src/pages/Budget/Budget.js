@@ -78,6 +78,9 @@ class Budget extends Component {
     let data = this.state.budgetData;
     let selection = data[index];
     if (name === "value") {
+      if (!value) {
+        value = 0;
+      }
       value = parseInt(value);
     }
     selection[name] = value;
@@ -138,7 +141,10 @@ class Budget extends Component {
     });
   }
 
+  
+
   render() {
+
     return (
       <div>
         <TopBar title="Budget"/>
