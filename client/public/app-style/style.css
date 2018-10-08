@@ -137,6 +137,9 @@ table {
 .budget-container .bar-container {
   height: 20px; }
 
+p.overbudget {
+  color: red; }
+
 .modal-main {
   position: fixed;
   background: white;

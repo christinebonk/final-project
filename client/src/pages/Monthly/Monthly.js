@@ -92,6 +92,9 @@ class Monthly extends Component {
             happinessAmount += element.cost
         });
         let totalRemaining = total - totalSpent;
+        if(totalRemaining < 0) {
+            $("#total-remaining-value").addClass("overbudget");
+        }
         let totalHappy = happinessAmount / totalSpent * 100;
         totalHappy = Math.round(totalHappy);
       //set state
@@ -156,7 +159,7 @@ render () {
               <Col size="s3">
                 <div className="data-block">
                   <h3>Total Remaining</h3>
-                  <p>{totalRemaining}</p>    
+                  <p id="total-remaining-value">{totalRemaining}</p>    
                 </div>
               </Col>
               <Col size="s3">
