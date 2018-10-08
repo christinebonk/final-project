@@ -31,15 +31,16 @@ class Home extends Component {
     this.getAmount();
   };
 
+  //reset assumptions
   reset = () => {
     this.getUser();
     this.getAmount();
     $(".assumption-icon").css("color", "#D3E3DD");
   }
 
+  //create data for bar chart
   createChart = () => {
     const projection = this.state.projection;
- 
     let data = projection.map (projection => {
       const obj = {
         x: projection.year,
@@ -47,12 +48,10 @@ class Home extends Component {
       }
       return obj
     });
-
-    this.setState({data:data})
-  
+    this.setState({data:data}) 
   };
   
-
+  //calculate the overall progress to goal chart
   calculateBars = () => {
     const goal = this.state.goal;
     const amount = this.state.fire_amount;
@@ -65,12 +64,14 @@ class Home extends Component {
     this.setState({percentage: percentage, remainingPercentage: remainingPercentage});
   };
 
+  //calculate goal
   calculateGoal = (cost,withdrawal) => {
     let goal = cost/withdrawal;
     this.setState({goal: goal});
     return goal;
   }
 
+  //get amount saved so far
   getAmount = () => {
     API.searchAccount()
     .then(res => {
@@ -82,14 +83,13 @@ class Home extends Component {
       });
       this.setState({fire_amount: fireTotal}, () => {
         this.getProjection();
-        this.calculateBars();
-        this.getNeededAmount();
-        
+        this.calculateBars();        
       });
     })
     .catch(err => console.log(err));
   };
 
+  //save assumptions to database
   updateAssumptions = () => {
     var contribution = this.state.contribution;
     var cost = this.state.cost;
@@ -112,8 +112,7 @@ class Home extends Component {
     $(".assumption-icon").css("color", "#D3E3DD");
   }
 
-
- 
+  //get user assumptions from database
   getUser = () => {
     API.searchUser()
       .then(res => {
@@ -142,6 +141,7 @@ class Home extends Component {
       .catch(err => console.log(err));
   };
 
+  //function to display $ amount
   displayNumber = (num) => {
     let display = Math.round(num);
     display = JSON.stringify(display);
@@ -150,6 +150,7 @@ class Home extends Component {
     return display;
   };
 
+  //get the projection YoY
   getProjection = () => {
     let fireAmount = this.state.fire_amount;
     const increase = this.state.increase;
@@ -197,13 +198,13 @@ class Home extends Component {
       };
       arr.push(newObj);
       finalYear = year;
-
       //increment
     }
     this.setState({projection: arr} , () => {
       this.createChart();
     });
-    this.setState({final_year: finalYear})
+    console.log(finalYear + "hello");
+    this.setState({final_year: finalYear}, () => this.getNeededAmount)
   }
 
   projectDate = (contribution, goal, amount, growth, year) => {
@@ -226,7 +227,7 @@ class Home extends Component {
     let goalDate = this.state.date;
     let finalYear = this.state.final_year; 
     let newContribution = contribution;
-
+    console.log(finalYear);
     while (finalYear > goalDate) {
       newContribution = newContribution + 100;
       finalYear = this.projectDate(newContribution, goal, fireAmount, growth, currentYear);
