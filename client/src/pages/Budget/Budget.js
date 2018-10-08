@@ -20,22 +20,22 @@ class Budget extends Component {
 
   componentDidMount() {
     this.retrieveBudget();
+    console.log("hello");
   }
 
   deleteBudget = (event, id) => {
     API.deleteBudget(id)
     .then(() => {
       this.retrieveBudget();
-    })
-    
+    }) 
   }
 
   editBudget = () => {
     $(".budget-input").removeAttr("readonly");
     $("#edit-button").toggleClass("hide");
     $("#save-button").toggleClass("hide");
-    $(".delete-button").toggleClass("hide");
     $("#add-budget").toggleClass("hide");
+    $(".delete-button").toggleClass("hide");
   }
 
   addBudget = () => {
@@ -51,6 +51,11 @@ class Budget extends Component {
     $("input[name=add-value]").val("");
     API.addBudget(data)
     .then(() => {
+      $("#edit-button").toggleClass("hide");
+      $("#save-button").toggleClass("hide");
+      $("#add-budget").toggleClass("hide");
+      $(".delete-button").toggleClass("hide");
+      $(".budget-input").prop("readonly", true);
       this.retrieveBudget();
     }) 
   }
@@ -62,6 +67,7 @@ class Budget extends Component {
     });
     $("#edit-button").toggleClass("hide");
     $("#save-button").toggleClass("hide");
+    $("#add-budget").toggleClass("hide");
     $(".delete-button").toggleClass("hide");
     $(".budget-input").prop("readonly", true);
     this.retrieveBudget();
