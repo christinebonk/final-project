@@ -28,6 +28,39 @@ class Monthly extends Component {
         $("#add-budget").toggleClass("hide");
     }
 
+    saveTransaction = () => {
+        let data = this.state.transactions;
+        console.log(data);
+        data.forEach(entry => {
+          API.updateTransaction(entry)
+          .then((res) => {
+            console.log(res);
+            this.retrieveTransactions();
+          })
+        });
+        $("#edit-button").toggleClass("hide");
+        $("#save-button").toggleClass("hide");
+        $("#add-budget").toggleClass("hide");
+        $(".delete-button").toggleClass("hide");
+        $(".budget-input").prop("readonly", true);
+        
+    }
+
+    updateInput = (event, index) => {
+        let { name, value } = event.target;
+        let data = this.state.transactions;
+        let selection = data[index];
+        if (name === "cost") {
+          if (!value) {
+            value = 0;
+          }
+          value = parseInt(value);
+        }
+        selection[name] = value;
+        data[index] = selection;
+        this.setState({tranasctions:data});
+      }
+
     deleteTransaction = (event, id) => {
         API.deleteTransaction(id)
         .then(() => {
@@ -45,6 +78,11 @@ class Monthly extends Component {
         date = JSON.stringify(date);
         API.searchTransaction(date)
         .then(res => {
+            let transactions = res.data;
+            transactions.forEach((entry, index) => {
+                entry.index = index;
+            });
+            console.log(transactions)
             this.setState({transactions: res.data});
             this.retrieveBudget();
         })
@@ -210,7 +248,7 @@ render () {
                 <div className="budget-title">
                 <h2>Transactions</h2>
                     <i id="edit-button" onClick={this.editBudget} className="material-icons">edit</i>
-                    <i id="save-button" onClick={this.saveBudget} className="hide material-icons">save</i>
+                    <i id="save-button" onClick={this.saveTransaction} className="hide material-icons">save</i>
                 </div>
               {this.state.transactions.length ? (
                 <Table>
@@ -223,21 +261,21 @@ render () {
                 {this.state.transactions.map (transaction => (
                     <tr key={transaction.id}>
                         <td><input 
-                          onChange={ (e) => this.updateInput(e, transaction.id) }
+                          onChange={ (e) => this.updateInput(e, transaction.index) }
                           className="budget-input" 
                           type="text" 
                           value={transaction.item} 
                           name="item"
-                          index={transaction.id} 
+                          index={transaction.index} 
                           readOnly/>
                         </td>
                         <td><input 
-                          onChange={ (e) => this.updateInput(e, transaction.id) }
+                          onChange={ (e) => this.updateInput(e, transaction.index) }
                           className="budget-input" 
                           type="text" 
                           value={transaction.cost} 
-                          name="item"
-                          index={transaction.id} 
+                          name="cost"
+                          index={transaction.index} 
                           readOnly/>
                         </td>
                         <td>{transaction.category}</td>

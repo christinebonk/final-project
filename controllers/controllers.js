@@ -252,7 +252,6 @@ function routes(app) {
 	});
 
 	app.post("/api/transaction", function(req,res,next) {
-		console.log(req.body);
 		var user = req.user.userid;
 		var item = req.body.item;
 		var cost = req.body.cost;
@@ -272,9 +271,37 @@ function routes(app) {
 				subcategory: subcategory,
 				happy: happy,
 				username: user
-			}).then(function(result) {
-				res.json("complete");
+			}).then(function(result,err) {
+				if(err) {
+					res.json(err)
+				}
+
+
 			})
+	});
+
+	app.put("/api/transaction", function(req,res,next) {
+		var user = req.user.userid;
+		var item = req.body.item;
+		var id = req.body.id;
+		var cost = req.body.cost;
+		var category = req.body.category;
+		var date = req.body.date;
+		var subcategory = req.body.subcategory;
+		var happy = req.body.happy;
+		if (!user) {
+			user = req.user;
+		}
+		db.Transaction.update({
+			item: item,
+			cost: cost
+		},
+			{where: {username: user, id: id}
+		}).then(function(result) {
+			res.json(result);
+		}).catch(function(err) {
+			if (err) {console.log(err)};
+		})
 	});
 
 	app.delete("/api/transaction/:id", function(req,res,next) {
@@ -283,7 +310,8 @@ function routes(app) {
 			user = req.user;
 		}
 		var id = req.params.id;
-		db.Transaction.destroy( {where: {username: user, id: id}
+		db.Transaction.destroy( {where: {username
+			: user, id: id}
 		}).then(function(result) {
 			res.json(result);
 		}).catch(function(err) {

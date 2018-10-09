@@ -22,6 +22,10 @@ export default {
 		return axios.get("api/transaction/" + date)
 	},
 
+	updateTransaction: function(transaction) {
+		return axios.put("api/transaction", transaction)
+	},
+
 	deleteTransaction: function(id) {
 		return axios.delete("/api/transaction/" + id)
 	},
