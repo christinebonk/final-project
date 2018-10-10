@@ -37,3 +37,11 @@ input[readonly].asset-input {
 table {
 	text-transform: capitalize;
 }
+
+#assets {
+	background: lighten($secondary, 50%); 
+	margin-top: 40px;
+	padding: 0px 20px;
+	border-radius: 20px;
+	
+}

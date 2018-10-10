@@ -98,7 +98,7 @@ class Networth extends Component {
     render () { 
 
         return ( 
-    	<div>
+    	<div id="assets">
             <div className="asset-title">
                 <h2>Assets</h2>
                 <i id="edit-assets-button" onClick={this.editAssets} className="material-icons">edit</i>
