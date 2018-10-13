@@ -17,7 +17,26 @@ class Monthly extends Component {
         total: 0,
         totalRemaining: 0,
         totalHappiness: 0,
-        timePeriod: new Date()
+        timePeriod: new Date(),
+        savingsRate: 0
+    }
+
+    calculateSavingsRate = () => {
+        let budget = this.state.budget;
+        let transactions = this.state.transactions;
+        let savings = 0;
+        let total = this.state.total;
+        budget = budget.filter((entry) => entry.type === "saving");
+        budget.forEach(entry => {
+            transactions.forEach(transaction => {
+                if (transaction.category == entry.title) {
+                    savings += transaction.cost
+                    console.log(transaction.cost);
+                }
+            })
+        });
+        let savingsRate = Math.round(savings/total*100);
+        this.setState({savingsRate: savingsRate});
     }
 
     editBudget = () => {
@@ -89,17 +108,14 @@ class Monthly extends Component {
     }
 
     retrieveBudget = () => {
-    API.searchBudget()
-    .then(res => {
-    
-
+        API.searchBudget()
+        .then(res => {
     
     //create budget object
       let budgetData = res.data.filter(entry => entry.type !== "income" && entry.period === "monthly");
       let total = 0;
       let totalSpent = 0;  
         
-
       budgetData = budgetData.map((entry, index) => {
         total += entry.amount;
         let transactions = this.state.transactions;
@@ -121,8 +137,6 @@ class Monthly extends Component {
         return obj
         });
 
-      
-
         let happyCount = this.state.transactions;
         happyCount = happyCount.filter(item => item.happy === true);
         let happinessAmount = 0;  
@@ -136,7 +150,11 @@ class Monthly extends Component {
         let totalHappy = happinessAmount / totalSpent * 100;
         totalHappy = Math.round(totalHappy);
       //set state
-      this.setState({budget:budgetData, total:total, totalSpent: totalSpent, totalRemaining: totalRemaining, totalHappy: totalHappy}, () => {this.calculateBars()});
+      console.log(budgetData);
+      this.setState({budget:budgetData, total:total, totalSpent: totalSpent, totalRemaining: totalRemaining, totalHappy: totalHappy}, () => {
+            this.calculateBars();
+            this.calculateSavingsRate();
+        });
     })
   }
 
@@ -176,7 +194,7 @@ class Monthly extends Component {
 render () {
     const totalSpent = this.displayNumber(this.state.totalSpent);
     const totalRemaining = this.displayNumber(this.state.totalRemaining);
-
+    const savingsRate = this.state.savingsRate + "%";
     return ( 
     <div>
         <TopBar onClick={this.showModal} title="Monthly View"/>
@@ -203,7 +221,7 @@ render () {
               <Col size="s3">
                 <div className="data-block">
                   <h3>Savings Rate</h3>
-                  <p></p>    
+                  <p>{savingsRate}</p>    
                 </div>
               </Col>
               <Col size="s3">
