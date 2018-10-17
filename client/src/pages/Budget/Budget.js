@@ -20,7 +20,6 @@ class Budget extends Component {
 
   componentDidMount() {
     this.retrieveBudget();
-    console.log("hello");
   }
 
   deleteBudget = (event, id) => {
@@ -81,7 +80,7 @@ class Budget extends Component {
       if (!value) {
         value = 0;
       }
-      value = parseInt(value);
+      value = parseInt(value, 10);
     }
     selection[name] = value;
     data[index] = selection;
@@ -89,8 +88,10 @@ class Budget extends Component {
   }
 
   retrieveBudget = () => {
+    //define colours for chart
     const color = ["#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD"];
 
+    //retrieve budget
     API.searchBudget()
     .then(res => {
        //create budet object
@@ -106,37 +107,34 @@ class Budget extends Component {
         }
         return obj
         });
-
       //determine income and expenses
       let incomeData = res.data.filter(entry => entry.type === "income");
       let income = 0;
       let expenses = 0;
       let savings = 0;
-      let spending = 0;
+      // let spending = 0 -- this is not used currently
       budgetData.forEach(entry => {
         expenses += entry.value;
         if (entry.type === "saving") {
           savings += entry.value
         } else if (entry.type === "expense") {
-          spending += entry.value
+          // spending += entry.value
         }
       });
-
-      incomeData = incomeData.forEach(entry => {
+      incomeData.forEach(entry => {
         income += entry.amount; 
       })
       let variation = income - expenses;
       let savingsRate = Math.round(savings/income*100);
-
       //set state
       this.setState({budgetData:budgetData, income:income, variation:variation, expenses: expenses, savingsRate: savingsRate});
-    })
-
+    });
   }
 
+  //pie chart function
   findCategory = (d) => {
     const data = this.state.budgetData;
-    const result = data.filter(obj => {
+    data.filter(obj => {
       return obj.title === d;
     });
   }
@@ -239,7 +237,7 @@ class Budget extends Component {
                       className=" add-button material-icons">add_circle</i></td>
                   </tr>
                   </Tbody></Table> )  : (
-                <h3></h3>
+                <h3>No data to load</h3>
                 )
               }
             </div>

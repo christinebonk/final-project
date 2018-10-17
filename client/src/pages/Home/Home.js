@@ -93,7 +93,6 @@ class Home extends Component {
   updateAssumptions = () => {
     var contribution = this.state.contribution;
     var cost = this.state.cost;
-    console.log(cost);
     var withdrawal = this.state.withdrawal;
     var increase = this.state.increase;
     var growth = this.state.growth;
@@ -117,7 +116,6 @@ class Home extends Component {
     API.searchUser()
       .then(res => {
         const data = res.data[0];
-        console.log(data)
         const contribution = data.retirement_contribution;
         const cost = data.retirement_cost;
         const date = data.retirement_date;
@@ -203,7 +201,6 @@ class Home extends Component {
     this.setState({projection: arr} , () => {
       this.createChart();
     });
-    console.log(finalYear + "hello");
     this.setState({final_year: finalYear}, () => this.getNeededAmount)
   }
 
@@ -227,7 +224,6 @@ class Home extends Component {
     let goalDate = this.state.date;
     let finalYear = this.state.final_year; 
     let newContribution = contribution;
-    console.log(finalYear);
     while (finalYear > goalDate) {
       newContribution = newContribution + 100;
       finalYear = this.projectDate(newContribution, goal, fireAmount, growth, currentYear);
@@ -402,7 +398,7 @@ class Home extends Component {
                   </tr>
                   ))}
                   </Tbody></Table> )  : (
-                <h3></h3>
+                <h3>No data to load</h3>
                 )
               }
             

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import TopBar from "../../components/TopBar";
 import API from "../../utils/App.js";
-import { Col, Row, Container } from "../../components/Grid";
 import { Thead, Table, Tbody } from "../../components/Table";
 import $ from "jquery";
 
@@ -64,7 +62,6 @@ class Networth extends Component {
       }
 
       saveAssets = () => {
-        console.log("hello");
         let data = this.state.accounts;
         data.forEach(entry => {
           API.submitAccount(entry)
@@ -80,7 +77,7 @@ class Networth extends Component {
         let data = this.state.accounts;
         let selection = data[index];
         if (name === "balance") {
-          value = parseInt(value);
+          value = parseInt(value, 10);
         }
         selection[name] = value;
         data[index] = selection;
@@ -162,7 +159,7 @@ class Networth extends Component {
                     <td></td>
                 </tr>
                   </Tbody></Table> )  : (
-                <h3></h3>
+                <h3>No content to load</h3>
                 )
               }
         </div>

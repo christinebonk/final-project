@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../../utils/App.js";
-import $ from "jquery";
 
 
 class Modal extends Component {

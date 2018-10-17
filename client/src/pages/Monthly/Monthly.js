@@ -29,9 +29,8 @@ class Monthly extends Component {
         budget = budget.filter((entry) => entry.type === "saving");
         budget.forEach(entry => {
             transactions.forEach(transaction => {
-                if (transaction.category == entry.title) {
+                if (transaction.category === entry.title) {
                     savings += transaction.cost
-                    console.log(transaction.cost);
                 }
             })
         });
@@ -49,11 +48,9 @@ class Monthly extends Component {
 
     saveTransaction = () => {
         let data = this.state.transactions;
-        console.log(data);
         data.forEach(entry => {
           API.updateTransaction(entry)
           .then((res) => {
-            console.log(res);
             this.retrieveTransactions();
           })
         });
@@ -73,7 +70,7 @@ class Monthly extends Component {
           if (!value) {
             value = 0;
           }
-          value = parseInt(value);
+          value = parseInt(value, 10);
         }
         selection[name] = value;
         data[index] = selection;
@@ -101,7 +98,6 @@ class Monthly extends Component {
             transactions.forEach((entry, index) => {
                 entry.index = index;
             });
-            console.log(transactions)
             this.setState({transactions: res.data});
             this.retrieveBudget();
         })
@@ -150,7 +146,6 @@ class Monthly extends Component {
         let totalHappy = happinessAmount / totalSpent * 100;
         totalHappy = Math.round(totalHappy);
       //set state
-      console.log(budgetData);
       this.setState({budget:budgetData, total:total, totalSpent: totalSpent, totalRemaining: totalRemaining, totalHappy: totalHappy}, () => {
             this.calculateBars();
             this.calculateSavingsRate();
@@ -303,7 +298,7 @@ render () {
                     </tr>
                   ))}
                   </Tbody></Table> )  : (
-                <h3></h3>
+                <h3>No data to load</h3>
                 )
               }
             

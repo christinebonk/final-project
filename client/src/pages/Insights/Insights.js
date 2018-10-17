@@ -1,23 +1,21 @@
 import React, { Component } from "react";
+import TopBar from "../../components/TopBar";
+import API from "../../utils/App.js";
+import { Col, Row, Container } from "../../components/Grid";
+import { Thead, Table, Tbody } from "../../components/Table";
+import $ from "jquery";
 
 
 class Insights extends Component {
- 
 
-return (
-	<div>
-        <TopBar title="Insights"/>
-        <Container>
-        	<Row>
-        		<Col size="s12">
-        			
-        		</Col>
-        	</Row>
-        </Container>
-    </div>
-	);
 
+    render () { 
+
+        return ( 
+        
+        )};
 }
+
 
 
 
