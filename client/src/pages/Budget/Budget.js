@@ -22,6 +22,7 @@ class Budget extends Component {
     this.retrieveBudget();
   }
 
+  //edit budget functions
   deleteBudget = (event, id) => {
     API.deleteBudget(id)
     .then(() => {
@@ -61,6 +62,26 @@ class Budget extends Component {
 
   saveBudget = () => {
     let data = this.state.budgetData;
+    data.forEach(entry => {
+      API.submitBudget(entry)
+    });
+    $("#edit-button").toggleClass("hide");
+    $("#save-button").toggleClass("hide");
+    $("#add-budget").toggleClass("hide");
+    $(".delete-button").toggleClass("hide");
+    $(".budget-input").prop("readonly", true);
+    this.retrieveBudget();
+  }
+
+  //edit income functions
+  editIncome = () => {
+    $(".income-input").removeAttr("readonly");
+    $("#edit-income-button").toggleClass("hide");
+    $("#save-income-button").toggleClass("hide");
+  }
+
+  saveIncome = () => {
+    let data = this.state.income;
     data.forEach(entry => {
       API.submitBudget(entry)
     });
@@ -112,22 +133,22 @@ class Budget extends Component {
       let income = 0;
       let expenses = 0;
       let savings = 0;
-      // let spending = 0 -- this is not used currently
       budgetData.forEach(entry => {
         expenses += entry.value;
         if (entry.type === "saving") {
           savings += entry.value
         } else if (entry.type === "expense") {
-          // spending += entry.value
         }
       });
-      incomeData.forEach(entry => {
+      //income 
+      incomeData.forEach((entry, index) => {
         income += entry.amount; 
+        entry["index"] = index;
       })
       let variation = income - expenses;
       let savingsRate = Math.round(savings/income*100);
       //set state
-      this.setState({budgetData:budgetData, income:income, variation:variation, expenses: expenses, savingsRate: savingsRate});
+      this.setState({budgetData:budgetData, income:income, incomeSources: incomeData, variation:variation, expenses: expenses, savingsRate: savingsRate});
     });
   }
 
@@ -159,7 +180,11 @@ class Budget extends Component {
           <Col size="s8">
           <div className="budget-right">
           <div className="top-box">
-          <h2>Overview</h2>
+          <div className="overview-title">
+            <h2>Overview</h2>
+            <i id="edit-income-button" onClick={this.editIncome} className="material-icons">edit</i>
+            <i id="save-income-button" onClick={this.saveIncome} className="hide material-icons">save</i>
+          </div>
           <Table>
             <Thead>
               <th>Income</th>
