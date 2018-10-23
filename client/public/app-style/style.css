@@ -90,9 +90,9 @@ header {
 .budget-right {
   padding-left: 30px; }
 
-.budget-title {
+.budget-title, .overview-title {
   display: flex; }
-  .budget-title i {
+  .budget-title i, .overview-title i {
     margin: 33px 0px 20px 10px;
     color: #FABC09; }
 
@@ -101,6 +101,22 @@ input[readonly].budget-input {
 
 input[readonly].asset-input {
   border-bottom: none !important; }
+
+input[readonly].income-input {
+  border-bottom: none !important; }
+
+.income-table {
+  background: #fde59f;
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 10px; }
+  .income-table h4 {
+    font-size: 1.3rem;
+    margin-top: 10px; }
+  .income-table tr {
+    border: none; }
+  .income-table td {
+    font-size: 0.7rem; }
 
 .hide {
   display: none; }

@@ -215,9 +215,13 @@ function routes(app) {
 	});
 
 	app.put("/api/budget", function(req,res,next) {
+		console.log("hello");
 		var user = req.user.userid;
 		var name = req.body.title;
 		var amount = req.body.value;
+		if(!amount) {
+			amount = req.body.amount;
+		}
 		var id = req.body.id;
 		if (!user) {
 			user = req.user;

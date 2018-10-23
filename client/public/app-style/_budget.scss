@@ -2,7 +2,7 @@
 	padding-left: 30px;
 }
 
-.budget-title {
+.budget-title, .overview-title {
 	display: flex;
 
 		i {
@@ -18,6 +18,30 @@ input[readonly].budget-input {
 
 input[readonly].asset-input {
     border-bottom: none !important;
+}
+
+input[readonly].income-input {
+    border-bottom: none !important;
+}
+
+.income-table {
+	background: lighten($primary, 30%);
+	padding: 20px;
+	border-radius: 20px;
+	margin-top: 10px;
+
+		h4 {
+			font-size: 1.3rem;
+			margin-top: 10px;
+		}
+
+		tr {
+			border: none;
+		}
+
+		td {
+			font-size: 0.7rem;
+		}
 }
 
 

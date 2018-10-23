@@ -15,7 +15,8 @@ class Budget extends Component {
     income: 0,
     varation: 0, 
     expenses: 0,
-    savingsRate: 0
+    savingsRate: 0,
+    incomeData: []
   };
 
   componentDidMount() {
@@ -78,24 +79,24 @@ class Budget extends Component {
     $(".income-input").removeAttr("readonly");
     $("#edit-income-button").toggleClass("hide");
     $("#save-income-button").toggleClass("hide");
+    $(".income-table").toggleClass("hide");
   }
 
   saveIncome = () => {
-    let data = this.state.income;
+    let data = this.state.incomeData;
     data.forEach(entry => {
       API.submitBudget(entry)
     });
-    $("#edit-button").toggleClass("hide");
-    $("#save-button").toggleClass("hide");
-    $("#add-budget").toggleClass("hide");
-    $(".delete-button").toggleClass("hide");
-    $(".budget-input").prop("readonly", true);
+    $("#edit-income-button").toggleClass("hide");
+    $("#save-income-button").toggleClass("hide");
+    $(".income-input").prop("readonly", true);
+    $(".income-table").toggleClass("hide");
     this.retrieveBudget();
   }
 
-  updateInput = (event, index) => {
+  updateIncomeInput = (event, index) => {
     let { name, value } = event.target;
-    let data = this.state.budgetData;
+    let data = this.state.incomeData;
     let selection = data[index];
     if (name === "value") {
       if (!value) {
@@ -105,7 +106,25 @@ class Budget extends Component {
     }
     selection[name] = value;
     data[index] = selection;
+    console.log(data);
+    this.setState({incomeData:data});
+  }
+
+  updateInput = (event, index) => {
+    let { name, value } = event.target;
+    let data = this.state.budgetData;
+    let selection = data[index];
+    if (name === "value") {
+
+      if (!value) {
+        value = 0;
+      }
+      value = parseInt(value, 10);
+    }
+    selection[name] = value;
+    data[index] = selection;
     this.setState({budgetData:data});
+
   }
 
   retrieveBudget = () => {
@@ -148,7 +167,7 @@ class Budget extends Component {
       let variation = income - expenses;
       let savingsRate = Math.round(savings/income*100);
       //set state
-      this.setState({budgetData:budgetData, income:income, incomeSources: incomeData, variation:variation, expenses: expenses, savingsRate: savingsRate});
+      this.setState({budgetData:budgetData, income:income, incomeData: incomeData, variation:variation, expenses: expenses, savingsRate: savingsRate});
     });
   }
 
@@ -201,7 +220,49 @@ class Budget extends Component {
             </tr>
             </Tbody>
           </Table>
-            
+          <div className="income-table hide">
+            <h4>Edit Income</h4>
+            <Table>
+              <Thead>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Period</th>
+              </Thead>
+              <Tbody>
+              {this.state.incomeData.map (income => (
+                <tr key={income.index}>
+                  <td><input 
+                      onChange={ (e) => this.updateIncomeInput(e, income.index) }
+                      className="income-input" 
+                      type="text" 
+                      value={income.name} 
+                      name="name"
+                      index={income.index} 
+                      readOnly/>
+                  </td>
+                  <td><input 
+                      onChange={ (e) => this.updateIncomeInput(e, income.index) }
+                      className="income-input" 
+                      type="text" 
+                      value={income.amount} 
+                      name="amount"
+                      index={income.index} 
+                      readOnly/>
+                  </td>
+                  <td><input 
+                      onChange={ (e) => this.updateIncomeInput(e, income.index) }
+                      className="income-input" 
+                      type="text" 
+                      value={income.period} 
+                      name="period"
+                      index={income.index} 
+                      readOnly/>
+                  </td>
+                </tr>
+                ))}
+              </Tbody>
+            </Table>
+          </div>
           </div>
           <div className="budget-title">
             <h2>Budget Categories</h2>
