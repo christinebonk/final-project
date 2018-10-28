@@ -163,7 +163,9 @@ class Budget extends Component {
       incomeData.forEach((entry, index) => {
         income += entry.amount; 
         entry["index"] = index;
-      })
+      });
+
+      console.log(incomeData);
       let variation = income - expenses;
       let savingsRate = Math.round(savings/income*100);
       //set state
@@ -226,7 +228,6 @@ class Budget extends Component {
               <Thead>
                 <th>Name</th>
                 <th>Amount</th>
-                <th>Period</th>
               </Thead>
               <Tbody>
               {this.state.incomeData.map (income => (
@@ -246,15 +247,6 @@ class Budget extends Component {
                       type="text" 
                       value={income.amount} 
                       name="amount"
-                      index={income.index} 
-                      readOnly/>
-                  </td>
-                  <td><input 
-                      onChange={ (e) => this.updateIncomeInput(e, income.index) }
-                      className="income-input" 
-                      type="text" 
-                      value={income.period} 
-                      name="period"
                       index={income.index} 
                       readOnly/>
                   </td>

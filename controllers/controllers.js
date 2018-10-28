@@ -218,6 +218,9 @@ function routes(app) {
 		console.log("hello");
 		var user = req.user.userid;
 		var name = req.body.title;
+		if (!name) {
+			name = req.body.name;
+		}
 		var amount = req.body.value;
 		if(!amount) {
 			amount = req.body.amount;
