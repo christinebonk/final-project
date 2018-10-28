@@ -136,6 +136,12 @@ table {
   padding: 0px 20px;
   border-radius: 20px; }
 
+.display-data {
+  display: flex; }
+  .display-data div {
+    width: 33.33%;
+    text-align: center; }
+
 .budget-container .section-container {
   display: flex;
   margin: 10px;

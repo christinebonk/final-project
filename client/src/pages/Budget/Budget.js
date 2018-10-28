@@ -173,12 +173,20 @@ class Budget extends Component {
     });
   }
 
-  //pie chart function
+  //show pie chart sections
   findCategory = (d) => {
-    const data = this.state.budgetData;
-    data.filter(obj => {
-      return obj.title === d;
-    });
+    const income = this.state.income;
+    if (d) {
+      const title = d.title;
+      let value = d.value
+      value = "$" + value;
+      let percentage = Math.round(d.value/income*100);
+      percentage = percentage + "%";
+      $("#display-data-category").text(title);
+      $("#display-data-value").text(value);
+      $("#display-data-percentage").text(percentage);
+    }
+    
   }
 
   
@@ -196,6 +204,11 @@ class Budget extends Component {
           data={this.state.budgetData}
           onSectorHover={(d, i, e) => { this.findCategory(d) }}
           />
+          <div className="display-data">
+            <div id="display-data-category"></div>
+            <div id="display-data-value"></div>
+            <div id="display-data-percentage"></div>
+          </div>
           <Networth />
           </Col>
           <Col size="s8">

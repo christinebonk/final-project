@@ -67,5 +67,12 @@ table {
 	margin-top: 40px;
 	padding: 0px 20px;
 	border-radius: 20px;
-	
+}
+
+.display-data {
+	display: flex;
+		div {
+			width: 33.33%;
+			text-align: center;
+		}
 }
