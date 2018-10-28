@@ -129,8 +129,8 @@ class Budget extends Component {
 
   retrieveBudget = () => {
     //define colours for chart
-    const color = ["#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD", "#FABC09", "#25BEA0", "#FACC43", "#34073D", "#D3E3DD"];
-
+    const colorExpense = ["#B60000", "#813C3C", "#CD6D00", "#FF9823", "#FFE423", "#FF23C0", "#C00CBD", "#ED66EB", "#F9A083"];
+    const colorSavings = ["#66EDA7", "#006832", "#4A8667", "#00F304", "#0A900C", "#0A907A", "#6AC5B6", "#6AB6C5", "#207080", "#203780"];
     //retrieve budget
     API.searchBudget()
     .then(res => {
@@ -141,9 +141,13 @@ class Budget extends Component {
           title: entry.name,
           value: entry.amount,
           type: entry.type,
-          color: color[index],
           index: index,
           id: entry.id
+        }
+        if (obj.type === "expense") {
+          obj["color"] = colorExpense[index];
+        } else if (obj.type === "saving") {
+          obj["color"] = colorSavings[index];
         }
         return obj
         });
